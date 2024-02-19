@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
 use Closure;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ProvidersRouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if($request->user()->role === 'company'){
+                    return redirect(RouteServiceProvider::COMPANY_DASHBOARD);
+                } else if($request->user()->role === 'candidate'){
+                    return redirect(RouteServiceProvider::CANDIDATE_DASHBOARD);
+                }
             }
         }
 
