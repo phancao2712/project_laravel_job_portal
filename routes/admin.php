@@ -31,6 +31,8 @@ Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'adm
 });
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin'],function () {
+/* ADMIN ROUTE */
+
     Route::get('dashboard', function(){
         return view('admin.dashboard.index');
     })->name('dashboard');

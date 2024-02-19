@@ -22,7 +22,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if($guards === 'admin'){
+
+                if($guard === 'admin'){
                     return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
                 }
                 else if($request->user()->role === 'company'){
