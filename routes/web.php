@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Frontend\CandidateDashboardController;
+use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
@@ -15,7 +17,7 @@ use App\Http\Controllers\Frontend\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class , 'index']);
+Route::get('/', [HomeController::class , 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,9 +34,7 @@ Route::group([
     'prefix' => 'company'
 ],
 function(){
-    Route::get('/dashboard', function () {
-        return view('frontend.company-dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',[CompanyDashboardController::class, 'index'])->name('dashboard');
 });
 
 /* CANDIDATE */
@@ -43,7 +43,5 @@ Route::group([
     'as' => 'candidate.',
     'prefix' => 'candidate'
 ], function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',[CandidateDashboardController::class, 'index'])->name('dashboard');
 });

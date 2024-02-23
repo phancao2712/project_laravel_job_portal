@@ -1,21 +1,21 @@
 @extends('frontend.layouts.master')
 
 @section('contents')
-{{-- <section class="section-box mt-75">
+<section class="section-box mt-75">
     <div class="breacrumb-cover">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-12">
-            <h2 class="mb-20">Blog</h2>
+            <h2 class="mb-20">Login</h2>
             <ul class="breadcrumbs">
-              <li><a class="home-icon" href="index.html">Home</a></li>
-              <li>Blog</li>
+              <li><a class="home-icon" href="{{ route('home') }}">Home</a></li>
+              <li>Login</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  </section> --}}
+  </section>
 
   <section class="pt-120 login-register">
     <div class="container">
@@ -52,7 +52,10 @@
                 <!-- Password -->
                 <div class="col-xl-12">
                   <div class="form-group">
-                    <label class="form-label" for="input-4">Password *</label>
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="input-4">Password *</label>
+                        <a href="{{ route('password.request') }}">Forgot password</a>
+                    </div>
                     <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="input-4" type="password" required="" name="password"
                       placeholder="************">
                   </div>
