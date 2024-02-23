@@ -1,8 +1,6 @@
 @extends('admin.auth.layouts.auth-master')
 
 @section('contents')
-
-
 <section class="section">
     <div class="container mt-5">
       <div class="row">
