@@ -5197,7 +5197,7 @@ ul li:last-child .card-list-4 {
 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 {
   margin: 0;
@@ -9640,4 +9640,8 @@ footer .color-text-paragraph {
 
 .form-check-label:hover {
   color: #198754;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    border-color: #dc3545 !important;
 }

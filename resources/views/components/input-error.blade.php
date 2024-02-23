@@ -2,7 +2,7 @@
 
 @if ($messages)
         @foreach ((array) $messages as $message)
-        <div class="invalid-feedback" style="display:block">
+        <div class="invalid-feedback" style="display:block;">
             {{ $message }}
           </div>
         @endforeach

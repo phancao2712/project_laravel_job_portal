@@ -26,7 +26,7 @@
                   <li><a href="page-pricing.html">Pricing Plan</a></li>
                   <li><a href="page-contact.html">Contact Us</a></li>
                   <li><a href="page-register.html">Register</a></li>
-                  <li><a href="page-signin.html">Signin</a></li>
+                  <li><a href="{{ route('login') }}">Signin</a></li>
                   <li><a href="page-reset-password.html">Reset Password</a></li>
                   <li><a href="blog-details.html">Blog Single</a></li>
                 </ul>
@@ -40,7 +40,7 @@
         <div class="header-right">
           <div class="block-signin">
             <!-- <a class="text-link-bd-btom hover-up" href="page-register.html">Register</a> -->
-            <a class="btn btn-default btn-shadow ml-40 hover-up" href="page-signin.html">Sign in</a>
+            <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('login') }}">Sign in</a>
           </div>
         </div>
       </div>
