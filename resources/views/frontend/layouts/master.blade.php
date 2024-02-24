@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <base href="{{ env("APP_URL") }}/frontend/">
   <meta charset="UTF-8">

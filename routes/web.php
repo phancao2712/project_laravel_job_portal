@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
+use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
@@ -35,6 +36,7 @@ Route::group([
 ],
 function(){
     Route::get('/dashboard',[CompanyDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile',[CompanyProfileController::class, 'index'])->name('profile');
 });
 
 /* CANDIDATE */
