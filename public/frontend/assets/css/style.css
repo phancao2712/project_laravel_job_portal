@@ -9645,3 +9645,26 @@ footer .color-text-paragraph {
 .form-control.is-invalid, .was-validated .form-control:invalid {
     border-color: #dc3545 !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--colorPrimary);
+}
+
+.nav-pills .nav-link {
+    border-radius: 0;
+    color: #000;
+}
+
+.select2 {
+    display: block;
+    border: 1px solid #1ca77459 !important;
+    border-radius: 0;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+}
