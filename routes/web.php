@@ -37,6 +37,7 @@ Route::group([
 function(){
     Route::get('/dashboard',[CompanyDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile',[CompanyProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/company-info',[CompanyProfileController::class, 'companyInfoUpdate'])->name('profile.company-info');
 });
 
 /* CANDIDATE */

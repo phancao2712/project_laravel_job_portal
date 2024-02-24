@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class CandidateDashboardController extends Controller
 {
-    public function index():View {
+    function index():View {
         return view('frontend.candidate-dashboard.dashboard');
     }
 }
