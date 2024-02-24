@@ -29,10 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        notify()->success('Login Success','Success');
         if($request->user()->role === 'company'){
             return redirect()->intended(RouteServiceProvider::COMPANY_DASHBOARD);
         } else if($request->user()->role === 'candidate'){
-            return redirect()->intended(RouteServiceProvider::CANDIDATE_DASHBOARD);
+            return redirect()->intended(RouteServiceProvider::CANDIDATE_DASHBOARD)->notify()->success('Login Success','Success');
         }
     }
 
@@ -47,6 +48,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
+        notify()->success('Logout Success','Success');
         return redirect('/');
     }
 }

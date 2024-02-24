@@ -20,6 +20,8 @@ trait FileUploadTrait{
         $file->move(public_path($path), $fileName);
         return $path . '/' . $fileName;
         }
+
+        return '';
     }
 }
 ?>

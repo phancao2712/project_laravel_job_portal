@@ -48,7 +48,9 @@
                                     {{-- Logo --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            @if ($companyInfo?->logo)
                                             <x-image-preview :height="200" :width="200" :source="$companyInfo?->logo" />
+                                            @endif
                                             <label class="font-sm color-text-mutted mb-10">Logo *</label>
                                             <input class="form-control {{ $errors->has('logo') ? 'is-invalid' : '' }}"
                                             type="file"
@@ -61,7 +63,9 @@
                                     {{-- Banner --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            @if ($companyInfo?->banner)
                                             <x-image-preview :height="200" :width="500" :source="$companyInfo?->banner" />
+                                            @endif
                                             <label class="font-sm color-text-mutted mb-10">Banner *</label>
                                             <input class="form-control {{ $errors->has('banner') ? 'is-invalid' : '' }}"
                                             type="file"

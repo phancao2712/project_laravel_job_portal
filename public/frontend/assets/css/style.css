@@ -9668,3 +9668,7 @@ footer .color-text-paragraph {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 100%;
 }
+
+.notify {
+    z-index: 100000;
+}

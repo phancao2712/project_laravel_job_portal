@@ -14,6 +14,7 @@
   <meta name="author" content="">
   <link rel="shortcut icon" type="image/x-icon" href="">
   <link href="assets/css/all.min.css" rel="stylesheet">
+  @notifyCss
   <link href="assets/css/style.css" rel="stylesheet">
   <title>joblist - Job Portal HTML Template </title>
 </head>
@@ -46,6 +47,8 @@
   <script src="assets/js/plugins/swiper-bundle.min.js"></script>
   <script src="assets/js/plugins/Font-Awesome.js"></script>
   <script src="assets/js/plugins/counterup.js"></script>
+  <x-notify::notify />
+@notifyJs
   <script src="assets/js/main.js?v=4.1"></script>
 </body>
 
