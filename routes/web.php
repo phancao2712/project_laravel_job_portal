@@ -39,10 +39,15 @@ function(){
     Route::get('/profile',[CompanyProfileController::class, 'index'])->name('profile');
     Route::post('/profile/company-info',[CompanyProfileController::class, 'companyInfoUpdate'])->
     name('profile.company-info');
+
     Route::post('/profile/founding-info',[CompanyProfileController::class, 'foundingInfoUpdate'])->
     name('profile.founding-info');
+
     Route::post('/profile/account-info',[CompanyProfileController::class, 'accountInfoUpdate'])->
     name('profile.account-info');
+
+    Route::post('/profile/password-update',[CompanyProfileController::class, 'updatePassword'])->
+    name('profile.password-update');
 });
 
 /* CANDIDATE */
