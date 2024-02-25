@@ -9,6 +9,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Traits\FileUploadTrait;
+use Auth;
 use Illuminate\Http\RedirectResponse;
 
 class CompanyProfileController extends Controller
@@ -61,6 +62,19 @@ class CompanyProfileController extends Controller
                 "map_link" => $request->maplink
             ]
         );
+        notify()->success('Update Success','Success');
+        return redirect()->back();
+    }
+
+    function accountInfoUpdate(Request $request): RedirectResponse {
+
+        $validate = $request->validate([
+            'email' => ['required', 'email'],
+            'name' => ['required', 'string', 'max:50']
+        ]);
+
+        Auth::user()->update($validate);
+
         notify()->success('Update Success','Success');
         return redirect()->back();
     }

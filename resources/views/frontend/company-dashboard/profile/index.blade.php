@@ -257,27 +257,32 @@
                         {{-- Account setting --}}
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                             tabindex="0">
-                            <form action="">
+
                                 <div class="row form-contact">
                                     {{-- Email --}}
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input class="form-control" type="text" value="">
-                                        </div>
-                                    </div>
+                                    <form action="{{ route('company.profile.account-info') }}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="font-sm color-text-mutted mb-10">Email *</label>
+                                                    <input class="" type="text" value="{{ auth()->user()->email }}" name="email" readonly>
+                                                </div>
+                                            </div>
 
-                                    {{-- Username --}}
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Username *</label>
-                                            <input class="form-control" type="text" value="">
+                                            {{-- Username --}}
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="font-sm color-text-mutted mb-10">Username *</label>
+                                                    <input name='name' class="form-control" type="text" value="{{ auth()->user()->name }}">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <button class="btn btn-default btn-shadow">Save</button>
-                                    </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-default btn-shadow">Save</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="row mt-10 form-contact">
                                     {{-- password --}}
@@ -300,7 +305,6 @@
                                         <button class="btn btn-default btn-shadow">Save</button>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

@@ -37,8 +37,12 @@ Route::group([
 function(){
     Route::get('/dashboard',[CompanyDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile',[CompanyProfileController::class, 'index'])->name('profile');
-    Route::post('/profile/company-info',[CompanyProfileController::class, 'companyInfoUpdate'])->name('profile.company-info');
-    Route::post('/profile/founding-info',[CompanyProfileController::class, 'foundingInfoUpdate'])->name('profile.founding-info');
+    Route::post('/profile/company-info',[CompanyProfileController::class, 'companyInfoUpdate'])->
+    name('profile.company-info');
+    Route::post('/profile/founding-info',[CompanyProfileController::class, 'foundingInfoUpdate'])->
+    name('profile.founding-info');
+    Route::post('/profile/account-info',[CompanyProfileController::class, 'accountInfoUpdate'])->
+    name('profile.account-info');
 });
 
 /* CANDIDATE */
