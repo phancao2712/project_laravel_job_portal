@@ -21,12 +21,31 @@
                     </div>
                     <a href="{{ route('admin.industry-types.create') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Create New</a>
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-md">
+                            <tbody >
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th style="width:10%;">Action</th>
+                                </tr>
+                                @foreach ($industry_types as $industry_type)
+                                    <tr>
+                                        <td>{{ $industry_type->name }}</td>
+                                        <td>{{ $industry_type->slug }}</td>
+                                        <td >
+                                            <a href="" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
 
                         </table>
+                        {{ $industry_types->links() }}
                     </div>
+
                 </div>
             </div>
         </div>
