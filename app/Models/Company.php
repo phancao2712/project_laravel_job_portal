@@ -17,7 +17,20 @@ class Company extends Model
         'banner',
         'bio',
         'vision',
-        'slug'
+        'slug',
+        'industry_type_id',
+        'organization_type_id',
+        'team_size_id',
+        'establishment_date',
+        'website',
+        'email',
+        'phone',
+        'country',
+        'state',
+        'city',
+        'address',
+        'map_link',
+
     ];
 
     public function sluggable(): array

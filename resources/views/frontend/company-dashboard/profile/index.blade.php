@@ -118,17 +118,18 @@
                         {{-- Founding Info --}}
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                             tabindex="0">
-
-                            <form action="">
+                            <form action="{{ route('company.profile.founding-info') }}" method="POST">
+                                @csrf
                                 <div class="row form-contact">
                                     {{-- Industry type --}}
                                     <div class="col-md-4">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <select name="industry_type_id" class="mr-10 select-active form-control " style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
                                             </select>
+                                            <x-input-error :messages="$errors->get('industry_type_id')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -136,10 +137,12 @@
                                     <div class="col-md-4">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Organization Type *</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <select name="organization_type_id" class="mr-10 select-active form-control " style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
+
                                             </select>
+                                            <x-input-error :messages="$errors->get('organization_type_id')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -147,10 +150,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Team Size *</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <select name="team_size_id" class="mr-10 select-active form-control" style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
                                             </select>
+                                            <x-input-error :messages="$errors->get('team_size_id')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -158,7 +162,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Establishment Date</label>
-                                            <input type="date" class="form-control">
+                                            <input name="establishment_date" value="{{ $companyInfo?->establishment_date }}" type="date" class="form-control {{ $errors->has('establishment_date') ? 'is-invalid' : '' }}">
+                                            <x-input-error :messages="$errors->get('establishment_date')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -166,7 +171,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
-                                            <input type="text" class="form-control">
+                                            <input name="website" type="text" value="{{ $companyInfo?->website }}" class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}">
+                                            <x-input-error :messages="$errors->get('website')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -174,7 +180,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input type="text" class="form-control">
+                                            <input name="email" type="text" value="{{ $companyInfo?->email }}" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -182,7 +189,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
-                                            <input type="text" class="form-control">
+                                            <input name="phone" type="text" value="{{ $companyInfo?->phone }}" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}">
+                                            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -190,10 +198,11 @@
                                      <div class="col-md-4">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <select name="country" class="mr-10 select-active form-control" style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
                                             </select>
+                                            <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -201,21 +210,23 @@
                                     <div class="col-md-4">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <select name="state" class="mr-10 select-active form-control" style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
                                             </select>
+                                            <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                         </div>
                                     </div>
 
-                                    {{-- Team size --}}
+                                    {{-- City --}}
                                     <div class="col-md-4">
                                         <div class="form-group mt-10">
-                                            <label class="font-sm color-text-mutted mb-10">Team Size *</label>
-                                            <select class="mr-10 select-active form-control" style="width:100%">
+                                            <label class="font-sm color-text-mutted mb-10">City *</label>
+                                            <select name="city" class="mr-10 select-active form-control" style="width:100%">
                                                <option value="">Select 1</option>
-                                               <option value="">Option 1</option>
+                                               <option value="0">Option 1</option>
                                             </select>
+                                            <x-input-error :messages="$errors->get('city')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -223,7 +234,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
-                                            <input type="text" class="form-control" name="" id="">
+                                            <input name="address" type="text" value="{{ $companyInfo?->address }}" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"  id="">
+                                            <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                         </div>
                                     </div>
 
@@ -231,7 +243,7 @@
                                      <div class="col-md-12">
                                         <div class="form-group mt-10">
                                             <label class="font-sm color-text-mutted mb-10">Maplink</label>
-                                            <input type="text" class="form-control" name="" id="">
+                                            <input name="maplink" type="text" class="form-control" value="{{ $companyInfo?->map_link }}" id="">
                                         </div>
                                     </div>
 
@@ -240,7 +252,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
 
                         {{-- Account setting --}}
