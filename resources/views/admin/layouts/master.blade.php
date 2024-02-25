@@ -7,6 +7,7 @@
   <title>General Dashboard &mdash; Stisla</title>
 
   <!-- General CSS Files -->
+  <script src="https://kit.fontawesome.com/c9111ed195.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
 
@@ -49,7 +50,7 @@
 
   <!-- JS Libraies -->
   <script src="assets/modules/summernote/summernote-bs4.js"></script>
-  
+
   <!-- Template JS File -->
   <script src="assets/js/scripts.js"></script>
   <script src="assets/js/custom.js"></script>

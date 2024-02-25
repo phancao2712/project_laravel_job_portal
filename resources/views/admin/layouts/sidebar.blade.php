@@ -11,7 +11,7 @@
         <li class="active">
           <a href="{{ route('admin.dashboard') }}" class="nav-link"><span>Dashboard</span></a>
         </li>
-        <li class="menu-header">Starter</li>
+        {{-- <li class="menu-header">Starter</li>
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
           <ul class="dropdown-menu">
@@ -19,10 +19,17 @@
             <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
           </ul>
-        </li>
-        <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+        </li> --}}
+        {{-- ATTRIBUTES --}}
+        <li class="menu-header">Attributes</li>
         <li class="dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Attributes</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="{{ route('admin.industry-types.index') }}">Industry Type</a></li>
+
+          </ul>
         </li>
+
       </ul>
 
              </aside>
