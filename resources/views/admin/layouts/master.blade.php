@@ -13,6 +13,7 @@
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="assets/modules/summernote/summernote-bs4.css">
+  @notifyCss
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -50,6 +51,8 @@
 
   <!-- JS Libraies -->
   <script src="assets/modules/summernote/summernote-bs4.js"></script>
+  <x-notify::notify />
+@notifyJs
 
   <!-- Template JS File -->
   <script src="assets/js/scripts.js"></script>

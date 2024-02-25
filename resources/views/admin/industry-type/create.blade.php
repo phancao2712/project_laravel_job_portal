@@ -17,8 +17,8 @@
                         @csrf
                         <div class="form-group">
                             <label>Industry Type Name</label>
-                            <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            <input type="text" name="name" class="form-control {{ hasError($errors, 'name') }}">
+                          <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                         <button class="btn btn-primary">Create</button>
                     </form>

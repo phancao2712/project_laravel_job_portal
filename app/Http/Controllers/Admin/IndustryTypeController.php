@@ -37,6 +37,7 @@ class IndustryTypeController extends Controller
         $type = new Industry_type();
         $type->name = $request->name;
         $type->save();
+        notify()->success('Create Success','Success!');
         return to_route('admin.industry-types.index');
     }
 

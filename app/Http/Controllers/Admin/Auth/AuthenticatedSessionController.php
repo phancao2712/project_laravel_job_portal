@@ -29,6 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        notify()->success('Login Success','Success!');
         return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD);
     }
 
@@ -42,7 +43,7 @@ class AuthenticatedSessionController extends Controller
         // $request->session()->invalidate();
 
         // $request->session()->regenerateToken();
-
+        notify()->success('Logout Success','Success!');
         return redirect('/admin/login');
     }
 }
