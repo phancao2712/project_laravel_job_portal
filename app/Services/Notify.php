@@ -13,4 +13,8 @@ class Notify {
     static function LoginNotify(){
         return notify()->success('Login Success','Success!');
     }
+
+    static function DeleteNotify(){
+        return notify()->success('Delete Success','Success!');
+    }
 }

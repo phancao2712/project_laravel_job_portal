@@ -36,7 +36,7 @@
                                         <td>{{ $industry_type->slug }}</td>
                                         <td >
                                             <a href="{{ route('admin.industry-types.edit', $industry_type->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="{{ route('admin.industry-types.destroy', $industry_type->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

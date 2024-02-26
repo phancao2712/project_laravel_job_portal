@@ -13,9 +13,9 @@ class IndustryTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(): View
     {
-        $industry_types = Industry_type::paginate(2);
+        $industry_types = Industry_type::paginate(20);
         return view('admin.industry-type.index', compact(
             'industry_types'
         ));
@@ -49,7 +49,7 @@ class IndustryTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) : View
+    public function edit(string $id): View
     {
         $industry = Industry_type::findOrFail($id);
         return view('admin.industry-type.edit', compact(
@@ -79,6 +79,13 @@ class IndustryTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Industry_type::findOrFail($id)->delete();
+            Notify::DeleteNotify();
+            return response(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'error'], 500);
+        }
     }
 }
