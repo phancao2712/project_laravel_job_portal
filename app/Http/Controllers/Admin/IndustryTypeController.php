@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Industry_type;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Services\Notify;
 
 class IndustryTypeController extends Controller
 {
@@ -40,24 +41,20 @@ class IndustryTypeController extends Controller
         $type = new Industry_type();
         $type->name = $request->name;
         $type->save();
-        notify()->success('Create Success','Success!');
-        return to_route('admin.industry-types.index');
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Notify::CreateNotify();
+        return to_route('admin.industry-types.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $industry = Industry_type::findOrFail($id);
+        return view('admin.industry-type.edit', compact(
+            'industry'
+        ));
     }
 
     /**
@@ -65,7 +62,16 @@ class IndustryTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:industry_types,name']
+        ]);
+
+        $type = Industry_type::findOrFail($id);
+        $type->name = $request->name;
+        $type->save();
+
+        Notify::UpdateNotify();
+        return to_route('admin.industry-types.index');
     }
 
     /**
