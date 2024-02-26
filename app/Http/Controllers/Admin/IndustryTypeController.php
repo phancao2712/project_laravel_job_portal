@@ -7,15 +7,23 @@ use App\Models\Industry_type;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\Notify;
+use App\Traits\Searchable;
 
 class IndustryTypeController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $industry_types = Industry_type::paginate(20);
+        $query = Industry_type::query();
+
+        $this->search($query, ['name']);
+
+        $industry_types = $query->paginate(10);
+
+
         return view('admin.industry-type.index', compact(
             'industry_types'
         ));

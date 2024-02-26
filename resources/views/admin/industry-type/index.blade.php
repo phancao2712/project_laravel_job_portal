@@ -10,11 +10,11 @@
                 <div class="card-header">
                     <h4>Industry Type Table</h4>
                     <div class="card-header-form">
-                        <form>
+                        <form action="{{ route('admin.industry-types.index') }}" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control form-search" placeholder="Search" name="search" value="{{ request('search') }}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    <button type="submit" class="btn btn-primary btn-search"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -43,7 +43,7 @@
                             </tbody>
 
                         </table>
-                        {{ $industry_types->links() }}
+                        {{ $industry_types->withQueryString()->links() }}
                     </div>
 
                 </div>
