@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
+use App\Http\Controllers\Admin\OrganizationTypeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'] ,function () {
@@ -43,4 +44,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /* INDUSTRY TYPE ROUTE */
     Route::resource('industry-types', IndustryTypeController::class);
+
+     /* ORGANIZATION TYPE ROUTE */
+     Route::resource('organization-types', OrganizationTypeController::class);
 });
