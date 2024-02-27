@@ -1,16 +1,11 @@
 <?php
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
+use App\Http\Controllers\Admin\CountryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'] ,function () {
@@ -45,6 +40,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* INDUSTRY TYPE ROUTE */
     Route::resource('industry-types', IndustryTypeController::class);
 
-     /* ORGANIZATION TYPE ROUTE */
-     Route::resource('organization-types', OrganizationTypeController::class);
+    /* ORGANIZATION TYPE ROUTE */
+    Route::resource('organization-types', OrganizationTypeController::class);
+
+    /* ORGANIZATION TYPE ROUTE */
+    Route::resource('country', CountryController::class);
 });

@@ -19,6 +19,10 @@ class TeamSizeSeeder extends Seeder
                 'slug' => 'only-me',
             ],
             [
+                'name' => '1-5 Members',
+                'slug' => '1-5-member',
+            ],
+            [
                 'name' => '5-10 Members',
                 'slug' => '5-10-member',
             ],
@@ -49,10 +53,6 @@ class TeamSizeSeeder extends Seeder
             [
                 'name' => '500+ Members',
                 'slug' => '500-member',
-            ],
-            [
-                'name' => '100-200 Members',
-                'slug' => '100-200-member',
             ],
         ]);
     }
