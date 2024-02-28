@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\District;
+use App\Models\Province;
+use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -44,15 +46,20 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:districts,name'],
+            'country_id' => ['required', 'integer'],
+            'province_id' => ['required', 'integer']
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $type = new District();
+        $type->name = $request->name;
+        $type->country_id = $request->country_id;
+        $type->province_id = $request->province_id;
+        $type->save();
+
+        Notify::CreateNotify();
+        return to_route('admin.district.index');
     }
 
     /**
@@ -60,7 +67,15 @@ class DistrictController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $district = District::findOrFail($id);
+        $countries = Country::all();
+        $provinces = Province::where('country_id', $district->country_id)->get();
+
+        return view('admin.location.district.edit', compact(
+            'district',
+            'countries',
+            'provinces'
+        ));
     }
 
     /**
@@ -68,7 +83,20 @@ class DistrictController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:districts,name'],
+            'country_id' => ['required', 'integer'],
+            'province_id' => ['required', 'integer'],
+        ]);
+
+        $type = District::findOrFail($id);
+        $type->name = $request->name;
+        $type->country_id = $request->country_id;
+        $type->province_id = $request->province_id;
+        $type->save();
+
+        Notify::UpdateNotify();
+        return to_route('admin.district.index');
     }
 
     /**
@@ -76,6 +104,13 @@ class DistrictController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            District::findOrFail($id)->delete();
+            Notify::DeleteNotify();
+            return response(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'error'], 500);
+        }
     }
 }

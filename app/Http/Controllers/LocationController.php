@@ -10,7 +10,7 @@ class LocationController extends Controller
 {
     public function getProvinceByCountry(string $country_id) : Response
     {
-        $provinces = Province::where('country_id', $country_id)->get();
+        $provinces = Province::select(['id', 'name', 'country_id'])->where('country_id', $country_id)->get();
         return response($provinces);
     }
 }

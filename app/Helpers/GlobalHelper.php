@@ -5,4 +5,11 @@ if(!function_exists('hasError')){
         return $errors->has('name') ? 'is-invalid' : '';
     }
 }
+
+/** active sidebar **/
+// if(!function_exists('activeSide')){
+//     function hasError($errors, $name) : ?String {
+//         return $errors->has('name') ? 'is-invalid' : '';
+//     }
+// }
 ?>
