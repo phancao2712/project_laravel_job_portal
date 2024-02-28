@@ -1,0 +1,78 @@
+@extends('admin.layouts.master')
+
+@section('contents')
+    <section class="section">
+        <div class="section-header">
+            <h1>Country</h1>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Create District</h4>
+                    <div class="card-header-form">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.country.store') }}" method="post">
+                        @csrf
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label>Country Name</label>
+                                <select name="country_id" id="" class="form-control select2 country">
+                                    <option value="">Select country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('country_id')" class="mt-2" />
+                            </div>
+                            <div class="col-4">
+                                <label>Province Name</label>
+                                <select name="province_id" id="" class="form-control select2 province">
+                                    <option value="">Select country</option>
+
+                                </select>
+                                <x-input-error :messages="$errors->get('country_id')" class="mt-2" />
+                            </div>
+                            <div class="col-4">
+                                <label>Province Name</label>
+                                <input type="text" name="name" class="form-control {{ hasError($errors, 'name') }}">
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="section-body">
+        </div>
+    </section>
+@endsection
+@push('script')
+    <script>
+        $(document).ready(function(){
+            $('.country').on('change', function(){
+                let id = $(this).val();
+                $.ajax({
+                    method: "GET",
+                    url: '{{ route("admin.location.get-state", ":id") }}'.replace(":id", id),
+                    data: "",
+                    dataType: "json",
+                    success: function (response) {
+                        let html = '<option value="">Select Provinces</option>';
+
+                        $.each(response, function (key, value) {
+                            html += `<option value="${value.id}">${value.name}</option>`
+                        });
+
+                        $('.province').html(html);
+                    },
+                    error: function (xhr, resonse, error){
+
+                    }
+                });
+            })
+        })
+    </script>
+@endpush

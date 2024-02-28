@@ -4,36 +4,42 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Province;
+use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
-use App\Services\Notify;
+use Illuminate\View\View;
 
-class CountryController extends Controller
+class ProvinceController extends Controller
 {
-
     use Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $query = Country::query();
+        $query = Province::query();
 
+        $query->with('country');
         $this->search($query, ['name']);
 
-        $countries = $query->orderBy('id', 'DESC')->paginate(20);
+        $provinces = $query->orderBy('id', 'DESC')->paginate(20);
 
-        return view('admin.location.country.index', compact(
-            'countries'
+        return view('admin.location.province.index', compact(
+            'provinces'
         ));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        return view('admin.location.country.create');
+        $countries = Country::all();
+
+        return view('admin.location.province.create', compact(
+            'countries'
+        ));
     }
 
     /**
@@ -42,25 +48,29 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:countries,name']
+            'name' => ['required', 'max:255', 'unique:provinces,name'],
+            'country_id' => ['required', 'integer']
         ]);
 
-        $type = new Country();
+        $type = new Province();
         $type->name = $request->name;
+        $type->country_id = $request->country_id;
         $type->save();
 
         Notify::CreateNotify();
-        return to_route('admin.country.index');
+        return to_route('admin.province.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) :View
     {
-        $country = Country::findOrFail($id);
-        return view('admin.location.country.edit', compact(
-            'country'
+        $countries = Country::all();
+        $province = Province::findOrFail($id);
+        return view('admin.location.province.edit', compact(
+            'countries',
+            'province'
         ));
     }
 
@@ -70,15 +80,17 @@ class CountryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:countries,name']
+            'name' => ['required', 'max:255', 'unique:countries,name'],
+            'country_id' => ['required', 'integer']
         ]);
 
-        $type = Country::findOrFail($id);
+        $type = Province::findOrFail($id);
         $type->name = $request->name;
+        $type->country_id = $request->country_id;
         $type->save();
 
         Notify::UpdateNotify();
-        return to_route('admin.country.index');
+        return to_route('admin.province.index');
     }
 
     /**
@@ -87,7 +99,7 @@ class CountryController extends Controller
     public function destroy(string $id)
     {
         try {
-            Country::findOrFail($id)->delete();
+            Province::findOrFail($id)->delete();
             Notify::DeleteNotify();
             return response(['message' => 'success'], 200);
         } catch (\Exception $e) {

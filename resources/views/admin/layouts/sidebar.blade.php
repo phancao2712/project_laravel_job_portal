@@ -30,10 +30,11 @@
           </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Location</span></a>
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-map-marker-alt"></i><span>Location</span></a>
             <ul class="dropdown-menu">
               <li><a class="nav-link" href="{{ route('admin.country.index') }}">Country</a></li>
-              <li><a class="nav-link" href="{{ route('admin.organization-types.index') }}">Organization Type</a></li>
+              <li><a class="nav-link" href="{{ route('admin.province.index') }}">Province</a></li>
+              <li><a class="nav-link" href="{{ route('admin.district.index') }}">District</a></li>
             </ul>
           </li>
 

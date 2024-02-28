@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\ProvinceController;
+use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'] ,function () {
@@ -43,6 +46,16 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* ORGANIZATION TYPE ROUTE */
     Route::resource('organization-types', OrganizationTypeController::class);
 
-    /* ORGANIZATION TYPE ROUTE */
+    /* COUNTRIES ROUTE */
     Route::resource('country', CountryController::class);
+
+    /* PROVINCES ROUTE */
+    Route::resource('province', ProvinceController::class);
+
+    /* DISTRICT ROUTE */
+    Route::resource('district', DistrictController::class);
+
+    /* LOCATION ROUTE */
+    Route::get('get-state/{id}', [LocationController::class, 'getProvinceByCountry'])->name('location.get-state');
+
 });
