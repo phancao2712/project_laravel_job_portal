@@ -14,11 +14,12 @@
 
         {{-- ATTRIBUTES --}}
         <li class="menu-header">Attributes</li>
-        <li class="dropdown {{ setSideBarActive(['admin.industry-types.*', 'admin.organization-types.*']) }}">
+        <li class="dropdown {{ setSideBarActive(['admin.industry-types.*', 'admin.organization-types.*', 'languagues.*']) }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Attributes</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link {{ setSideBarActive(['admin.industry-types.*']) }}" href="{{ route('admin.industry-types.index') }}">Industry Type</a></li>
             <li><a class="nav-link {{ setSideBarActive(['admin.organization-types.*']) }}" href="{{ route('admin.organization-types.index') }}">Organization Type</a></li>
+            <li><a class="nav-link {{ setSideBarActive(['admin.languages.*']) }}" href="{{ route('admin.languages.index') }}">Language</a></li>
           </ul>
         </li>
 

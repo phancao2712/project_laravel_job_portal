@@ -9656,8 +9656,8 @@ footer .color-text-paragraph {
     color: #000;
 }
 
-.select2 {
-    display: block;
+.select2-custom {
+    display: block !important;
     border: 1px solid #1ca77459 !important;
     border-radius: 0;
     font-size: 14px;
@@ -9665,8 +9665,8 @@ footer .color-text-paragraph {
     padding: 10px;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 100%;
+.select2_arrow {
+    height: 100% !important;
 }
 
 .notify {

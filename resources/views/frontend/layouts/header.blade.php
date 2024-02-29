@@ -10,7 +10,7 @@
     <div class="container">
       <div class="main-header">
         <div class="header-left">
-          <div class="header-logo"><a class="d-flex" href="index.html"><img alt="joblist"
+          <div class="header-logo"><a class="d-flex" href="{{ route('home') }}"><img alt="joblist"
                 src="assets/imgs/template/logo.png"></a></div>
         </div>
         <div class="header-nav">

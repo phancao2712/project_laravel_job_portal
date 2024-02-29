@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* LOCATION ROUTE */
     Route::get('get-province/{id}', [LocationController::class, 'getProvinceByCountry'])->name('location.get-province');
 
+    /* LANGUAGES ROUTE */
+    Route::resource('languages', LanguageController::class);
 });
