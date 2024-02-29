@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,4 +63,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /* LANGUAGES ROUTE */
     Route::resource('languages', LanguageController::class);
+
+    /* PROFESSION ROUTE */
+    Route::resource('professions', ProfessionController::class);
+
+    /* SKILL ROUTE */
+    Route::resource('skills', SkillController::class);
 });
