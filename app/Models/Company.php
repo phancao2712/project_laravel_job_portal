@@ -26,11 +26,10 @@ class Company extends Model
         'email',
         'phone',
         'country',
-        'state',
-        'city',
+        'province',
+        'district',
         'address',
         'map_link',
-
     ];
 
     public function sluggable(): array

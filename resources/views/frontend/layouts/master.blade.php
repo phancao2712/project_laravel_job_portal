@@ -50,6 +50,10 @@
   <x-notify::notify />
 @notifyJs
   <script src="assets/js/main.js?v=4.1"></script>
+
+{{-- SCRIPT --}}
+@stack('script')
+
 </body>
 
 </html>

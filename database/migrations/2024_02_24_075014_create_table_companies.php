@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
+
             $table->foreignId('industry_type_id')->nullable();
             $table->foreignId('organization_type_id')->nullable();
             $table->foreignId('team_size_id')->nullable();
+
             $table->string('logo')->nullable();
             $table->string('banner')->nullable();
             $table->date('establishment_date')->nullable();
@@ -29,9 +31,9 @@ return new class extends Migration
             $table->text('vision')->nullable();
             $table->integer('total_views')->default(0);
             $table->text('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
+            $table->foreignId('district')->nullable();
+            $table->foreignId('province')->nullable();
+            $table->foreignId('country')->nullable();
             $table->text('map_link')->nullable();
             $table->boolean('is_profile_verified_at')->default(0);
             $table->timestamp('document_verified_at')->nullable();

@@ -1,11 +1,11 @@
 <?php
-
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+/* Location Router */
+Route::get('get-province/{id}', [LocationController::class , 'getProvinceByCountry'])
+->name('get-province');
+
+Route::get('get-district/{id}', [LocationController::class , 'getDistrict'])
+->name('get-district');
+
 
 /* COMPANY */
 Route::group([

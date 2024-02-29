@@ -56,6 +56,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('district', DistrictController::class);
 
     /* LOCATION ROUTE */
-    Route::get('get-state/{id}', [LocationController::class, 'getProvinceByCountry'])->name('location.get-state');
+    Route::get('get-province/{id}', [LocationController::class, 'getProvinceByCountry'])->name('location.get-province');
 
 });

@@ -52,3 +52,4 @@
         </div>
     </section>
 @endsection
+@include('admin.location.district.getLocation');
