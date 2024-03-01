@@ -19,7 +19,6 @@ $(document).ready(function (){
             if (willDelete) {
                 let url = $(this).attr("href");
                 let csrfToken = $('meta[name="csrf-token"]').attr('content');
-                console.log(url);
                 $.ajax({
                     method: "DELETE",
                     url: url,

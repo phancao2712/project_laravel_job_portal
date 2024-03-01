@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
@@ -65,4 +67,6 @@ Route::group([
     'prefix' => 'candidate'
 ], function () {
     Route::get('/dashboard',[CandidateDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile',[CandidateProfileController::class, 'index'])->name('profile');
+    Route::post('/basic-info',[CandidateProfileController::class, 'updateBasicInfo'])->name('profile.basic-info');
 });

@@ -18,18 +18,23 @@
     <section class="section-box mt-120">
         <div class="container">
             <div class="row">
-                @include('frontend.company-dashboard.sidebar')
+                @include('frontend.candidate-dashboard.sidebar')
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Company Info</button>
+                                aria-selected="true">Basic</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                aria-selected="false">Founding Info</button>
+                                aria-selected="false">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Experience & Education</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
@@ -38,14 +43,8 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        {{-- Company Info --}}
-                        @include('frontend.company-dashboard.profile.sections.company-info')
-
-                        {{-- Founding Info --}}
-                        @include('frontend.company-dashboard.profile.sections.founding-info')
-
-                        {{-- Account setting --}}
-                        @include('frontend.company-dashboard.profile.sections.account-setting')
+                        {{-- Basic --}}
+                       @include('frontend.candidate-dashboard.profile.sections.basic')
                     </div>
                 </div>
             </div>

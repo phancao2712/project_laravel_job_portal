@@ -32,10 +32,10 @@ class CompanyUpdateRequest extends FormRequest
 
         $company = Company::where('user_id', auth()->user()->id)->first();
 
-        if(!$company?->logo){
+        if(empty($company) || !$company?->logo){
             $role['logo'] = 'required';
         }
-        if(!$company?->banner){
+        if(empty($company) || !$company?->banner){
             $role['banner'] = 'required';
         }
 
