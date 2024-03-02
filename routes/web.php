@@ -66,7 +66,15 @@ Route::group([
     'as' => 'candidate.',
     'prefix' => 'candidate'
 ], function () {
-    Route::get('/dashboard',[CandidateDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile',[CandidateProfileController::class, 'index'])->name('profile');
-    Route::post('/basic-info',[CandidateProfileController::class, 'updateBasicInfo'])->name('profile.basic-info');
+    Route::get('/dashboard',[CandidateDashboardController::class, 'index'])
+    ->name('dashboard');
+
+    Route::get('/profile',[CandidateProfileController::class, 'index'])
+    ->name('profile');
+
+    Route::post('/basic-info',[CandidateProfileController::class, 'updateBasicInfo'])
+    ->name('profile.basic-info');
+
+    Route::post('/profile-info',[CandidateProfileController::class, 'updateProfileInfo'])
+    ->name('profile.profile-info');
 });

@@ -30,7 +30,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="font-sm color-text-mutted mb-10">Fullname *</label>
-                            <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
+                            <input class="form-control {{ $errors->has('fullname') ? 'is-invalid' : '' }}" type="text"
                                 value="{{ old('fullname', $candidate?->fullname) }}" name="fullname">
                             <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
                         </div>

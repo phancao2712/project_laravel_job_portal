@@ -45,6 +45,9 @@
                     <div class="tab-content" id="pills-tabContent">
                         {{-- Basic --}}
                        @include('frontend.candidate-dashboard.profile.sections.basic')
+
+                       {{-- Profile --}}
+                       @include('frontend.candidate-dashboard.profile.sections.profile')
                     </div>
                 </div>
             </div>

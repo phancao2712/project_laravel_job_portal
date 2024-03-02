@@ -9685,3 +9685,11 @@ footer .color-text-paragraph {
 .notify {
     z-index: 100000;
 }
+
+.select-custom {
+    display:block !important;
+}
+
+.ck-editor__editable {
+    min-height: 150px;
+}
