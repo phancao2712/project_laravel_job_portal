@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateUpdateProfileRequest;
 use App\Http\Requests\Frontend\UpdateBasicInfoRequest;
 use App\Models\Candidate;
+use App\Models\CandidateExperience;
 use App\Models\CandidateLanguage;
 use App\Models\CandidateSkill;
 use App\Models\Experience;
@@ -25,6 +26,7 @@ class CandidateProfileController extends Controller
     public function index() : View
     {
         $candidate = Candidate::with(['skills' ,'languages'])->where('user_id', auth()->user()->id)->first();
+        $experienceCandidate = CandidateExperience::where('candidate_id', $candidate->id)->orderBy('id', 'DESC')->get();
         $experience = Experience::all();
         $professions = Profession::all();
         $skills = Skill::all();
@@ -34,7 +36,8 @@ class CandidateProfileController extends Controller
             'experience',
             'professions',
             'skills',
-            'languages'
+            'languages',
+            'experienceCandidate'
         ));
     }
 

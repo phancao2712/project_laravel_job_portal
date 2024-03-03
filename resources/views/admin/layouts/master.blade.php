@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <base href="{{ env("APP_URL") }}admin/">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,17 +8,16 @@
 
     <!-- General CSS Files -->
     <script src="https://kit.fontawesome.com/c9111ed195.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="assets/modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset("admin/assets/modules/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("admin/assets/modules/fontawesome/css/all.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("admin/assets/modules/select2/dist/css/select2.min.css") }}">
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="assets/modules/summernote/summernote-bs4.css">
-    @notifyCss
+    <link rel="stylesheet" href="{{ asset("admin/assets/modules/summernote/summernote-bs4.css") }}">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="{{ asset("admin/assets/css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("admin/assets/css/components.css") }}">
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 </head>
@@ -47,25 +44,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/modules/tooltip.js"></script>
-    <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="assets/modules/moment.min.js"></script>
-    <script src="assets/js/stisla.js"></script>
-    <script src="assets/modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="{{ asset("admin/assets/modules/tooltip.js") }}"></script>
+    <script src="{{ asset("admin/assets/modules/bootstrap/js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("admin/assets/modules/nicescroll/jquery.nicescroll.min.js") }}"></script>
+    <script src="{{ asset("admin/assets/modules/moment.min.js") }}"></script>
+    <script src="{{ asset("admin/assets/js/stisla.js") }}"></script>
+    <script src="{{ asset("admin/assets/modules/select2/dist/js/select2.full.min.js") }}"></script>
 
     <!-- JS Libraies -->
-    <script src="assets/modules/summernote/summernote-bs4.js"></script>
+    <script src="{{ asset("admin/assets/modules/summernote/summernote-bs4.js") }}"></script>
 
-    <script src="assets/modules/sweetalert/sweetalert.min.js"></script>
-
-
-    <x-notify::notify />
-    @notifyJs
+    <script src="{{ asset("admin/assets/modules/sweetalert/sweetalert.min.js") }}"></script>
 
     <!-- Template JS File -->
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="{{ asset("admin/assets/js/scripts.js") }}"></script>
+    <script src="{{ asset("admin/assets/js/custom.js") }}"></script>
     @stack('script')
 
 </body>

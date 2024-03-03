@@ -1,7 +1,7 @@
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
       <div class="preloader-inner position-relative">
-        <div class="text-center"><img src="assets/imgs/template/loading.gif" alt="joblist"></div>
+        <div class="text-center"><img src="{{ asset('frontend/assets/imgs/template/loading.gif') }}" alt="joblist"></div>
       </div>
     </div>
   </div>
@@ -11,7 +11,7 @@
       <div class="main-header">
         <div class="header-left">
           <div class="header-logo"><a class="d-flex" href="{{ route('home') }}"><img alt="joblist"
-                src="assets/imgs/template/logo.png"></a></div>
+                src="{{ asset('frontend/assets/imgs/template/logo.png') }}"></a></div>
         </div>
         <div class="header-nav">
           <nav class="nav-main-menu">

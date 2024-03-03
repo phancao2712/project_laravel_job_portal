@@ -3,18 +3,32 @@ namespace App\Services;
 
 class Notify {
     static function CreateNotify(){
-        return notify()->success('Create Success','Success!');
+        return flash()
+        ->success('Create Success.')
+        ->flash();
     }
 
     static function UpdateNotify(){
-        return notify()->success('Update Success','Success!');
+        return flash()
+        ->success('Update Success.')
+        ->flash();
     }
 
     static function LoginNotify(){
-        return notify()->success('Login Success','Success!');
+        return flash()
+        ->success('Login Success.')
+        ->flash();
     }
 
     static function DeleteNotify(){
-        return notify()->success('Delete Success','Success!');
+        return flash()
+        ->success('Delete Success.')
+        ->flash();
+    }
+
+    static function LogoutNotify(){
+        return flash()
+        ->success('Logout Success.')
+        ->flash();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
@@ -58,6 +59,8 @@ function(){
 
     Route::post('/profile/password-update',[CompanyProfileController::class, 'updatePassword'])->
     name('profile.password-update');
+
+
 });
 
 /* CANDIDATE */
@@ -77,4 +80,6 @@ Route::group([
 
     Route::post('/profile-info',[CandidateProfileController::class, 'updateProfileInfo'])
     ->name('profile.profile-info');
+
+    Route::resource('experience',CandidateExperienceController::class);
 });
