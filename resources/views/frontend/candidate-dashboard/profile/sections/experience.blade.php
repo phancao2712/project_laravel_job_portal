@@ -50,26 +50,25 @@
         <table class="table table-striped" id="educationTable">
             <thead>
                 <tr>
-                    <th scope="col">Company</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Designation</th>
-                    <th scope="col">Period</th>
+                    <th scope="col">Level *</th>
+                    <th scope="col">Degree *</th>
+                    <th scope="col">Year *</th>
+                    <th scope="col">Note</th>
                     <th scope="col" style="width:15%;">Actions</th>
                 </tr>
             </thead>
             <tbody class="education-tbody">
-                @forelse ($experienceCandidate as $exp)
+                @forelse ($educationCandidate as $exp)
                     <tr>
-                        <td>{{ $exp->company }}</td>
-                        <td>{{ $exp->department }}</td>
-                        <td>{{ $exp->designation }}</td>
-                        <td>{{ date('d-m-Y', strtotime($exp->start)) }} -
-                            {{ $exp->current_working === 1 ? 'Current' : date('d-m-Y', strtotime($exp->end)) }}</td>
+                        <td>{{ $exp->level }}</td>
+                        <td>{{ $exp->degree }}</td>
+                        <td>{{ $exp->year }}</td>
+                        <td>{{ $exp->note }}</td>
                         <td>
-                            <a href="" data-bs-toggle="modal"
+                            <a href="{{ route('candidate.education.edit') }}" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop" class="btn editeducation btn-sm btn-primary"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
-                            <a href=""
+                            <a href="{{ route('candidate.education.edit') }}"
                                 class="btn btn-sm btn-danger delete-education"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>

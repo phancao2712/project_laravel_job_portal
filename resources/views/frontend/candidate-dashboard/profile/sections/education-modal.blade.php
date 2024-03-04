@@ -82,7 +82,7 @@
                             showLoader()
                         },
                         success: function(response) {
-                            fetcheducation()
+                            // fetcheducation()
                             $('#educationForm').trigger('reset');
                             $('#educationModal').modal('hide');
 

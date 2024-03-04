@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('level');
             $table->string('degree');
             $table->string('year');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
