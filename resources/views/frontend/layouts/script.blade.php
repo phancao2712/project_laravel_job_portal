@@ -7,6 +7,12 @@
         dateFormat: "yy-mm-dd"
     });
 
+    $(".yearpicker").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    });
+
     // create ckeditor
     ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
         console.error(error);
@@ -20,5 +26,4 @@
     function showLoader() {
         $('.preloader_demo').removeClass('d-none');
     }
-
 </script>

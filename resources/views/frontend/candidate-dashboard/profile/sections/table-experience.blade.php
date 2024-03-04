@@ -1,4 +1,4 @@
-@foreach ($experienceCandidate as $exp)
+@forelse ($experienceCandidate as $exp)
     <tr>
         <td>{{ $exp->company }}</td>
         <td>{{ $exp->department }}</td>
@@ -13,4 +13,8 @@
                 class="btn btn-sm btn-danger delete-experience"><i class="fa-solid fa-trash"></i></a>
         </td>
     </tr>
-@endforeach
+    @empty
+    <tr>
+        <td colspan="5" class="text-center">Not Found Data!</td>
+    </tr>
+@endforelse

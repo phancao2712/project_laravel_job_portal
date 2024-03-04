@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
+use App\Http\Controllers\Frontend\CandidateEducationController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\ProfileController;
@@ -82,4 +83,7 @@ Route::group([
     ->name('profile.profile-info');
 
     Route::resource('experience',CandidateExperienceController::class);
+
+    Route::resource('education',CandidateEducationController::class);
+
 });

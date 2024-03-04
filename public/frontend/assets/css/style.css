@@ -10018,3 +10018,7 @@ footer .color-text-paragraph {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
+
+.text-right {
+    text-align :right !important;
+}
