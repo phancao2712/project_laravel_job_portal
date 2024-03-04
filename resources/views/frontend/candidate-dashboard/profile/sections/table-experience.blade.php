@@ -1,4 +1,4 @@
-@forelse ($experienceCandidate as $exp)
+@forelse ($candidateEducation as $exp)
     <tr>
         <td>{{ $exp->company }}</td>
         <td>{{ $exp->department }}</td>

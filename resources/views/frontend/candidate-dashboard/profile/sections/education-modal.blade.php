@@ -43,6 +43,16 @@
 
     @push('script')
     <script>
+        function fetchEdutcation() {
+            $.ajax({
+                method: "GET",
+                url: "{{ route('candidate.education.index') }}",
+                data: {},
+                success: function (response) {
+                    $('.education-tbody').html(response)
+                }
+            });
+        }
         // save education
         $(document).ready(function() {
             var editId = '';
@@ -60,7 +70,7 @@
                             showLoader();
                         },
                         success: function(response) {
-                            // fetcheducation()
+                            fetchEdutcation()
                             $('#educationForm').trigger('reset');
                             $('#educationModal').modal('hide');
                             editId = '';
@@ -82,7 +92,7 @@
                             showLoader()
                         },
                         success: function(response) {
-                            // fetcheducation()
+                            fetchEdutcation()
                             $('#educationForm').trigger('reset');
                             $('#educationModal').modal('hide');
 
@@ -97,83 +107,78 @@
                 }
             })
 
-            // $("body").on('click', '.editExperience', function(e) {
-            //     e.preventDefault();
-            //     let url = $(this).attr('href')
+            $("body").on('click', '.edit-education', function(e) {
+                e.preventDefault();
+                let url = $(this).attr('href')
+                console.log(url);
+                $.ajax({
+                    method: 'GET',
+                    url: url,
+                    data: {},
+                    beforeSend : function () {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        editId = response.id;
+                        editMode = true;
+                        $.each(response, function(index, value) {
+                            $(`input[name="${index}"]:text`).val(value);
 
-            //     $.ajax({
-            //         method: 'GET',
-            //         url: url,
-            //         data: {},
-            //         beforeSend : function () {
-            //             showLoader();
-            //         },
-            //         success: function(response) {
-            //             editId = response.id;
-            //             editMode = true;
-            //             $.each(response, function(index, value) {
-            //                 $(`input[name="${index}"]:text`).val(value);
-
-            //                 if (index === 'current_working' && value == 1) {
-            //                     $(`input[name="${index}"]:checkbox`).prop('checked',
-            //                         true)
-            //                 }
-
-            //                 if (index === 'responsibilites') {
-            //                     $(`textarea[name="${index}"]`).val(value);
-            //                 }
-            //             });
-            //             hideLoader();
-            //         },
-            //         error: function(xhr, status, error) {
-            //             console.log(error);
-            //             hideLoader();
-            //         }
-            //     });
-            // })
+                            if (index === 'note') {
+                                $(`textarea[name="${index}"]`).val(value);
+                            }
+                        });
+                        hideLoader();
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                        hideLoader();
+                    }
+                });
+            })
         })
 
-        // delete experience
-        // $("body").on("click", '.delete-experience', function(e) {
-        //     e.preventDefault();
-        //     Swal.fire({
-        //         title: "Are you sure?",
-        //         text: "You won't be able to revert this!",
-        //         icon: "warning",
-        //         showCancelButton: true,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //         confirmButtonText: "Yes, delete it!"
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             let url = $(this).attr("href");
-        //             let csrfToken = $('meta[name="csrf-token"]').attr('content');
-        //             $.ajax({
-        //                 method: "DELETE",
-        //                 url: url,
-        //                 data: {
-        //                     _token: csrfToken
-        //                 },
-        //                 beforeSend: function() {
-        //                     showLoader()
-        //                 },
-        //                 success: function(response) {
-        //                     fetchExperience()
-        //                     hideLoader();
-        //                     notyf.success(response.message);
-        //                 },
-        //                 error: function(status, error, xhr) {
-        //                     console.log(error);
-        //                     hideLoader();
-        //                 },
-        //             });
-        //             Swal.fire({
-        //                 title: "Deleted!",
-        //                 text: "Your file has been deleted.",
-        //                 icon: "success"
-        //             });
-        //         }
-        //     });
-        // });
+        delete experience
+        $("body").on("click", '.delete-education', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = $(this).attr("href");
+                    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        method: "DELETE",
+                        url: url,
+                        data: {
+                            _token: csrfToken
+                        },
+                        beforeSend: function() {
+                            showLoader()
+                        },
+                        success: function(response) {
+                            fetchEdutcation()
+                            hideLoader();
+                            notyf.success(response.message);
+                        },
+                        error: function(status, error, xhr) {
+                            console.log(error);
+                            hideLoader();
+                        },
+                    });
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        });
     </script>
 @endpush
