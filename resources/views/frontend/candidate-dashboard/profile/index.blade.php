@@ -37,8 +37,8 @@
                                 aria-controls="pills-experience" aria-selected="false">Experience & Education</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                            <button class="nav-link" id="pills-account-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account"
                                 aria-selected="false">Account Setting</button>
                         </li>
                     </ul>
@@ -51,6 +51,9 @@
 
                         {{-- Experience --}}
                         @include('frontend.candidate-dashboard.profile.sections.experience')
+
+                        {{-- Account --}}
+                        @include('frontend.candidate-dashboard.profile.sections.account')
                     </div>
                 </div>
             </div>
