@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\LocationController;
 
 Route::get('/', [HomeController::class , 'index'])->name('home');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,6 +40,11 @@ Route::get('get-province/{id}', [LocationController::class , 'getProvinceByCount
 
 Route::get('get-district/{id}', [LocationController::class , 'getDistrict'])
 ->name('get-district');
+
+
+// Companies page
+Route::get('companies', [FrontendCompanyPageController::class , 'index'])
+->name('companies.index');
 
 
 /* COMPANY */
