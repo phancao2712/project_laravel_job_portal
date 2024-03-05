@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+<div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab" tabindex="0">
     <form action="{{ route('candidate.profile.basic-info') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row form-contact">
@@ -44,9 +44,9 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group select-style">
                             <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
-                            <select name="experience" class="select-active form-control {{ $errors->has('experience') ? 'is-invalid' : '' }} select-2">
+                            <select name="experience" class="form-control form-icons select-active select2-hidden-accessible {{ $errors->has('experience') ? 'is-invalid' : '' }} select-2">
                                 @foreach ($experience as $exp)
                                 <option value="{{ $exp->id }}">{{ $exp->name }}</option>
                                 @endforeach

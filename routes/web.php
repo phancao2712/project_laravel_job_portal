@@ -86,4 +86,7 @@ Route::group([
 
     Route::resource('education',CandidateEducationController::class);
 
+    Route::post('/account-info',[CandidateProfileController::class, 'updateAccountInfo'])
+    ->name('profile.account-info');
+
 });
