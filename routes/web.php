@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,10 @@ Route::get('companies', [FrontendCompanyPageController::class , 'index'])
 
 Route::get('companies/{slug}', [FrontendCompanyPageController::class , 'show'])
 ->name('companies.show');
+
+// Candidates page
+Route::get('candidates', [FrontendCandidatePageController::class , 'index'])
+->name('candidates.index');
 
 
 /* COMPANY */
