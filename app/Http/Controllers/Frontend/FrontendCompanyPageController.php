@@ -15,4 +15,12 @@ class FrontendCompanyPageController extends Controller
             'companies'
         ));
     }
+
+    function show(string $slug) : View
+    {
+        $company = Company::where(['profile_completion' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
+        return view('frontend.pages.company-detail', compact(
+            'company'
+        ));
+    }
 }

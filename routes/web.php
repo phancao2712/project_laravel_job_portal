@@ -46,6 +46,9 @@ Route::get('get-district/{id}', [LocationController::class , 'getDistrict'])
 Route::get('companies', [FrontendCompanyPageController::class , 'index'])
 ->name('companies.index');
 
+Route::get('companies/{slug}', [FrontendCompanyPageController::class , 'show'])
+->name('companies.show');
+
 
 /* COMPANY */
 Route::group([

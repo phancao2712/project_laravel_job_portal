@@ -67,7 +67,7 @@
                                         <div class="image-box"><a href="company-details.html"><img
                                                     src="{{ asset($company?->logo) }}" alt="joblist"></a></div>
                                         <div class="info-text mt-10">
-                                            <h5 class="font-bold"><a href="company-details.html">{{ $company?->name }}</a>
+                                            <h5 class="font-bold"><a href="{{ route('companies.show', $company->slug) }}">{{ $company?->name }}</a>
                                             </h5>
                                             <div class="mt-5">
                                                 <img alt="joblist"

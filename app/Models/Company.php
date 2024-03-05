@@ -53,8 +53,19 @@ class Company extends Model
         return $this->BelongsTo(Province::class, 'province', 'id');
     }
 
-    function companyDistrict() : BelongsTo
+    function companyIndustry() : BelongsTo
     {
-        return $this->BelongsTo(District::class, 'district', 'id');
+        return $this->BelongsTo(Industry_type::class, 'industry_type_id', 'id');
     }
+
+    function companyOrganization() : BelongsTo
+    {
+        return $this->BelongsTo(Organization_type::class, 'organization_type_id', 'id');
+    }
+
+    function companyTeamSize() : BelongsTo
+    {
+        return $this->BelongsTo(TeamSize::class, 'team_size_id', 'id');
+    }
+
 }

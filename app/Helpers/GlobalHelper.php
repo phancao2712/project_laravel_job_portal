@@ -1,10 +1,8 @@
 <?php
-
-/** check error input **/
-
 use App\Models\Candidate;
 use App\Models\Company;
 
+/** check error input **/
 if (!function_exists('hasError')) {
     function hasError($errors, $name): ?String
     {
@@ -69,5 +67,13 @@ if (!function_exists('checkCompleteCandidateProfile')) {
         }
 
         return true;
+    }
+}
+
+/** format date **/
+if (!function_exists('formatDate')) {
+    function formatDate(string $date): string
+    {
+        return date('d-m-Y', strtotime($date));
     }
 }
