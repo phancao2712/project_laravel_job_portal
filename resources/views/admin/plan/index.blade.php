@@ -5,6 +5,9 @@
         <div class="section-header">
             <h1>Price Plan</h1>
         </div>
+        <div class="text-right">
+            <a href="{{ route('admin.plans.create') }}" class="btn mb-4 btn-primary"><i class="fa-solid fa-circle-plus"></i> Create New</a>
+        </div>
         <div class="row">
             <div class="col-12 col-md-4 col-lg-4">
                 <div class="pricing">

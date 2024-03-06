@@ -13,7 +13,7 @@ class PlanController extends Controller
      */
     public function index() : View
     {
-        return view('plan.index');
+        return view('admin.plan.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plan.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
