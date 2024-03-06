@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Candidate;
 use App\Models\Company;
 
@@ -27,12 +28,14 @@ if (!function_exists('setSideBarActive')) {
 if (!function_exists('checkCompleteProfile')) {
     function checkCompleteProfile(): bool
     {
-        $requiredField = ['logo', 'banner', 'name', 'bio', 'vision',
-        'industry_type_id', 'organization_type_id', 'team_size_id', 'phone', 'email', 'country'];
+        $requiredField = [
+            'logo', 'banner', 'name', 'bio', 'vision',
+            'industry_type_id', 'organization_type_id', 'team_size_id', 'phone', 'email', 'country'
+        ];
         $completeProfile = Company::where('user_id', Auth::user()->id)->first();
 
         foreach ($requiredField as $field) {
-            if(empty($completeProfile->{$field})){
+            if (empty($completeProfile->{$field})) {
                 return false;
             }
         }
@@ -61,7 +64,7 @@ if (!function_exists('checkCompleteCandidateProfile')) {
         $completeProfile = Candidate::where('user_id', Auth::user()->id)->first();
 
         foreach ($requiredField as $field) {
-            if(empty($completeProfile->{$field})){
+            if (empty($completeProfile->{$field})) {
                 return false;
             }
         }
@@ -72,8 +75,11 @@ if (!function_exists('checkCompleteCandidateProfile')) {
 
 /** format date **/
 if (!function_exists('formatDate')) {
-    function formatDate(string $date): string
+    function formatDate(?string $date): string
     {
-        return date('d-m-Y', strtotime($date));
+        if ($date) {
+            return date('d/m/Y', strtotime($date));
+        }
+        return '';
     }
 }

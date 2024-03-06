@@ -50,9 +50,9 @@
         <table class="table table-striped" id="educationTable">
             <thead>
                 <tr>
-                    <th scope="col">Level</th>
+                    <th scope="col">Name School</th>
                     <th scope="col">Degree</th>
-                    <th scope="col">Year</th>
+                    <th scope="col">Year End</th>
                     <th scope="col">Note</th>
                     <th scope="col" style="width:15%;">Actions</th>
                 </tr>

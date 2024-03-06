@@ -393,12 +393,12 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="card-grid-2 hover-up">
                                         <div class="card-grid-2-image-left d-flex">
-                                            <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
+                                            <div class="card-grid-2-image-rd online"><a href="{{ route('candidates.show', $candidate->slug) }}">
                                                     <figure><img alt="joblist" src="{{ asset($candidate->image) }}">
                                                     </figure>
                                                 </a></div>
                                             <div class="card-profile pt-10">
-                                                <a href="candidate-details.html">
+                                                <a href="{{ route('candidates.show', $candidate->slug) }}">
                                                     <h5>{{ $candidate->fullname }}</h5>
                                                 </a>
                                                 <span class="font-xs color-text-mutted">{{ $candidate->title }}</span>
@@ -437,10 +437,10 @@
                                                 <div class="row">
                                                     <div class="col-6"><span class="d-flex align-items-center"><i
                                                                 class="fi-rr-marker mr-5 ml-0"></i><span
-                                                                class="text-sm text-nowrap color-text-mutted">{{ $candidate->candidateProvince->name }}</span></span></div>
+                                                                class="font-sm text-nowrap color-text-mutted">{{ $candidate->candidateCountry->name }}</span></span></div>
                                                     <div class="col-6"><span
                                                             class="d-flex justify-content-end align-items-center"><a
-                                                                class="font-sm text-primary d-flex justify-items-center" href="">View<i class="fi fi-rr-arrow-right" style="margin-top:1px;"></i></a></span>
+                                                                class="font-sm text-primary d-flex justify-items-center" href="{{ route('candidates.show', $candidate->slug) }}">View<i class="fi fi-rr-arrow-right" style="margin-top:1px;"></i></a></span>
                                                     </div>
                                                 </div>
                                             </div>

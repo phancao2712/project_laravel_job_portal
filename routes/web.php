@@ -54,6 +54,9 @@ Route::get('companies/{slug}', [FrontendCompanyPageController::class , 'show'])
 Route::get('candidates', [FrontendCandidatePageController::class , 'index'])
 ->name('candidates.index');
 
+Route::get('candidates/{slug}', [FrontendCandidatePageController::class , 'show'])
+->name('candidates.show');
+
 
 /* COMPANY */
 Route::group([

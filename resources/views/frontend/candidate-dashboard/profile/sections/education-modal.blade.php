@@ -11,11 +11,11 @@
                         @csrf
                         <div class="row form-controler">
                             <div class="col-md-12">
-                                <label for="level">Level *</label>
+                                <label for="level">Name Shool *</label>
                                 <input type="text" name="level" class="form-control" required="">
                             </div>
                             <div class="col-md-6">
-                                <label for="">Year *</label>
+                                <label for="">Year end*</label>
                                 <input type="text" class="yearpicker" name="year" class="form-control" required="">
                             </div>
                             <div class="col-md-6">

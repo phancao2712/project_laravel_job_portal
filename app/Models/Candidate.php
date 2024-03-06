@@ -58,6 +58,16 @@ class Candidate extends Model
         return $this->hasMany(CandidateLanguage::class, 'candidate_id', 'id');
     }
 
+    function experiences() : HasMany
+    {
+        return $this->hasMany(CandidateExperience::class, 'candidate_id', 'id')->orderBy('id', 'DESC');
+    }
+
+    function educations() : HasMany
+    {
+        return $this->hasMany(CandidateEducation::class, 'candidate_id', 'id')->orderBy('id', 'DESC');
+    }
+
     function candidateCountry() : BelongsTo
     {
         return $this->belongsTo(Country::class, 'country', 'id');
@@ -66,5 +76,15 @@ class Candidate extends Model
     function candidateProvince() : BelongsTo
     {
         return $this->beLongsTo(Province::class, 'province', 'id');
+    }
+
+    function experience() : BelongsTo
+    {
+        return $this->belongsTo(Experience::class, 'experience_id', 'id');
+    }
+
+    function profession() : BelongsTo
+    {
+        return $this->belongsTo(Profession::class, 'profession_id', 'id');
     }
 }

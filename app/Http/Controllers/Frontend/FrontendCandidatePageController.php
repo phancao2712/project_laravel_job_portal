@@ -16,4 +16,11 @@ class FrontendCandidatePageController extends Controller
             'candidates'
         ));
     }
+
+    function show(string $slug) : View {
+        $candidate = Candidate::where(['profile_complete' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
+        return view('frontend.pages.candidate-detail', compact(
+            'candidate'
+        ));
+    }
 }
