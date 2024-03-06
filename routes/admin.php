@@ -9,9 +9,11 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\LocationController;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'] ,function () {
@@ -69,4 +71,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /* SKILL ROUTE */
     Route::resource('skills', SkillController::class);
+
+    /* SKILL PLAN */
+    Route::resource('plans', PlanController::class);
 });
