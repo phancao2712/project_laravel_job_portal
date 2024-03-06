@@ -19,11 +19,11 @@
                             </div>
                         @endif
                         <div class="pricing-padding">
+                            <div>
+                                <h4>{{ $plan->lable }}</h4>
+                            </div>
                             <div class="pricing-price">
-                                <div>
-                                    <h4>{{ $plan->price }} VNĐ</h4>
-                                </div>
-                                <div>per month</div>
+                                <div>{{ $plan->price }} VNĐ</div>
                             </div>
                             <div class="pricing-details">
                                 <div class="pricing-item">
@@ -57,7 +57,7 @@
                         <div class="pricing-cta d-flex" style="justify-content: space-between; width:100%;">
                             <a class="w-100 bg-primary text-light" href="{{ route('admin.plans.edit', $plan->id) }}">Edit <i
                                     class="fas fa-arrow-right "></i></a>
-                            <a class="w-100 bg-danger text-light"
+                            <a class="w-100 bg-danger text-light delete-btn"
                                 href="{{ route('admin.plans.destroy', $plan->id) }}">Delete <i class="fas fa-times"></i></a>
                         </div>
                     </div>

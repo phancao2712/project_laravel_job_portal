@@ -51,19 +51,14 @@ class PlanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $plan = Plan::findOrFail($id);
+        return view('admin.plan.edit', compact(
+            'plan'
+        ));
     }
 
     /**
@@ -71,7 +66,19 @@ class PlanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $model = Plan::findOrFail($id);
+
+        $model->lable = $request->lable;
+        $model->price = $request->price;
+        $model->job_limit = $request->job_limit;
+        $model->highlight_job_limit = $request->highlight_job_limit;
+        $model->featured_job_limit = $request->featured_job_limit;
+        $model->profile_verified = $request->profile_verified;
+        $model->recommended = $request->recommended;
+        $model->frontend_show = $request->frontend_show;
+        $model->save();
+        Notify::UpdateNotify();
+        return to_route('admin.plans.index');
     }
 
     /**
@@ -79,6 +86,13 @@ class PlanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Plan::findOrFail($id)->delete();
+            Notify::DeleteNotify();
+            return response(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'error'], 500);
+        }
     }
 }

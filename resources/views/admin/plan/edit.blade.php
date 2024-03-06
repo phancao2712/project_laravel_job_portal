@@ -7,25 +7,26 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Create Plan</h4>
+                    <h4>Update Plan</h4>
                     <div class="card-header-form">
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.plans.store') }}" method="POST">
+                    <form action="{{ route('admin.plans.update', $plan->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Lable</label>
-                                    <input value="{{ old('lable') }}" type="text" name="lable" class="form-control {{ hasError($errors, 'lable') }}">
+                                    <input value="{{ old('lable', $plan->lable) }}" type="text" name="lable" class="form-control {{ hasError($errors, 'lable') }}">
                                   <x-input-error :messages="$errors->get('lable')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input value="{{ old('price') }}" type="number" name="price"
+                                    <input value="{{ old('price', $plan->price) }}" type="number" name="price"
                                         class="form-control {{ hasError($errors, 'price') }}">
                                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
                                 </div>
@@ -35,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Job limit</label>
-                                    <input value="{{ old('job_limit') }}" type="number" name="job_limit"
+                                    <input value="{{ old('job_limit', $plan->job_limit) }}" type="number" name="job_limit"
                                         class="form-control {{ hasError($errors, 'job_limit') }}">
                                     <x-input-error :messages="$errors->get('job_limit')" class="mt-2" />
                                 </div>
@@ -43,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Feature job limit</label>
-                                    <input value="{{ old('featured_job_limit') }}" type="number" name="featured_job_limit"
+                                    <input value="{{ old('featured_job_limit', $plan->featured_job_limit) }}" type="number" name="featured_job_limit"
                                         class="form-control {{ hasError($errors, 'featured_job_limit') }}">
                                     <x-input-error :messages="$errors->get('featured_job_limit')" class="mt-2" />
                                 </div>
@@ -54,7 +55,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Highlight job limit</label>
-                                    <input value="{{ old('highlight_job_limit') }}" type="number" name="highlight_job_limit"
+                                    <input value="{{ old('highlight_job_limit', $plan->highlight_job_limit) }}" type="number" name="highlight_job_limit"
                                         class="form-control {{ hasError($errors, 'highlight_job_limit') }}">
                                     <x-input-error :messages="$errors->get('highlight_job_limit')" class="mt-2" />
                                 </div>
@@ -71,7 +72,7 @@
                                     <select class="form-control {{ hasError($errors, 'profile_verified') }}"
                                         name="profile_verified" id="">
                                         @foreach ($lists as $index => $value)
-                                            <option value="{{ $index }}">{{ $value }}</option>
+                                            <option @selected($plan->profile_verified === $index) value="{{ $index }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     <x-input-error :messages="$errors->get('profile_verified')" class="mt-2" />
@@ -85,7 +86,7 @@
                                     <select name="recommended" class="form-control {{ hasError($errors, 'recommended') }}"
                                         name="recommended">
                                         @foreach ($lists as $index => $value)
-                                            <option value="{{ $index }}">{{ $value }}</option>
+                                            <option @selected($plan->recommended === $index) value="{{ $index }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     <x-input-error :messages="$errors->get('recommended')" class="mt-2" />
@@ -97,7 +98,7 @@
                                     <select name="frontend_show"
                                         class="form-control {{ hasError($errors, 'frontend_show') }}" name="frontend_show">
                                         @foreach ($lists as $index => $value)
-                                            <option value="{{ $index }}">{{ $value }}</option>
+                                            <option @selected($plan->frontend_show === $index) value="{{ $index }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     <x-input-error :messages="$errors->get('frontend_show')" class="mt-2" />
