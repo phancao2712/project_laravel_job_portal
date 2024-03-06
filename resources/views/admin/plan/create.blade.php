@@ -1,5 +1,4 @@
 @extends('admin.layouts.master')
-
 @section('contents')
     <section class="section">
         <div class="section-header">
@@ -19,9 +18,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Lable</label>
-                                    <input type="text" name="lable"
-                                        class="form-control {{ hasError($errors, 'lable') }}">
-                                    <x-input-error :messages="$errors->get('lable')" class="mt-2" />
+                                    <input type="text" name="lable" class="form-control {{ hasError($errors, 'lable') }}">
+                                  <x-input-error :messages="$errors->get('lable')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -106,8 +104,8 @@
                                 </div>
                             </div>
                         </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
-                <button class="btn btn-primary">Create</button>
                 </form>
             </div>
         </div>

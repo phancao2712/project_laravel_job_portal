@@ -7,7 +7,7 @@ use App\Models\Company;
 if (!function_exists('hasError')) {
     function hasError($errors, $name): ?String
     {
-        return $errors->has('name') ? 'is-invalid' : '';
+        return $errors->has($name) ? 'is-invalid' : '';
     }
 }
 
