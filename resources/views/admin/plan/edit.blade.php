@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Show this package in frontend</label>
+                                    <label>Show this package at page</label>
                                     <select name="frontend_show"
                                         class="form-control {{ hasError($errors, 'frontend_show') }}" name="frontend_show">
                                         @foreach ($lists as $index => $value)
@@ -102,6 +102,18 @@
                                         @endforeach
                                     </select>
                                     <x-input-error :messages="$errors->get('frontend_show')" class="mt-2" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Show this package at home</label>
+                                    <select name="show_at_home"
+                                        class="form-control {{ hasError($errors, 'show_at_home') }}" name="show_at_home">
+                                        @foreach ($lists as $index => $value)
+                                            <option @selected($plan->show_at_home === $index) value="{{ $index }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                    <x-input-error :messages="$errors->get('show_at_home')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

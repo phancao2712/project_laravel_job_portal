@@ -45,6 +45,7 @@ class PlanController extends Controller
         $model->profile_verified = $request->profile_verified;
         $model->recommended = $request->recommended;
         $model->frontend_show = $request->frontend_show;
+        $model->show_at_home = $request->show_at_home;
         $model->save();
         Notify::CreateNotify();
         return to_route('admin.plans.index');
@@ -76,6 +77,7 @@ class PlanController extends Controller
         $model->profile_verified = $request->profile_verified;
         $model->recommended = $request->recommended;
         $model->frontend_show = $request->frontend_show;
+        $model->show_at_home = $request->show_at_home;
         $model->save();
         Notify::UpdateNotify();
         return to_route('admin.plans.index');

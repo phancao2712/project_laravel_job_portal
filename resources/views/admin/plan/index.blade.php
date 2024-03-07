@@ -18,6 +18,15 @@
                                 Recommend
                             </div>
                         @endif
+
+                        <div class="pricing-padding">
+                            @if ($plan->frontend_show)
+                                <span class="badge text-light bg-primary">Showing at page</span>
+                            @endif
+                            @if ($plan->show_at_home)
+                                <span class="badge text-light bg-success">Showing at page</span>
+                            @endif
+                        </div>
                         <div class="pricing-padding">
                             <div>
                                 <h4>{{ $plan->lable }}</h4>

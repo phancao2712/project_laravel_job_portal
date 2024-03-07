@@ -18,6 +18,7 @@ class Plan extends Model
         'featured_job_limit',
         'profile_verified',
         'recommended',
-        'frontend_show'
+        'frontend_show',
+        'show_at_home'
     ];
 }

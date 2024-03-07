@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\LocationController;
 
 /*
@@ -57,6 +58,10 @@ Route::get('candidates', [FrontendCandidatePageController::class , 'index'])
 Route::get('candidates/{slug}', [FrontendCandidatePageController::class , 'show'])
 ->name('candidates.show');
 
+
+// Pricing page
+Route::get('pricing', PricingPageController::class)
+->name('pricing.index');
 
 /* COMPANY */
 Route::group([

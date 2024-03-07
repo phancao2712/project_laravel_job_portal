@@ -19,7 +19,7 @@
                   @if ($plan->profile_verified)
                     <li>Profile verified</li>
                   @else
-                    <strike>Profile verified</strike>
+                    <li><strike>Profile verified</strike></li>
                   @endif
                 </ul>
                 <div><a class="btn btn-border" href="#">Choose plan</a></div>
