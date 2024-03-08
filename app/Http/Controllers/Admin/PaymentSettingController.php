@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PaypalSettingUpdateRequest;
 use App\Models\PaymentSetting;
 use App\Services\Notify;
+use App\Services\PaymentGatewaySettingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -25,7 +26,10 @@ class PaymentSettingController extends Controller
             );
         }
 
-        Notify::UpdateNotify(); 
+        $settingService = app(PaymentGatewaySettingService::class);
+        $settingService->clearCacheSetting();
+
+        Notify::UpdateNotify();
 
         return redirect()->back();
     }

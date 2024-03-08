@@ -12,13 +12,13 @@
 
 <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
     @csrf
-    <div class="row">
+    <div class="row">  
         <div class="col-md-6">
             <div class="form-group">
                 <label>Paypal Status</label>
                 <select name="paypal_status" id="" class="form-control">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option @selected(config('gatewaySettings.paypal_status') === 'active') value="active">Active</option>
+                    <option @selected(config('gatewaySettings.paypal_status') === 'inactive') value="inactive">Inactive</option>
                 </select>
                 <x-input-error :messages="$errors->get('paypal_status')" class="mt-2" />
             </div>
@@ -27,8 +27,8 @@
             <div class="form-group">
                 <label>Paypal Account Mode</label>
                 <select name="paypal_account_mode" id="" class="form-control">
-                    <option value="sandbox">Sandbox</option>
-                    <option value="live">Live</option>
+                    <option @selected(config('gatewaySettings.paypal_account_mode') === 'sandbox') value="sandbox">Sandbox</option>
+                    <option @selected(config('gatewaySettings.paypal_account_mode') === 'live') value="live">Live</option>
                 </select>
                 <x-input-error :messages="$errors->get('paypal_account_mode')" class="mt-2" />
             </div>
@@ -41,7 +41,7 @@
                 <select name="paypal_country" class="form-control select2" id="">
                     <option value="">Select Country</option>
                     @foreach (config('countries') as $key => $country)
-                        <option value="{{ $key }}">{{ $country }}</option>
+                        <option @selected(config('gatewaySettings.paypal_country') === $key) value="{{ $key }}">{{ $country }}</option>
                     @endforeach
                 </select>
                 <x-input-error :messages="$errors->get('paypal_country') " class="mt-2" />
@@ -53,7 +53,7 @@
                 <select name="paypal_currency_name" id="" class="form-control select2">
                     <option value="">Select currency</option>
                     @foreach (config('currencies.currency_list') as $key => $currency)
-                        <option value="{{ $key }}">{{ $currency }}</option>
+                        <option @selected(config('gatewaySettings.paypal_currency_name') === $key) value="{{ $key }}">{{ $currency }}</option>
                     @endforeach
                 </select>
                 <x-input-error :messages="$errors->get('paypal_currency_name')" class="mt-2" />
@@ -64,7 +64,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Paypal Currency Rate</label>
-                <input value="{{ old('paypal_currency_rate') }}" type="text"
+                <input value="{{ config('gatewaySettings.paypal_currency_rate') }}" type="text"
                     name="paypal_currency_rate"
                     class="form-control {{ hasError($errors, 'paypal_currency_rate') }}">
                 <x-input-error :messages="$errors->get('paypal_currency_rate')" class="mt-2" />
@@ -73,7 +73,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Paypal Client Id</label>
-                <input value="{{ old('paypal_client_id') }}" type="text"
+                <input value="{{ config('gatewaySettings.paypal_client_id') }}" type="text"
                     name="paypal_client_id"
                     class="form-control {{ hasError($errors, 'paypal_client_id') }}">
                 <x-input-error :messages="$errors->get('paypal_client_id')" class="mt-2" />
@@ -82,7 +82,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Paypal Secret Key</label>
-                <input value="{{ old('paypal_secret_key') }}" type="text"
+                <input value="{{ config('gatewaySettings.paypal_secret_key') }}" type="text"
                     name="paypal_secret_key"
                     class="form-control {{ hasError($errors, 'paypal_secret_key') }}">
                 <x-input-error :messages="$errors->get('paypal_secret_key')" class="mt-2" />
@@ -91,21 +91,12 @@
         <div class="col-md-12 ">
             <div class="form-group">
                 <label>Paypal App Id</label>
-                <input value="{{ old('paypal_app_id') }}" type="text"
+                <input value="{{ config('gatewaySettings.paypal_app_id') }}" type="text"
                     name="paypal_app_id"
                     class="form-control {{ hasError($errors, 'paypal_app_id') }}">
                 <x-input-error :messages="$errors->get('paypal_app_id')" class="mt-2" />
             </div>
         </div>
     </div>
-    {{-- <div class="col-md-6">
-        <div class="form-group">
-            <label>Paypal Logo</label>
-            <input value="{{ old('paypal_app_id') }}" type="text"
-                name="paypal_app_id"
-                class="form-control {{ hasError($errors, 'paypal_app_id') }}">
-            <x-input-error :messages="$errors->get('paypal_app_id')" class="mt-2" />
-        </div>
-    </div> --}}
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
