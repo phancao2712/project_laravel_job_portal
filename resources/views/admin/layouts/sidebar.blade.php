@@ -58,6 +58,11 @@
                     href="{{ route('admin.plans.index') }}"><i class="far fa-square"></i> <span>Price Plan</span></a>
             </li>
 
+            {{-- Payment setting --}}
+            <li class="{{ setSideBarActive(['admin.payment-settings.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment Setting</span></a>
+            </li>
+
         </ul>
     </aside>
 </div>

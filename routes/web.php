@@ -88,8 +88,6 @@ function(){
 
     Route::post('/profile/password-update',[CompanyProfileController::class, 'updatePassword'])->
     name('profile.password-update');
-
-
 });
 
 /* CANDIDATE */

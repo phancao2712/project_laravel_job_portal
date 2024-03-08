@@ -117,8 +117,8 @@
                             </div>
                         </div>
                     <button type="submit" class="btn btn-primary">Create</button>
-                </div>
                 </form>
+                </div>
             </div>
         </div>
         </div>
