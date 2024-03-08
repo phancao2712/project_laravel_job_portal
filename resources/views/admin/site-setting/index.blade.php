@@ -16,7 +16,7 @@
                             <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4"
-                                        role="tab" aria-controls="home" aria-selected="true">General</a>
+                                        role="tab" aria-controls="home" aria-selected="true">General Setting</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4" role="tab"

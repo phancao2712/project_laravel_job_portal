@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Site Name</label>
-                <input value="" type="text"
+                <input value="{{ config('settings.site_name') }}" type="text"
                     name="site_name"
                     class="form-control {{ hasError($errors, 'site_name') }}">
                 <x-input-error :messages="$errors->get('site_name')" class="mt-2" />
@@ -13,7 +13,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Site Email</label>
-                <input value="{{ config('gatewaySettings.site_email') }}" type="text"
+                <input value="{{ config('settings.site_email') }}" type="text"
                     name="site_email"
                     class="form-control {{ hasError($errors, 'site_email') }}">
                 <x-input-error :messages="$errors->get('site_email')" class="mt-2" />
@@ -22,7 +22,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Site Phone</label>
-                <input value="" type="text"
+                <input value="{{ config('settings.site_phone') }}" type="text"
                     name="site_phone"
                     class="form-control {{ hasError($errors, 'site_phone') }}">
                 <x-input-error :messages="$errors->get('site_phone')" class="mt-2" />
@@ -34,7 +34,7 @@
                 <select name="site_default_currency" class="form-control select2" id="">
                     <option value="">Select Currency</option>
                     @foreach (config('countries') as $key => $country)
-                        <option value="{{ $key }}">{{ $country }}</option>
+                        <option @selected(config('settings.site_default_currency') === $key) value="{{ $key }}">{{ $country }}</option>
                     @endforeach
                 </select>
                 <x-input-error :messages="$errors->get('site_default_currency') " class="mt-2" />
@@ -43,7 +43,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Currency Icon</label>
-                    <input value="" type="text"
+                    <input value="{{ config('settings.site_currency_icon') }}" type="text"
                     name="site_currency_icon"
                     class="form-control {{ hasError($errors, 'site_currency_icon') }}">
                 <x-input-error :messages="$errors->get('site_currency_icon') " class="mt-2" />

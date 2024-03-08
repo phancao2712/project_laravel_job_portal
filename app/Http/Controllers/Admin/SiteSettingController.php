@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteGeneralUpdateRequest;
 use App\Models\SiteSetting;
 use App\Services\Notify;
+use App\Services\SiteSettingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,10 +22,13 @@ class SiteSettingController extends Controller
 
         foreach ($validate as $key => $value) {
             SiteSetting::updateOrCreate(
-                ['key' => $key],    
+                ['key' => $key],
                 ['value' => $value],
             );
         }
+
+        $siteSetting = app(SiteSettingService::class);
+        $siteSetting->clearCacheSetting();
 
         Notify::UpdateNotify();
         return redirect()->back();
