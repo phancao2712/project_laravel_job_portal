@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('plans', PlanController::class);
 
     /* PAYMENT SETTING ROUTE */
-    Route::get('payment-settings', [PaymentSettingController::class , 'index'])->name('payment-settings.index');
+    Route::get('payment-settings', [PaymentSettingController::class ,'index'])->name('payment-settings.index');
+
+    Route::post('paypal-update', [PaymentSettingController::class,'updatePaypalSetting'])->name('paypal-settings.update');
 });
     
