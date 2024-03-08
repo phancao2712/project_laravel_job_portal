@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Route;
 
@@ -78,7 +79,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /* PAYMENT SETTING ROUTE */
     Route::get('payment-settings', [PaymentSettingController::class ,'index'])->name('payment-settings.index');
-
     Route::post('paypal-update', [PaymentSettingController::class,'updatePaypalSetting'])->name('paypal-settings.update');
+
+    /* SITE SETTING ROUTE */
+    Route::get('site-settings', [SiteSettingController::class ,'index'])->name('site-settings.index');
+    Route::post('site-update', [SiteSettingController::class,'updateGeneralSetting'])->name('site-settings.update');
 });
-    

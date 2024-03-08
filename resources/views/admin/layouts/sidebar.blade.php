@@ -63,6 +63,11 @@
                     href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment Setting</span></a>
             </li>
 
+            {{-- Site setting --}}
+            <li class="{{ setSideBarActive(['admin.site-settings.index']) }}"><a class="nav-link"
+                href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site Setting</span></a>
+        </li>
+
         </ul>
     </aside>
 </div>
