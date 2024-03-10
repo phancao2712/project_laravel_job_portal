@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as SessionStripe;
 
 class PaymentController extends Controller
 {
@@ -93,19 +95,45 @@ class PaymentController extends Controller
         return redirect()->route('company.payment.error')->withErrors(['errors' => $response['error']['message']]);
     }
 
-    function payWithStripe() {
-        
+    function payWithStripe()
+    {
+        Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
+
+        $paypalAmount = round(Session::get('selected_plan')['price'] * config('gatewaySettings.stripe_currency_rate')) * 100;
+
+        $response = SessionStripe::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => config('gatewaySettings.stripe_currency_name'),
+                        'product_data' => [
+                            'name' => Session::get('selected_plan')['lable'] . 'Package',
+                        ],
+                        'unit_amount' => $paypalAmount
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => route('company.payment.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('company.payment.cancel')
+        ]);
+
+        return redirect()->away($response->url);
     }
 
-    function success() : View {
+    function success(): View
+    {
         return view('frontend.pages.success-page');
     }
 
-    function error() : View {
+    function error(): View
+    {
         return view('frontend.pages.error-page');
     }
 
-    function cancel() {
+    function cancel()
+    {
         return redirect()->route('company.payment.error')->withErrors(['error' => 'Something went wrong please try again']);
     }
 }
