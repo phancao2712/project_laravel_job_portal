@@ -115,11 +115,32 @@ class PaymentController extends Controller
                 ]
             ],
             'mode' => 'payment',
-            'success_url' => route('company.payment.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => route('company.stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('company.payment.cancel')
         ]);
 
         return redirect()->away($response->url);
+    }
+
+    function stripeSuccess(Request $request){
+        Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
+
+        $sessionId = $request->session_id;
+
+        $response = SessionStripe::retrieve($sessionId);
+
+        if($response->payment_status === 'paid'){
+            try {
+                OrderService::OrderService($response->payment_intent, 'stripe', $response->amount_total, $response->currency, $response->payment_status);
+                OrderService::setUserPlan();
+
+                Session::forget('selected_plan');
+
+                return redirect()->route('company.payment.success');
+            } catch (\Exception $e) {
+                logger('Payment ERROR' >> $e);
+            }
+        }
     }
 
     function success(): View
