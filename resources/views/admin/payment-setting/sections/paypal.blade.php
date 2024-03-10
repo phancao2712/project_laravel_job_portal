@@ -12,7 +12,7 @@
 
 <form action="{{ route('admin.paypal-settings.update') }}" method="POST">
     @csrf
-    <div class="row">  
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label>Paypal Status</label>
@@ -53,8 +53,8 @@
                 <select name="paypal_currency_name" id="" class="form-control select2">
                     <option value="">Select currency</option>
                     @foreach (config('currencies.currency_list') as $key => $currency)
-                        <option @selected(config('gatewaySettings.paypal_currency_name') === $key) value="{{ $key }}">{{ $currency }}</option>
-                    @endforeach
+                        <option @selected(config('gatewaySettings.paypal_currency_name') === $currency) value="{{ $currency }}">{{ $currency }}</option>
+                    @endforeach 
                 </select>
                 <x-input-error :messages="$errors->get('paypal_currency_name')" class="mt-2" />
             </div>
