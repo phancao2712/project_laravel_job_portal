@@ -93,6 +93,10 @@ class PaymentController extends Controller
         return redirect()->route('company.payment.error')->withErrors(['errors' => $response['error']['message']]);
     }
 
+    function payWithStripe() {
+        
+    }
+
     function success() : View {
         return view('frontend.pages.success-page');
     }

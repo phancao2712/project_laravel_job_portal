@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* PAYMENT SETTING ROUTE */
     Route::get('payment-settings', [PaymentSettingController::class ,'index'])->name('payment-settings.index');
     Route::post('paypal-update', [PaymentSettingController::class,'updatePaypalSetting'])->name('paypal-settings.update');
+    Route::post('stripe-update', [PaymentSettingController::class,'updateStripeSetting'])->name('stripe-settings.update');
 
     /* SITE SETTING ROUTE */
     Route::get('site-settings', [SiteSettingController::class ,'index'])->name('site-settings.index');
