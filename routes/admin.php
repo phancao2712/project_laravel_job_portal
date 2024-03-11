@@ -91,4 +91,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* ORDERS SETTING ROUTE */
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('invoice/{id}',[OrderController::class, 'invoice'])->name('orders.invoice');
 });

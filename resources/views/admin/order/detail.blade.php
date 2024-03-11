@@ -25,7 +25,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Action</th>
-                                    <td><a href="#" class="text-primary">Dowload invoice</a></td>
+                                    <td><a href="{{ route('admin.orders.invoice', $order?->id) }}" class="text-primary">Dowload invoice</a></td>
                                 </tr>
                             </tbody>
                         </table>
