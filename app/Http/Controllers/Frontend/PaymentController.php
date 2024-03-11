@@ -42,6 +42,7 @@ class PaymentController extends Controller
 
     function payWithPaypal()
     {
+        abort_if(!$this->checkSession(), 404);
         $paypalSetting = $this->setPaypalSetting();
         $provider = new PayPalClient($paypalSetting);
         $provider->getAccessToken();
@@ -75,6 +76,7 @@ class PaymentController extends Controller
 
     function paypalSuccess(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
         $paypalSetting = $this->setPaypalSetting();
         $provider = new PayPalClient($paypalSetting);
         $provider->getAccessToken();
@@ -102,6 +104,8 @@ class PaymentController extends Controller
     // pay with stripe
     function payWithStripe()
     {
+        abort_if(!$this->checkSession(), 404);
+
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
 
         $paypalAmount = round(Session::get('selected_plan')['price'] * config('gatewaySettings.stripe_currency_rate')) * 100;
@@ -129,6 +133,8 @@ class PaymentController extends Controller
 
     function stripeSuccess(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
+
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
 
         $sessionId = $request->session_id;
@@ -152,11 +158,13 @@ class PaymentController extends Controller
     // pay with razorpay
     function razorpayRedirect(): View
     {
+        abort_if(!$this->checkSession(), 404);
         return view('frontend.pages.razorpay-redirect');
     }
 
     function payWithRazorpay(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
         $api = new RazorpayApi(
             config('gatewaySettings.razorpay_key'),
             config('gatewaySettings.razorpay_secret_key')
@@ -207,5 +215,10 @@ class PaymentController extends Controller
         return redirect()->route('company.payment.error')->withErrors(['error' => 'Something went wrong please try again']);
     }
 
-    
+    function checkSession() : bool {
+        if(session()->has('selected_plan')){
+            return true;
+        }
+        return false;
+    }
 }
