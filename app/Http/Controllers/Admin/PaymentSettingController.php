@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PaypalSettingUpdateRequest;
+use App\Http\Requests\RazorpayUpdateRequest;
 use App\Http\Requests\StripeSettingUpdateRequest;
 use App\Models\PaymentSetting;
 use App\Services\Notify;
@@ -36,6 +37,23 @@ class PaymentSettingController extends Controller
     }
 
     function updateStripeSetting(StripeSettingUpdateRequest $request) {
+        $validate = $request->validated();
+        foreach ($validate as $key => $value) {
+            PaymentSetting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value],
+            );
+        }
+
+        $settingService = app(PaymentGatewaySettingService::class);
+        $settingService->clearCacheSetting();
+
+        Notify::UpdateNotify();
+
+        return redirect()->back();
+    }
+
+    function updateRazorpaySetting(RazorpayUpdateRequest $request) {
         $validate = $request->validated();
         foreach ($validate as $key => $value) {
             PaymentSetting::updateOrCreate(
