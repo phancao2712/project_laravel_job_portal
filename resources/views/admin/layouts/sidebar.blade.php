@@ -12,6 +12,11 @@
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><span>Dashboard</span></a>
             </li>
 
+            <li class="{{ setSideBarActive(['admin.payment-settings.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment
+                        Setting</span></a>
+            </li>
+
             {{-- ATTRIBUTES --}}
             <li class="menu-header">Attributes</li>
             <li
@@ -59,14 +64,15 @@
             </li>
 
             {{-- Payment setting --}}
-            <li class="{{ setSideBarActive(['admin.payment-settings.index']) }}"><a class="nav-link"
-                    href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>Payment Setting</span></a>
+            <li class="{{ setSideBarActive(['admin.orders.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.orders.index') }}"><i class="far fa-square"></i><span>Orders</span></a>
             </li>
 
             {{-- Site setting --}}
             <li class="{{ setSideBarActive(['admin.site-settings.index']) }}"><a class="nav-link"
-                href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site Setting</span></a>
-        </li>
+                    href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site
+                        Setting</span></a>
+            </li>
 
         </ul>
     </aside>

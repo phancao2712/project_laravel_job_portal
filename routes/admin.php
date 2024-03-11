@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProfessionController;
@@ -86,4 +87,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* SITE SETTING ROUTE */
     Route::get('site-settings', [SiteSettingController::class ,'index'])->name('site-settings.index');
     Route::post('site-update', [SiteSettingController::class,'updateGeneralSetting'])->name('site-settings.update');
+
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 });
