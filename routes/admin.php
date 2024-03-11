@@ -88,5 +88,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::get('site-settings', [SiteSettingController::class ,'index'])->name('site-settings.index');
     Route::post('site-update', [SiteSettingController::class,'updateGeneralSetting'])->name('site-settings.update');
 
+    /* ORDERS SETTING ROUTE */
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
 });

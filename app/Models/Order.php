@@ -14,4 +14,9 @@ class Order extends Model
     function company() : BelongsTo {
         return $this->belongsTo(Company::class);
     }
+
+    function plan() : BelongsTo
+    {
+        return $this->belongsTo(Plan::class);
+    }
 }

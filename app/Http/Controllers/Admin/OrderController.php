@@ -16,4 +16,12 @@ class OrderController extends Controller
             'orders'
         ));
     }
+
+    function show(string $id) : View
+    {
+        $order = Order::findOrFail($id);
+        return view('admin.order.detail', compact(
+            'order'
+        ));
+    }
 }
