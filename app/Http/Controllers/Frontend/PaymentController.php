@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
+use Doctrine\DBAL\Types\BooleanType;
+use Hamcrest\Type\IsBoolean;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as SessionStripe;
+use Razorpay\Api\Api as RazorpayApi;
 
 class PaymentController extends Controller
 {
+    // pay with paypal
     function setPaypalSetting(): array
     {
         return [
@@ -95,6 +99,7 @@ class PaymentController extends Controller
         return redirect()->route('company.payment.error')->withErrors(['errors' => $response['error']['message']]);
     }
 
+    // pay with stripe
     function payWithStripe()
     {
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
@@ -122,14 +127,15 @@ class PaymentController extends Controller
         return redirect()->away($response->url);
     }
 
-    function stripeSuccess(Request $request){
+    function stripeSuccess(Request $request)
+    {
         Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
 
         $sessionId = $request->session_id;
 
         $response = SessionStripe::retrieve($sessionId);
 
-        if($response->payment_status === 'paid'){
+        if ($response->payment_status === 'paid') {
             try {
                 OrderService::OrderService($response->payment_intent, 'stripe', $response->amount_total, $response->currency, $response->payment_status);
                 OrderService::setUserPlan();
@@ -139,6 +145,49 @@ class PaymentController extends Controller
                 return redirect()->route('company.payment.success');
             } catch (\Exception $e) {
                 logger('Payment ERROR' >> $e);
+            }
+        }
+    }
+
+    // pay with razorpay
+    function razorpayRedirect(): View
+    {
+        return view('frontend.pages.razorpay-redirect');
+    }
+
+    function payWithRazorpay(Request $request)
+    {
+        $api = new RazorpayApi(
+            config('gatewaySettings.razorpay_key'),
+            config('gatewaySettings.razorpay_secret_key')
+        );
+
+        if (isset($request->razorpay_payment_id) && filled($request->razorpay_payment_id)) {
+            $amount = (Session::get('selected_plan')['price']) * config('gatewaySettings.razorpay_currency_rate') * 100;
+
+            try {
+                $response =  $api->payment
+                    ->fetch($request->razorpay_payment_id)
+                    ->capture(['amount' => $amount]);
+
+                if ($response->status === 'captured') {
+                    OrderService::OrderService(
+                        $response->id,
+                        'razorpay',
+                        ($response->amount / 100),
+                        $response->currency,
+                        'paid'
+                    );
+                    OrderService::setUserPlan();
+
+                    Session::forget('selected_plan');
+                    return redirect()->route('company.payment.success');
+                } else {
+                    redirect()->route('company.payment.error')->withErrors(['error' => 'Something went wrong please try again.']);
+                }
+            } catch (\Exception $e) {
+                logger($e);
+                redirect()->route('company.payment.error')->withErrors(['error' => $e->getMessage()]);
             }
         }
     }
@@ -157,4 +206,6 @@ class PaymentController extends Controller
     {
         return redirect()->route('company.payment.error')->withErrors(['error' => 'Something went wrong please try again']);
     }
+
+    
 }

@@ -86,26 +86,23 @@ Route::group(
         Route::post('/profile/password-update', [CompanyProfileController::class, 'updatePassword'])->name('profile.password-update');
 
         // Checkout page
-        Route::get('checkout/{id}', CheckoutPageController::class)
-            ->name('checkout.index');
+        Route::get('checkout/{id}', CheckoutPageController::class)->name('checkout.index');
 
         // Payment Route
-        Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])
-            ->name('paypal.payment');
-        Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])
-            ->name('paypal.success');
+        Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+        Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
 
-        Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])
-            ->name('stripe.payment');
-        Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])
-            ->name('stripe.success');
+        Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+        Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
 
-        Route::get('payment/cancel', [PaymentController::class, 'cancel'])
-            ->name('payment.cancel');
-        Route::get('payment/success', [PaymentController::class, 'success'])
-            ->name('payment.success');
-        Route::get('payment/error', [PaymentController::class, 'error'])
-            ->name('payment.error');
+        Route::get('payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+        Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
+        Route::get('payment/error', [PaymentController::class, 'error'])->name('payment.error');
+
+
+        Route::get('razorpay/redirect', [PaymentController::class, 'razorpayRedirect'])->name('razorpay-redirect');
+        Route::post('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
+
     }
 );
 
