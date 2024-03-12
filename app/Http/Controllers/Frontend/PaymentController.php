@@ -141,7 +141,7 @@ class PaymentController extends Controller
 
         if ($response->payment_status === 'paid') {
             try {
-                OrderService::OrderService($response->payment_intent, 'stripe', $response->amount_total, $response->currency, $response->payment_status);
+                OrderService::OrderService($response->payment_intent, 'stripe', ($response->amount_total / 100), $response->currency, $response->payment_status);
                 OrderService::setUserPlan();
 
                 Session::forget('selected_plan');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
@@ -77,6 +78,7 @@ Route::group(
     function () {
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
         Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders');
         Route::post('/profile/company-info', [CompanyProfileController::class, 'companyInfoUpdate'])->name('profile.company-info');
 
         Route::post('/profile/founding-info', [CompanyProfileController::class, 'foundingInfoUpdate'])->name('profile.founding-info');
