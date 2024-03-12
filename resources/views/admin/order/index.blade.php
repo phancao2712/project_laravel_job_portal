@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <h4>All orders</h4>
                     <div class="card-header-form">
-                        <form action="{{ route('admin.languages.index') }}" method="GET">
+                        <form action="{{ route('admin.orders.index') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control form-search" placeholder="Search" name="search"
                                     value="{{ request('search') }}">
