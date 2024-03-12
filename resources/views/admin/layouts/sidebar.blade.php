@@ -43,6 +43,11 @@
                 </ul>
             </li>
 
+            {{-- PLAN --}}
+            <li class="{{ setSideBarActive(['admin.job-categories.*']) }}"><a class="nav-link"
+                href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job Categories</span></a>
+        </li>
+
             {{-- LOCATION --}}
             <li class="menu-header">Location</li>
             <li class="dropdown {{ setSideBarActive(['admin.country.*', 'admin.province.*', 'admin.district.*']) }}">

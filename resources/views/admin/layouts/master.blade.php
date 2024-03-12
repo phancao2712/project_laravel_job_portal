@@ -14,6 +14,7 @@
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset("admin/assets/modules/summernote/summernote-bs4.css") }}">
+    <link rel="stylesheet" href="{{ asset("admin/assets/css/bootstrap-iconpicker.min.css") }}">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset("admin/assets/css/style.css") }}">
@@ -53,6 +54,7 @@
 
     <!-- JS Libraies -->
     <script src="{{ asset("admin/assets/modules/summernote/summernote-bs4.js") }}"></script>
+    <script src="{{ asset("admin/assets/js/bootstrap-iconpicker.bundle.min.js") }}"></script>
 
     <script src="{{ asset("admin/assets/modules/sweetalert/sweetalert.min.js") }}"></script>
 
