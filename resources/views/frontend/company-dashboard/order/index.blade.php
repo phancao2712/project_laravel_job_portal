@@ -35,7 +35,7 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>
-                                                #{{ $order->order_id }}
+                                               <strong> #{{ $order->order_id }}</strong>
                                             </td>
                                             <td>
                                                 {{ $order->package_name }}
@@ -50,7 +50,7 @@
                                                 <p class="badge bg-primary text-light">{{ $order->payment_status }}</p>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                <a href="{{ route('company.orders.show', $order->id) }}"
                                                     class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                         </tr>

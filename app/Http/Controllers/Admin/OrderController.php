@@ -65,9 +65,10 @@ class OrderController extends Controller
             ->currencyCode($order->paid_in_currency)
             ->currencySymbol($order->paid_in_currency)
             ->status('paid')
+            ->getTotalAmountInWords($order->amount)
             ->payUntilDays(0)
             ->addItem($item);
 
-        return $invoice->stream();
+        return $invoice->download();
     }
 }
