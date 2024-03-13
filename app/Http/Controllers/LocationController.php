@@ -13,7 +13,7 @@ class LocationController extends Controller
     {
         $provinces = Province::select(['id', 'name', 'country_id'])->where('country_id', $country_id)->get();
         return response($provinces);
-    }
+    }   
 
     public function getDistrict(string $province_id) : Response
     {

@@ -27,7 +27,8 @@
                     'admin.professions.*',
                     'admin.skills.*',
                     'admin.education.*',
-                    'admin.job-types.*'
+                    'admin.job-types.*',
+                    'admin.salary-types.*'
                 ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i><span>Attributes</span></a>
@@ -46,6 +47,8 @@
                             href="{{ route('admin.education.index') }}">Education</a></li>
                     <li class="{{ setSideBarActive(['admin.job-types.*']) }}"><a class="nav-link "
                             href="{{ route('admin.job-types.index') }}">Job Type</a></li>
+                    <li class="{{ setSideBarActive(['admin.salary-types.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.salary-types.index') }}">Salary Type</a></li>
                 </ul>
             </li>
 
