@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobRoleController;
 use App\Http\Controllers\Admin\JobTypeController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\OrderController;
@@ -23,30 +25,30 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'] ,function () {
+Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
+        ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
+        ->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
+        ->name('password.email');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
+        ->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.store');
+        ->name('password.store');
 });
 
 /* ADMIN ROUTE */
-Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'],function () {
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+        ->name('logout');
     /* ADMIN DASHBOARD ROUTE */
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -83,19 +85,19 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('plans', PlanController::class);
 
     /* PAYMENT SETTING ROUTE */
-    Route::get('payment-settings', [PaymentSettingController::class ,'index'])->name('payment-settings.index');
-    Route::post('paypal-update', [PaymentSettingController::class,'updatePaypalSetting'])->name('paypal-settings.update');
-    Route::post('stripe-update', [PaymentSettingController::class,'updateStripeSetting'])->name('stripe-settings.update');
-    Route::post('razorpay-update', [PaymentSettingController::class,'updateRazorpaySetting'])->name('razorpay-settings.update');
+    Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
+    Route::post('paypal-update', [PaymentSettingController::class, 'updatePaypalSetting'])->name('paypal-settings.update');
+    Route::post('stripe-update', [PaymentSettingController::class, 'updateStripeSetting'])->name('stripe-settings.update');
+    Route::post('razorpay-update', [PaymentSettingController::class, 'updateRazorpaySetting'])->name('razorpay-settings.update');
 
     /* SITE SETTING ROUTE */
-    Route::get('site-settings', [SiteSettingController::class ,'index'])->name('site-settings.index');
-    Route::post('site-update', [SiteSettingController::class,'updateGeneralSetting'])->name('site-settings.update');
+    Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
+    Route::post('site-update', [SiteSettingController::class, 'updateGeneralSetting'])->name('site-settings.update');
 
     /* ORDERS SETTING ROUTE */
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
-    Route::get('invoice/{id}',[OrderController::class, 'invoice'])->name('orders.invoice');
+    Route::get('invoice/{id}', [OrderController::class, 'invoice'])->name('orders.invoice');
 
     /* JOB CATEGORY ROUTE */
     Route::resource('job-categories', JobCategoryController::class);
@@ -109,6 +111,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  SALARY TYPE ROUTE */
     Route::resource('salary-types', SalaryTypeController::class);
 
-     /*  TAG ROUTE */
-     Route::resource('tags', TagController::class);
+    /*  TAG ROUTE */
+    Route::resource('tags', TagController::class);
+
+    /*  JOB ROLE ROUTE */
+    Route::resource('job-roles', JobRoleController::class);
 });
