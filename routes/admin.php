@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\OrderController;
@@ -94,6 +95,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('invoice/{id}',[OrderController::class, 'invoice'])->name('orders.invoice');
 
-    /* LANGUAGES ROUTE */
+    /* JOB CATEGORY ROUTE */
     Route::resource('job-categories', JobCategoryController::class);
+
+    /* EDUCATION ROUTE */
+    Route::resource('education', EducationController::class);
 });

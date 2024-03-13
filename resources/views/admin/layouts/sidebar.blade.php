@@ -26,6 +26,7 @@
                     'admin.languages.*',
                     'admin.professions.*',
                     'admin.skills.*',
+                    'admin.education.*',
                 ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i><span>Attributes</span></a>
@@ -40,13 +41,16 @@
                             href="{{ route('admin.professions.index') }}">Profession</a></li>
                     <li class="{{ setSideBarActive(['admin.skills.*']) }}"><a class="nav-link "
                             href="{{ route('admin.skills.index') }}">Skill</a></li>
+                    <li class="{{ setSideBarActive(['admin.education.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.education.index') }}">Education</a></li>
                 </ul>
             </li>
 
             {{-- PLAN --}}
             <li class="{{ setSideBarActive(['admin.job-categories.*']) }}"><a class="nav-link"
-                href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job Categories</span></a>
-        </li>
+                    href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job
+                        Categories</span></a>
+            </li>
 
             {{-- LOCATION --}}
             <li class="menu-header">Location</li>
