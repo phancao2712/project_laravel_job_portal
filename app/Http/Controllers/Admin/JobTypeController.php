@@ -3,37 +3,37 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Language;
+use App\Models\JobType;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class LanguageController extends Controller
+class JobTypeController extends Controller
 {
     use Searchable;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $query = Language::query();
+        $query = JobType::query();
 
         $this->search($query, ['name']);
 
-        $languages = $query->paginate(10);
+        $jobTypes = $query->paginate(10);
 
-        return view('admin.language.index', compact(
-            'languages'
+        return view('admin.job.job-type.index', compact(
+            'jobTypes'
         ));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return view('admin.language.create');
+        return view('admin.job.job-type.create');
     }
 
     /**
@@ -42,25 +42,25 @@ class LanguageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:languages,name']
+            'name' => ['required', 'max:255', 'unique:job_types,name']
         ]);
 
-        $type = new Language();
+        $type = new JobType();
         $type->name = $request->name;
         $type->save();
 
         Notify::CreateNotify();
-        return to_route('admin.languages.index');
+        return to_route('admin.job-types.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) : View
+    public function edit(string $id)
     {
-        $language = Language::findOrFail($id);
-        return view('admin.language.edit', compact(
-            'language'
+        $jobType = JobType::findOrFail($id);
+        return view('admin.job.job-type.edit', compact(
+            'jobType'
         ));
     }
 
@@ -70,15 +70,15 @@ class LanguageController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:languages,name']
+            'name' => ['required', 'max:255', 'unique:job_types,name']
         ]);
 
-        $type = Language::findOrFail($id);
+        $type = JobType::findOrFail($id);
         $type->name = $request->name;
         $type->save();
 
-        Notify::UpdateNotify();
-        return to_route('admin.languages.index');
+        Notify::CreateNotify();
+        return to_route('admin.job-types.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class LanguageController extends Controller
     public function destroy(string $id)
     {
         try {
-            Language::findOrFail($id)->delete();
+            JobType::findOrFail($id)->delete();
             Notify::DeleteNotify();
             return response(['message' => 'success'], 200);
         } catch (\Exception $e) {

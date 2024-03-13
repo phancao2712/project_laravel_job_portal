@@ -48,7 +48,9 @@
                             </tbody>
 
                         </table>
-                        {{-- {{ $languages->withQueryString()->links() }} --}}
+                        @if ($jobCategories->hasPages())
+                            {{ $jobCategories->withQueryString()->links() }}
+                        @endif
                     </div>
 
                 </div>

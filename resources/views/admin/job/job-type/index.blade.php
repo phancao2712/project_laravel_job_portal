@@ -3,14 +3,14 @@
 @section('contents')
     <section class="section">
         <div class="section-header">
-            <h1>Languages</h1>
+            <h1>Job Types</h1>
         </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>All language</h4>
+                    <h4>All Job Type</h4>
                     <div class="card-header-form">
-                        <form action="{{ route('admin.languages.index') }}" method="GET">
+                        <form action="{{ route('admin.job-types.index') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control form-search" placeholder="Search" name="search"
                                     value="{{ request('search') }}">
@@ -21,7 +21,7 @@
                             </div>
                         </form>
                     </div>
-                    <a href="{{ route('admin.languages.create') }}" class="btn btn-primary"><i
+                    <a href="{{ route('admin.job-types.create') }}" class="btn btn-primary"><i
                             class="fa-solid fa-circle-plus"></i> Create New</a>
                 </div>
                 <div class="card-body">
@@ -30,17 +30,15 @@
                             <tbody>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Slug</th>
                                     <th style="width:10%;">Action</th>
                                 </tr>
-                                @forelse ($languages as $language)
+                                @forelse ($jobTypes as $jobType)
                                     <tr>
-                                        <td>{{ $language->name }}</td>
-                                        <td>{{ $language->slug }}</td>
+                                        <td>{{ $jobType->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.languages.edit', $language->id) }}"
+                                            <a href="{{ route('admin.job-types.edit', $jobType->id) }}"
                                                 class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="{{ route('admin.languages.destroy', $language->id) }}"
+                                            <a href="{{ route('admin.job-types.destroy', $jobType->id) }}"
                                                 class="btn btn-sm btn-danger delete-btn"><i
                                                     class="fa-solid fa-trash"></i></a>
                                         </td>
@@ -53,8 +51,8 @@
                             </tbody>
 
                         </table>
-                        @if ($languages->hasPages())
-                            {{ $languages->withQueryString()->links() }}
+                        @if ($jobTypes->hasPages())
+                            {{ $jobTypes->withQueryString()->links() }}
                         @endif
                     </div>
 
