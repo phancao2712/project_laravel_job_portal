@@ -17,12 +17,20 @@
                         @csrf
                         <div class="form-group">
                             <label>Icon</label>
-                            <div role="iconpicker" data-align="left" name="icon" class="{{ hasError($errors, 'icon') }}"></div>
+                            <div role="iconpicker"
+                            data-align="left"
+                            name="icon"
+                            class="{{ hasError($errors, 'icon') }}"
+                            data-icon="{{ old('icon') }}"
+                            ></div>
                           <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                         </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control {{ hasError($errors, 'name') }}">
+                            <input type="text"
+                            name="name" class="form-control {{ hasError($errors, 'name') }}"
+                            value="{{ old('name') }}"
+                            >
                           <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                         <button class="btn btn-primary">Create</button>

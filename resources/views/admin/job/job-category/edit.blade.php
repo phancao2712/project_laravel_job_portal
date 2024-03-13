@@ -13,18 +13,26 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.languages.update', $language->id) }}" method="POST">
+                    <form action="{{ route('admin.job-categories.update', $jobCategory->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label>Language Name</label>
+                            <label>Icon</label>
+                            <div role="iconpicker" data-align="left"
+                            name="icon" class="{{ hasError($errors, 'icon') }}"
+                            data-icon="{{ old('icon', $jobCategory->icon) }}"
+                            ></div>
+                          <x-input-error :messages="$errors->get('icon')" class="mt-2" />
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
                             <input type="text" name="name"
                             class="form-control {{ hasError($errors, 'name') }}"
-                            value="{{ old('name', $language->name) }}"
+                            value="{{ old('name', $jobCategory->name) }}"
                             >
                           <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>

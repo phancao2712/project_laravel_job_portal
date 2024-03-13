@@ -33,7 +33,7 @@
                                 @forelse ($jobCategories as $jobCategory)
                                 <tr>
                                     <td><i style="font-size: 40px" class="{{ $jobCategory->icon }}"></i></td>
-                                    <td>{{ $jobCategory->slug }}</td>
+                                    <td>{{ $jobCategory->name }}</td>
                                     <td >
                                         <a href="{{ route('admin.job-categories.edit', $jobCategory->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="{{ route('admin.job-categories.destroy', $jobCategory->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fa-solid fa-trash"></i></a>
