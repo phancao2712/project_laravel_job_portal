@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobExperienceController;
 use App\Http\Controllers\Admin\JobRoleController;
 use App\Http\Controllers\Admin\JobTypeController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -116,4 +117,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /*  JOB ROLE ROUTE */
     Route::resource('job-roles', JobRoleController::class);
+
+    /*  JOB EXPERIENCE ROUTE */
+    Route::resource('job-experiences', JobExperienceController::class);
 });
