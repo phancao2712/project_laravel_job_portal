@@ -14,7 +14,7 @@
                         $.each(response, function (key, value) {
                             html += `<option value="${value.id}">${value.name}</option>`
                         });
-
+  
                         $('.province').html(html);
                     },
                     error: function (xhr, resonse, error){
