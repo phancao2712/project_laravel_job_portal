@@ -31,7 +31,7 @@
                     'admin.salary-types.*',
                     'admin.tags.*',
                     'admin.job-roles.*',
-                    'admin.job-experiences.*'
+                    'admin.job-experiences.*',
                 ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i><span>Attributes</span></a>
@@ -66,6 +66,10 @@
                     href="{{ route('admin.job-categories.index') }}"><i class="far fa-square"></i> <span>Job
                         Categories</span></a>
             </li>
+            <li class="{{ setSideBarActive(['admin.jobs.*']) }}"><a class="nav-link"
+                href="{{ route('admin.jobs.index') }}"><i class="far fa-square"></i> <span>
+                    Job Post</span></a>
+        </li>
 
             {{-- LOCATION --}}
             <li class="menu-header">Location</li>

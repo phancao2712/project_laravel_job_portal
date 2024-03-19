@@ -3951,3 +3951,7 @@ body:not(.sidebar-mini)
     margin-top: 0 !important;
     height: 40px;
 }
+
+.ck-editor__editable {
+    min-height: 200px;
+}

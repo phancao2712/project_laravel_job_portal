@@ -38,7 +38,7 @@ return new class extends Migration
             $table->boolean('is_remote')->default(0);
             $table->integer('total_views')->default(0);
             $table->string('address');
-            $table->foreignId('city');
+            $table->foreignId('country');
             $table->foreignId('province');
             $table->foreignId('district');
             $table->enum('salary_mode', ['range', 'custom']);

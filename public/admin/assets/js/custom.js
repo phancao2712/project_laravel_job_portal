@@ -7,6 +7,11 @@
 $(document).ready(function (){
     "use strict";
 
+    // create ckeditor
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+    });
+
     $(".delete-btn").on("click", function (e) {
         e.preventDefault();
         swal({
