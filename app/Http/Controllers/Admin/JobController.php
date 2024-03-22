@@ -13,6 +13,7 @@ use App\Models\Job;
 use App\Models\JobBenefits;
 use App\Models\JobCategory;
 use App\Models\JobRole;
+use App\Models\JobSkill;
 use App\Models\JobTag;
 use App\Models\JobType;
 use App\Models\SalaryType;
@@ -106,6 +107,7 @@ class JobController extends Controller
 
         $benefits = explode(',', $request->benefits);
 
+        // insert benefits and jobBenefits
         foreach ($benefits as $benefitItem) {
             $benefit = new Benefits();
             $benefit->company_id = $request->company_id;
@@ -116,6 +118,14 @@ class JobController extends Controller
             $jobBenefit->job_id = $job->id;
             $jobBenefit->benefit_id = $benefit->id;
             $jobBenefit->save();
+        }
+
+        // insert skill
+        foreach ($request->skills as $skillItem) {
+            $skill = new JobSkill();
+            $skill->job_id = $job->id;
+            $skill->skill_id = $skillItem;
+            $skill->save();
         }
 
         Notify::CreateNotify();
