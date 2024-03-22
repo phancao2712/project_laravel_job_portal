@@ -20,17 +20,26 @@ use App\Models\SalaryType;
 use App\Models\Skill;
 use App\Models\Tag;
 use App\Services\Notify;
+use App\Traits\Searchable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobController extends Controller
 {
+    use Searchable;
     /**
      * Display a listing of the resource.
      */
     public function index() : View
     {
-        return view('admin.job.index');
+        $query = Job::query();
+
+        $this->search($query, ['title']);
+        $jobs = $query->paginate(20);
+
+        return view('admin.job.index', compact(
+            'jobs'
+        ));
     }
 
     /**

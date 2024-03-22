@@ -5,13 +5,13 @@
         <div class="section-header">
             <h1>Job Post</h1>
         </div>
-        
+
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4>All Job Post</h4>
                     <div class="card-header-form">
-                        <form action="{{ route('admin.tags.index') }}" method="GET">
+                        <form action="{{ route('admin.jobs.index') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control form-search" placeholder="Search" name="search"
                                     value="{{ request('search') }}">
@@ -30,16 +30,49 @@
                         <table class="table table-striped table-md">
                             <tbody>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Job</th>
+                                    <th>Category/Role</th>
+                                    <th>Salary</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
                                     <th style="width:10%;">Action</th>
                                 </tr>
-                                {{-- @forelse ($tags as $tag)
+                                @forelse ($jobs as $job)
                                     <tr>
-                                        <td>{{ $tag->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.tags.edit', $tag->id) }}"
+                                            <div class="d-flex g-2">
+                                                <img width="30px" height="30px" style="object-fit: cover;" src="{{ asset($job->company?->logo) }}" alt="">
+                                                <div>
+                                                    <b>{{ $job->title }}</b>
+                                                    <br>
+                                                    {{ $job->company?->name }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <b>{{ $job->category?->name }}</b>
+                                            <br>
+                                            {{ $job->role?->name }}
+                                        </td>
+                                        <td>
+                                            @if ($job->salary_mode == 'range')
+                                                {{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}
+                                            @else
+                                                {{ $job->custom_salary }}
+                                            @endif
+                                        </td>
+                                        <td>{{ formatDate($job->deadline) }}</td>
+                                        <td>
+                                            @if ($job->deadline < date('Y-m-d'))
+                                                <span class="badge bg-success text-white">Active</span>
+                                            @else
+                                            <span class="badge bg-danger text-light">Expired</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.jobs.edit', $job->id) }}"
                                                 class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="{{ route('admin.tags.destroy', $tag->id) }}"
+                                            <a href="{{ route('admin.jobs.destroy', $job->id) }}"
                                                 class="btn btn-sm btn-danger delete-btn"><i
                                                     class="fa-solid fa-trash"></i></a>
                                         </td>
@@ -48,13 +81,13 @@
                                     <tr>
                                         <td colspan="3" class="text-center">No reusult found!</td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
                             </tbody>
 
                         </table>
-                        {{-- @if ($tags->hasPages())
-                            {{ $tags->withQueryString()->links() }}
-                        @endif --}}
+                        @if ($jobs->hasPages())
+                            {{ $jobs->withQueryString()->links() }}
+                        @endif
                     </div>
 
                 </div>
