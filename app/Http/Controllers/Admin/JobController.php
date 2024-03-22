@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobPortStoreRequest;
+use App\Models\Benefits;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Job;
+use App\Models\JobBenefits;
 use App\Models\JobCategory;
 use App\Models\JobRole;
 use App\Models\JobTag;
@@ -64,6 +66,8 @@ class JobController extends Controller
      */
     public function store(JobPortStoreRequest $request)
     {
+
+
         $job = new Job();
         $job->title = $request->title;
         $job->company_id = $request->company_id;
@@ -91,12 +95,27 @@ class JobController extends Controller
         $job->highlight = $request->highlight;
         $job->description = $request->description;
         $job->save();
+
         // insert tag
         foreach ($request->tags as $tagItem) {
             $tag = new JobTag();
             $tag->job_id = $job->id;
             $tag->tag_id = $tagItem;
             $tag->save();
+        }
+
+        $benefits = explode(',', $request->benefits);
+
+        foreach ($benefits as $benefitItem) {
+            $benefit = new Benefits();
+            $benefit->company_id = $request->company_id;
+            $benefit->name = $benefitItem;
+            $benefit->save();
+
+            $jobBenefit = new JobBenefits();
+            $jobBenefit->job_id = $job->id;
+            $jobBenefit->benefit_id = $benefit->id;
+            $jobBenefit->save();
         }
 
         Notify::CreateNotify();
