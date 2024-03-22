@@ -5,6 +5,7 @@
         <div class="section-header">
             <h1>Job Post</h1>
         </div>
+        
         <div class="col-12">
             <div class="card">
                 <div class="card-header">

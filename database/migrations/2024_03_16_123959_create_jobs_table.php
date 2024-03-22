@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
-            $table->foreignId('job_category_id');
+            $table->foreignId('job_category_id')->constrained('job_categories')->onDelete('cascade');
             $table->foreignId('job_role_id');
             $table->foreignId('job_experience_id');
             $table->foreignId('education_id');
@@ -23,26 +23,27 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('vacancies');
-            $table->double('min_salary');
-            $table->double('max_salary');
+            $table->double('min_salary')->nullable();
+            $table->double('max_salary')->nullable();
+            $table->string('custom_salary')->nullable();
             $table->date('deadline');
             $table->text('description');
-            $table->enum('status',['pending', 'active', 'expired']);
+            $table->enum('status',['pending', 'active', 'expired'])->default('pending');
             $table->enum('apply_on',['app', 'email', 'custom_url']);
             $table->string('apply_email')->nullable();
             $table->string('apply_url')->nullable();
-            $table->boolean('featured')->default(0);
+            $table->boolean('featured')->nullable();
             $table->date('featured_until')->nullable();
-            $table->boolean('highlight')->default(0);
+            $table->boolean('highlight')->nullable();
             $table->date('highlight_until')->nullable();
             $table->boolean('is_remote')->default(0);
             $table->integer('total_views')->default(0);
             $table->string('address');
-            $table->foreignId('country');
-            $table->foreignId('province');
-            $table->foreignId('district');
+            $table->foreignId('country')->nullable();
+            $table->foreignId('province')->nullable();
+            $table->foreignId('district')->nullable();
             $table->enum('salary_mode', ['range', 'custom']);
-            $table->string('company_name');
+            $table->string('company_name')->nullable();
             $table->timestamps();
         });
     }
