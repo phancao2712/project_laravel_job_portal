@@ -252,6 +252,13 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Job::findOrFail($id)->delete();
+            Notify::DeleteNotify();
+            return response(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'error'], 500);
+        }
     }
 }
