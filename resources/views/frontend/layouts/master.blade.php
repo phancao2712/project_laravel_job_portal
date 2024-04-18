@@ -57,6 +57,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/Font-Awesome.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/counterup.js') }}"></script>
+    <script src="{{ asset("admin/assets/modules/sweetalert/sweetalert.min.js") }}"></script>
     <script src="{{ asset("admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js") }}"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
