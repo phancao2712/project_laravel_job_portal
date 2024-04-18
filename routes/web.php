@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\JobController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\LocationController;
@@ -78,9 +79,13 @@ Route::group(
     function () {
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
 
+        // order router
         Route::get('/orders', [OrderController::class, 'index'])->name('orders');
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
         Route::get('/invoice/{id}', [OrderController::class, 'invoice'])->name('orders.invoice');
+
+        // job router
+        Route::resource('jobs', JobController::class);
 
 
         Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');

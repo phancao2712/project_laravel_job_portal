@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 class JobPortStoreRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,7 +15,6 @@ class JobPortStoreRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:255'],
-            'company_id' => ['required', 'integer'],
             'job_category_id' => ['required', 'integer'],
             'vacancies' => ['required', 'max:255'],
             'deadline' => ['required', 'date'],

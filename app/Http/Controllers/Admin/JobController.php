@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\JobPortStoreRequest;
+use App\Http\Requests\Admin\JobPortStoreRequest;
 use App\Models\Benefits;
 use App\Models\Company;
 use App\Models\Country;

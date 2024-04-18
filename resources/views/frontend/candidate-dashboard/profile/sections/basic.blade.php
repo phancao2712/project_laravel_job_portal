@@ -14,9 +14,6 @@
                     <x-input-error :messages="$errors->get('picture')" class="mt-2" />
                 </div>
                 <div class="form-group">
-                    {{-- @if ($candidate?->logo)
-                                                <x-image-preview :height="200" :width="200" :source="$candidate?->logo" />
-                                            @endif --}}
                     <label class="font-sm color-text-mutted mb-10">CV <span class="mr-10 text-primary">{{ ($candidate?->cv) ? 'Have atteched CV!' : '' }}</span></label>
                     <input class="form-control {{ $errors->has('cv') ? 'is-invalid' : '' }}" type="file"
                         value="{{ old('cv') }}" name="cv">
