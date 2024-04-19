@@ -31,4 +31,10 @@ class Notify {
         ->success('Logout Success.')
         ->flash();
     }
+
+    static function ErrorNotify($error){
+        return flash()
+        ->error($error)
+        ->flash();
+    }
 }

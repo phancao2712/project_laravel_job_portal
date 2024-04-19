@@ -89,6 +89,6 @@ if (!function_exists('storeUserPlanInfo')) {
     function storeUserPlanInfo()
     {
         session()->forget('user_plan');
-        session(['user_plan' => auth()?->user()?->company?->userPlan]);
+        session(['user_plan' => isset(auth()->user()->company->userPlan) ? auth()?->user()?->company?->userPlan : []]);
     }
 }

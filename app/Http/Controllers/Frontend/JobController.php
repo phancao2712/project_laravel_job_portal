@@ -21,7 +21,9 @@ use App\Models\Skill;
 use App\Models\Tag;
 use App\Services\Notify;
 use App\Traits\Searchable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class JobController extends Controller
 {
@@ -31,7 +33,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        storeUserPlanInfo();
+
         $query = Job::query();
 
         $this->search($query, ['title']);
@@ -45,8 +47,14 @@ class JobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View|RedirectResponse
     {
+        storeUserPlanInfo();
+        $user_plan = session('user_plan');
+        if(session('user_plan')->job_limit < 1){
+            Notify::ErrorNotify('You have reached your plan limit please upgrade your plan');
+            return redirect()->back();
+        }
         $companies = Company::where(['profile_completion' => 1], ['visibility' => 1])->get();
         $categories = JobCategory::all();
         $countries = Country::all();
@@ -76,6 +84,16 @@ class JobController extends Controller
      */
     public function store(JobPortStoreRequest $request)
     {
+        if($request->highlight == 1 && session('user_plan')->highlight_job_limit < 1){
+            Notify::ErrorNotify('You have reached your Highlight job limit please upgrade your plan');
+            return redirect()->back();
+        }
+
+        if($request->featured == 1 && session('user_plan')->featured_job_limit < 1){
+            Notify::ErrorNotify('You have reached your Featured job limit please upgrade your plan');
+            return redirect()->back();
+        }
+
         $job = new Job();
         $job->title = $request->title;
         $job->company_id = auth()->user()->company->id;
@@ -133,6 +151,21 @@ class JobController extends Controller
             $skill->job_id = $job->id;
             $skill->skill_id = $skillItem;
             $skill->save();
+        }
+
+        if($job){
+            $user_plan = auth()->user()->company->userPlan;
+            $user_plan->job_limit = $user_plan->job_limit - 1;
+            if($request->highlight == 1){
+                $user_plan->highlight_job_limit = $user_plan->highlight_job_limit - 1;
+            }
+
+            if($request->featured == 1){
+                $user_plan->featured_job_limit = $user_plan->featured_job_limit - 1;
+            }
+
+            $user_plan->save();
+            storeUserPlanInfo();
         }
 
         Notify::CreateNotify();
