@@ -22,6 +22,7 @@ use App\Models\Tag;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -102,6 +103,7 @@ class JobController extends Controller
         $job->featured = $request->featured;
         $job->highlight = $request->highlight;
         $job->description = $request->description;
+        $job->status = 'active';
         $job->save();
 
         // insert tag
@@ -260,5 +262,13 @@ class JobController extends Controller
             logger($e);
             return response(['message' => 'error'], 500);
         }
+    }
+
+    public function changeStatus(string $id): Response {
+        $job = Job::FindOrFail($id);
+        $job->status = $job->status == 'active' ? 'pending' : 'active';
+        $job->save();
+        Notify::UpdateNotify();
+        return response(['message' => 'success', 200]);
     }
 }

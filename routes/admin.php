@@ -124,4 +124,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
      /*  JOB ROUTE */
      Route::resource('jobs', JobController::class);
+     Route::post('/updateStatus/{id}', [JobController::class, 'changeStatus'])->name('jobStatus.update');
 });

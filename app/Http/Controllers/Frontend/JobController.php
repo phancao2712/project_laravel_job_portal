@@ -23,6 +23,7 @@ use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -291,4 +292,5 @@ class JobController extends Controller
             return response(['message' => 'error'], 500);
         }
     }
+
 }
