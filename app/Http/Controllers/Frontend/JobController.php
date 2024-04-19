@@ -31,6 +31,7 @@ class JobController extends Controller
      */
     public function index()
     {
+        storeUserPlanInfo();
         $query = Job::query();
 
         $this->search($query, ['title']);

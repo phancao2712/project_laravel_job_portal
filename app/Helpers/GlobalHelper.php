@@ -83,3 +83,12 @@ if (!function_exists('formatDate')) {
         return '';
     }
 }
+
+/** get user plan  **/
+if (!function_exists('storeUserPlanInfo')) {
+    function storeUserPlanInfo()
+    {
+        session()->forget('user_plan');
+        session(['user_plan' => auth()?->user()?->company?->userPlan]);
+    }
+}

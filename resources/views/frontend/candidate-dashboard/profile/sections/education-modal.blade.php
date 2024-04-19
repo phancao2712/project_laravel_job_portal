@@ -138,7 +138,7 @@
             })
         })
 
-        delete experience
+        // delete experience
         $("body").on("click", '.delete-education', function(e) {
             e.preventDefault();
             Swal.fire({

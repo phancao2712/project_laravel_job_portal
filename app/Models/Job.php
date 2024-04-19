@@ -47,6 +47,11 @@ class Job extends Model
         return $this->belongsTo(District::class,'district', 'id');
     }
 
+    function salary_type() : BelongsTo
+    {
+        return $this->belongsTo(SalaryType::class,'salary_type_id', 'id');
+    }
+
     function role() : BelongsTo
     {
         return $this->belongsTo(JobRole::class,'job_role_id', 'id');
