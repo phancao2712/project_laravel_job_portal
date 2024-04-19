@@ -33,12 +33,9 @@ class JobController extends Controller
      */
     public function index()
     {
-
         $query = Job::query();
-
         $this->search($query, ['title']);
-        $jobs = $query->paginate(10);
-
+        $jobs = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(10);
         return view('frontend.company-dashboard.job.index', compact(
             'jobs'
         ));
@@ -179,6 +176,7 @@ class JobController extends Controller
     public function edit(string $id)
     {
         $job = Job::findOrFail($id);
+        abort_if($job->company_id !== auth()->user()->company->id, 404);
         $categories = JobCategory::all();
         $countries = Country::all();
         $salary_types = SalaryType::all();
@@ -208,6 +206,7 @@ class JobController extends Controller
     public function update(Request $request, string $id)
     {
         $job = Job::findOrFail($id);
+        abort_if($job->company_id !== auth()->user()->company->id, 404);
         $job->title = $request->title;
         $job->company_id = auth()->user()->company->id;
         $job->job_category_id = $request->job_category_id;
