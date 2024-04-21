@@ -143,14 +143,18 @@
                                     class="btn btn-border" href="#">Save job</a></div>
                             <div class="col-md-7 text-lg-end social-share">
                                 <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a
-                                    class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist"
-                                        src="assets/imgs/template/icons/share-fb.svg"></a><a
-                                    class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist"
-                                        src="assets/imgs/template/icons/share-tw.svg"></a><a
-                                    class="mr-5 d-inline-block d-middle" href="#"><img alt="joblist"
-                                        src="assets/imgs/template/icons/share-red.svg"></a><a
-                                    class="d-inline-block d-middle" href="#"><img alt="joblist"
-                                        src="assets/imgs/template/icons/share-whatsapp.svg"></a>
+                                    data-social="facebook" class="mr-5 d-inline-block d-middle" href="#"><img
+                                        alt="joblist"
+                                        src="{{ asset('frontend/assets/imgs/template/icons/share-fb.svg') }}"></a><a
+                                    class="mr-5 d-inline-block d-middle" href="#" data-social="twitter"><img
+                                        alt="joblist"
+                                        src="{{ asset('frontend/assets/imgs/template/icons/share-tw.svg') }}"></a><a
+                                    class="mr-5 d-inline-block d-middle" href="#" data-social="reddit"><img
+                                        alt="joblist"
+                                        src="{{ asset('frontend/assets/imgs/template/icons/share-red.svg') }}"></a><a
+                                    class="d-inline-block d-middle" href="#" data-social="linkedin"><img
+                                        alt="joblist"
+                                        src="{{ asset('frontend/assets/imgs/template/icons/share-linked.svg') }}"></a>
                             </div>
                         </div>
                     </div>
