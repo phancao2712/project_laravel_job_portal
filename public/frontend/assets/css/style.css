@@ -10089,3 +10089,8 @@ ul.timeline > li:before {
 .highlight:hover {
     color: white !important;
 }
+
+.job-category li a {
+    display: block;
+    padding: 8px;
+}

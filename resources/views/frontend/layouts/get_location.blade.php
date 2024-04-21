@@ -9,12 +9,13 @@
                     data: "",
                     dataType: "json",
                     success: function (response) {
+                        console.log(response);
                         let html = '<option value="">Select Provinces</option>';
 
                         $.each(response, function (key, value) {
                             html += `<option value="${value.id}">${value.name}</option>`
                         });
-  
+
                         $('.province').html(html);
                     },
                     error: function (xhr, resonse, error){

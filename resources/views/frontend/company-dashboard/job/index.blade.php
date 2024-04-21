@@ -77,7 +77,6 @@
                                                         {{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}
                                                     @else
                                                     {{ ($job?->custom_salary !== null) ? $job?->custom_salary : "compativities" }}<br>
-                                                    {{ $job->salary_type->name }}
                                                     @endif
                                                 </td>
                                                 <td>{{ formatDate($job->deadline) }}</td>
