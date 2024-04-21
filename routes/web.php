@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FrontendJobPageController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
@@ -67,6 +68,9 @@ Route::get('candidates/{slug}', [FrontendCandidatePageController::class, 'show']
 Route::get('pricing', PricingPageController::class)
     ->name('pricing.index');
 
+// Find a job page
+Route::get('jobs', [FrontendJobPageController::class, 'index'])->name('jobs.index');
+Route::get('jobs/{slug}', [FrontendJobPageController::class, 'show'])->name('job.show');
 
 
 /* COMPANY */

@@ -10065,3 +10065,27 @@ ul.timeline > li:before {
     width: 100%;
     box-shadow: none;
 }
+
+.job-skill {
+    padding: 7px 10px !important;
+    color: white !important;
+    background: var(--colorPrimary) !important;
+}
+
+.featured {
+    background: #ae00ae !important;
+    color: white !important;
+}
+
+.featured:hover {
+    color: white !important;
+}
+
+.highlight {
+    background: #f05d04 !important;
+    color: white !important;
+}
+
+.highlight:hover {
+    color: white !important;
+}

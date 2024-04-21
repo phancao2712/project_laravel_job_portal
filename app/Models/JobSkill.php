@@ -10,7 +10,7 @@ class JobSkill extends Model
 {
     use HasFactory;
 
-    function tag() : BelongsTo
+    function skill() : BelongsTo
     {
         return $this->belongsTo(Skill::class,'skill_id', 'id');
     }

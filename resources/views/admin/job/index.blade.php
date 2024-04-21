@@ -66,7 +66,7 @@
                                         <td class="column-status">
                                             @if ($job->status === 'pending')
                                             <span class="badge bg-warning text-white">Pending</span>
-                                            @elseif ($job->deadline < date('Y-m-d'))
+                                            @elseif ($job->deadline >= date('Y-m-d'))
                                                 <span class="badge bg-success text-white">Active</span>
                                             @else
                                             <span class="badge bg-danger text-light">Expired</span>
@@ -109,7 +109,7 @@
 
 @push('script')
     <script>
-        
+
         $(document).ready(function () {
             $('.btn-change').on('change', function () {
                 let id = $(this).data('id');

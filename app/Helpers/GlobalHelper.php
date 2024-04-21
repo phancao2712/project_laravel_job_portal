@@ -92,3 +92,26 @@ if (!function_exists('storeUserPlanInfo')) {
         session(['user_plan' => isset(auth()->user()->company->userPlan) ? auth()?->user()?->company?->userPlan : []]);
     }
 }
+
+/** format location  **/
+if (!function_exists('formatLocation')) {
+    function formatLocation($country = null, $province = null, $district = null, $address = null) : string
+    {
+        $location = '';
+
+    if($address){
+        $location .= $address;
+    }
+    if($district){
+        $location .= $address ? ', ' .$district : $district;
+    }
+    if($province){
+        $location .= $district ? ', ' .$province : $province;
+    }
+    if($country){
+        $location .= $province ? ', ' .$country : $country;
+    }
+
+    return $location;
+}
+}
