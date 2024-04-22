@@ -28,10 +28,11 @@
                                     <div class="card-header-form">
                                         <form action="{{ route('company.jobs.index') }}" method="GET">
                                             <div class="input-group">
-                                                <input type="text" class="form-control form-search" placeholder="Search" name="search"
-                                                    value="{{ request('search') }}">
+                                                <input type="text" class="form-control form-search" placeholder="Search"
+                                                    name="search" value="{{ request('search') }}">
                                                 <div class="input-group-btn">
-                                                    <button style="height: 50px;" type="submit" class="btn btn-primary btn-search"><i
+                                                    <button style="height: 50px;" type="submit"
+                                                        class="btn btn-primary btn-search"><i
                                                             class="fas fa-search"></i></button>
                                                 </div>
                                             </div>
@@ -40,7 +41,7 @@
                                 </div>
                                 <div class="col-sm-3 text-right">
                                     <a href="{{ route('company.jobs.create') }}" class="btn btn-primary"><i
-                                        class="fa-solid fa-circle-plus"></i> Create New</a>
+                                            class="fa-solid fa-circle-plus"></i> Create New</a>
                                 </div>
                             </div>
                         </div>
@@ -74,22 +75,26 @@
                                                 </td>
                                                 <td>
                                                     @if ($job->salary_mode == 'range')
-                                                        {{ $job->min_salary }} - {{ $job->max_salary }} {{ config('settings.site_default_currency') }}
+                                                        {{ $job->min_salary }} - {{ $job->max_salary }}
+                                                        {{ config('settings.site_default_currency') }}
                                                     @else
-                                                    {{ ($job?->custom_salary !== null) ? $job?->custom_salary : "compativities" }}<br>
+                                                        {{ $job?->custom_salary !== null ? $job?->custom_salary : 'compativities' }}<br>
                                                     @endif
                                                 </td>
                                                 <td>{{ formatDate($job->deadline) }}</td>
                                                 <td>
-                                                    @if ($job->deadline < date('Y-m-d'))
+                                                    @if ($job->status === 'pending')
+                                                        <span class="badge bg-warning text-white">Pending</span>
+                                                    @elseif ($job->deadline >= date('Y-m-d'))
                                                         <span class="badge bg-success text-white">Active</span>
                                                     @else
-                                                    <span class="badge bg-danger text-light">Expired</span>
+                                                        <span class="badge bg-danger text-light">Expired</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('company.jobs.edit', $job->id) }}"
-                                                        class="btn btn-sm btn-primary mb-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        class="btn btn-sm btn-primary mb-2"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
                                                     <a href="{{ route('company.jobs.destroy', $job->id) }}"
                                                         class="btn btn-sm btn-danger delete-btn"><i
                                                             class="fa-solid fa-trash"></i></a>

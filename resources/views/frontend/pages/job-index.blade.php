@@ -105,45 +105,62 @@
                             <div class="filter-block head-border mb-30">
                                 <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </div>
-                            <div class="filter-block mb-20">
-                                <div class="form-group select-style">
-                                    <select class="form-control country form-icons select-active">
-                                        <option value="">Select Country</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country?->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="filter-block mb-20">
-                                <div class="form-group select-style">
-                                    <select class="form-control province form-icons select-active">
-                                        <option value="">Select Province</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="filter-block mb-30">
-                                <div class="form-group select-style">
-                                    <select class="form-control district form-icons select-active">
-                                        <option value="">Select District</option>
-                                    </select>
-                                    <button class="submit btn btn-default mt-10 rounded-1 w-100"
-                                        type="submit">Search</button>
-                                </div>
-                            </div>
-                            <div class="filter-block mb-20">
-                                <h5 class="medium-heading mb-15">Industry</h5>
+                            <form action="{{ route('jobs.index') }}">
                                 <div class="form-group">
-                                    <ul class="job-category">
-                                        <li>
-                                            @foreach ($categories as $category)
-                                                <a href="javascript:;" class="text-small">{{ $category->name }}</a>
+                                    <input type="text" name="search" class="form-control" value="{{ request('search') }}" placeholder="Search...">
+                                </div>
+                                <div class="filter-block mb-20">
+                                    <div class="form-group select-style">
+                                        <select name="country" class="form-control country form-icons select-active">
+                                            <option value="">Select Country</option>
+                                            @foreach ($countries as $country)
+                                                <option @selected(request('country') == $country->id) value="{{ $country->id }}">{{ $country?->name }}</option>
                                             @endforeach
-                                        </li>
-                                    </ul>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-block mb-20">
+                                    <div class="form-group select-style">
+                                        <select name="province" class="form-control province form-icons select-active">
+                                            <option value="">Select Province</option>
+                                            @if ($selectedProvince)
+                                            @foreach ($selectedProvince as $province)
+                                            <option @selected(request('province') == $province->id) value="{{ $province->id }}">{{ $province->name }}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-block mb-30">
+                                    <div class="form-group select-style">
+                                        <select name="district" class="form-control district form-icons select-active">
+                                            <option value="">Select District</option>
+                                            @if ($selectedDistrict)
+                                            @foreach ($selectedDistrict as $district)
+                                            <option @selected(request('district') == $district->id) value="{{ $district->id }}">{{ $district->name }}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                        <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                            type="submit">Search</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                           <form action="{{ route('jobs.index') }}" method="GET">
+                            <div class="filter-block mb-20">
+                                <h5 class="medium-heading mb-15">Category</h5>
+                                <div class="list-checkbox">
+                                    @foreach ($categories as $jobCategory)
+                                    <li>
+                                        <label class="cb-container">
+                                            <input name="category[]" value="{{ $jobCategory->slug }}" type="checkbox" @if (request('category'))
+                                            @checked(in_array($jobCategory->slug, request('category')))
+                                            @endif><span
+                                                class="text-small">{{ $jobCategory->name }}</span><span class="checkmark"></span>
+                                        </label><span class="number-item">{{ $jobCategory->jobs_count }}</span>
+                                    </li>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="filter-block mb-20">
@@ -156,8 +173,7 @@
                                         <div class="box-input-money">
                                             <input class="input-disabled form-control min-value-money" type="text"
                                                 name="min-value-money" disabled="disabled" value="">
-                                            <input class="form-control min-value" type="hidden" name="min_salary"
-                                                value="">
+                                            <input class="form-control min-value" type="hidden" name="min_salary">
                                         </div>
                                     </div>
                                     <div class="box-number-money">
@@ -179,15 +195,19 @@
                                         @foreach ($jobTypes as $jobType)
                                         <li>
                                             <label class="cb-container">
-                                                <input type="checkbox"  ><span
+                                                <input type="checkbox" name="type[]" value="{{ $jobType->slug }}"  @if (request('type'))
+                                                @checked(in_array($jobType->slug, request('type')))
+                                                @endif><span
                                                     class="text-small">{{ $jobType->name }}</span><span class="checkmark"></span>
-                                            </label><span class="number-item">180</span>
+                                            </label><span class="number-item">{{ $jobType->jobs_count }}</span>
                                         </li>
                                         @endforeach
-
                                     </ul>
                                 </div>
                             </div>
+                            <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                            type="submit">Search</button>
+                           </form>
 
 
                         </div>
