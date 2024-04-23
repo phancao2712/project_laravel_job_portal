@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -26,20 +26,17 @@ class FrontendJobPageController extends Controller
         $query->where(['status' => 'active'])
             ->where('deadline', '>=', date('Y-m-d'));
 
-        if($request->has('search') && $request->filled('search')){
-            $query->where('title' , 'LIKE' , '%' . $request->search . '%');
-        }
-        if($request->has('country') && $request->filled('country')){
-            $query->where('country' , 'LIKE' , '%' . $request->country . '%');
-        }
-        if($request->has('province') && $request->filled('province')){
-            $query->where('province' , 'LIKE' , '%' . $request->province . '%');
-            $selectedProvince = Province::where('country_id', $request->country)->get();
-        }
-        if($request->has('district') && $request->filled('district')){
-            $query->where('district' , 'LIKE' , '%' . $request->district . '%');
-            $selectedDistrict = District::where('province_id', $request->province)->get();
-        }
+            $this->search($query, ['title']);
+            $this->searchItem($query, 'country');
+            $this->searchItem($query, 'province');
+            $this->searchItem($query, 'district');
+            if($request->has('country') && $request->filled('country')){
+                $selectedProvince = Province::where('country_id',$request->country)->get();
+            }
+            $this->searchItem($query, 'province');
+            if($request->has('province') && $request->filled('province')){
+                $selectedDistrict = District::where('province_id',$request->province)->get();
+            }
         if($request->has('category') && $request->filled('category')){
             $categoryIds = JobCategory::whereIn('slug', request('category'))->pluck('id')->toArray();
             $query->whereIn('job_category_id', $categoryIds);
@@ -52,7 +49,7 @@ class FrontendJobPageController extends Controller
             $query->whereIn('job_type_id', $typeIds);
         }
 
-        $jobs = $query->paginate(10);
+        $jobs = $query->paginate(20);
 
         $countries = Country::all();
         $categories = JobCategory::withCount(['jobs' => function($query){

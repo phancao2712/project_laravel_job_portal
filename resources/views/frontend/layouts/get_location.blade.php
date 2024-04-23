@@ -10,7 +10,7 @@
                     dataType: "json",
                     success: function (response) {
                         console.log(response);
-                        let html = '<option value="">Select Provinces</option>';
+                        let html = '<option value="">Select Province</option>';
 
                         $.each(response, function (key, value) {
                             html += `<option value="${value.id}">${value.name}</option>`

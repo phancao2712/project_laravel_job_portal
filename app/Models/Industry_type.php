@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Industry_type extends Model
 {
@@ -22,5 +23,9 @@ class Industry_type extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    function companies() : HasMany {
+        return $this->hasMany(Company::class, 'industry_type_id','id');
     }
 }

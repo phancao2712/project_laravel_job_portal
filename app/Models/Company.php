@@ -43,35 +43,31 @@ class Company extends Model
             ]
         ];
     }
-
-    function companyCountry() : BelongsTo
+    function companyCountry(): BelongsTo
     {
         return $this->BelongsTo(Country::class, 'country', 'id');
     }
-
-    function companyProvince() : BelongsTo
+    function companyProvince(): BelongsTo
     {
         return $this->BelongsTo(Province::class, 'province', 'id');
     }
-
-    function companyIndustry() : BelongsTo
+    function companyIndustry(): BelongsTo
     {
         return $this->BelongsTo(Industry_type::class, 'industry_type_id', 'id');
     }
-
-    function companyOrganization() : BelongsTo
+    function companyOrganization(): BelongsTo
     {
         return $this->BelongsTo(Organization_type::class, 'organization_type_id', 'id');
     }
-
-    function companyTeamSize() : BelongsTo
+    function companyTeamSize(): BelongsTo
     {
         return $this->BelongsTo(TeamSize::class, 'team_size_id', 'id');
     }
-
-    function userPlan() : HasOne
+    function userPlan(): HasOne
     {
         return $this->HasOne(UserPlan::class, 'company_id', 'id');
     }
-
+    function jobs() : HasMany {
+        return $this->hasMany(Job::class,'company_id','id');
+    }
 }

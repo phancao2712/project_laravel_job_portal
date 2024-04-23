@@ -12,5 +12,14 @@ trait Searchable {
         }
         return;
     }
+
+    function searchItem($query, string $fieldname){
+        if(request()->has($fieldname) && request()->filled($fieldname)){
+            return $query->where(function($subquery) use ($fieldname) {
+                $subquery->orWhere($fieldname , request($fieldname));
+        });
+        }
+        return;
+    }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\FrontendJobPageController;
+use App\Http\Controllers\Frontend\FrontendJobPageController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;

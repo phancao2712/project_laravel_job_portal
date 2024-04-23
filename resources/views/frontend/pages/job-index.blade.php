@@ -23,7 +23,7 @@
                 <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
                     <div class="content-page">
                         <div class="row display-list">
-                            @foreach ($jobs as $job)
+                            @forelse ($jobs as $job)
                                 <div class="col-xl-12 col-12">
                                     <div class="card-grid-2 hover-up"><span class="flash"></span>
                                         <div class="row">
@@ -92,29 +92,35 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @empty
+                            <h5 class="text-center">Sorry! No data Found😢.</h5>
+                            @endforelse
                         </div>
                     </div>
-                    @if ($jobs->hasPages())
-                        {{ $job->withQueryString()()->links() }}
-                    @endif
+                    <div class="paginations">
+                        @if ($jobs->hasPages())
+                            {{ $jobs->withQueryString()->links() }}
+                        @endif
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">
                     <div class="sidebar-shadow none-shadow mb-30">
                         <div class="sidebar-filters">
                             <div class="filter-block head-border mb-30">
-                                <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
+                                <h5>Advance Filter <a class="link-reset" href="{{ route('jobs.index') }}">Reset</a></h5>
                             </div>
                             <form action="{{ route('jobs.index') }}">
                                 <div class="form-group">
-                                    <input type="text" name="search" class="form-control" value="{{ request('search') }}" placeholder="Search...">
+                                    <input type="text" name="search" class="form-control"
+                                        value="{{ request('search') }}" placeholder="Search...">
                                 </div>
                                 <div class="filter-block mb-20">
                                     <div class="form-group select-style">
                                         <select name="country" class="form-control country form-icons select-active">
                                             <option value="">Select Country</option>
                                             @foreach ($countries as $country)
-                                                <option @selected(request('country') == $country->id) value="{{ $country->id }}">{{ $country?->name }}</option>
+                                                <option @selected(request('country') == $country->id) value="{{ $country->id }}">
+                                                    {{ $country?->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -124,9 +130,10 @@
                                         <select name="province" class="form-control province form-icons select-active">
                                             <option value="">Select Province</option>
                                             @if ($selectedProvince)
-                                            @foreach ($selectedProvince as $province)
-                                            <option @selected(request('province') == $province->id) value="{{ $province->id }}">{{ $province->name }}</option>
-                                            @endforeach
+                                                @foreach ($selectedProvince as $province)
+                                                    <option @selected(request('province') == $province->id) value="{{ $province->id }}">
+                                                        {{ $province->name }}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                     </div>
@@ -136,9 +143,10 @@
                                         <select name="district" class="form-control district form-icons select-active">
                                             <option value="">Select District</option>
                                             @if ($selectedDistrict)
-                                            @foreach ($selectedDistrict as $district)
-                                            <option @selected(request('district') == $district->id) value="{{ $district->id }}">{{ $district->name }}</option>
-                                            @endforeach
+                                                @foreach ($selectedDistrict as $district)
+                                                    <option @selected(request('district') == $district->id) value="{{ $district->id }}">
+                                                        {{ $district->name }}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <button class="submit btn btn-default mt-10 rounded-1 w-100"
@@ -147,67 +155,69 @@
                                 </div>
 
                             </form>
-                           <form action="{{ route('jobs.index') }}" method="GET">
-                            <div class="filter-block mb-20">
-                                <h5 class="medium-heading mb-15">Category</h5>
-                                <div class="list-checkbox">
-                                    @foreach ($categories as $jobCategory)
-                                    <li>
-                                        <label class="cb-container">
-                                            <input name="category[]" value="{{ $jobCategory->slug }}" type="checkbox" @if (request('category'))
-                                            @checked(in_array($jobCategory->slug, request('category')))
-                                            @endif><span
-                                                class="text-small">{{ $jobCategory->name }}</span><span class="checkmark"></span>
-                                        </label><span class="number-item">{{ $jobCategory->jobs_count }}</span>
-                                    </li>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="filter-block mb-20">
-                                <h5 class="medium-heading mb-25">Salary Range</h5>
-                                <div class="list-checkbox pb-20">
-                                    <div class="row position-relative mt-10 mb-20">
-                                        <div class="col-sm-12 box-slider-range">
-                                            <div id="slider-range"></div>
-                                        </div>
-                                        <div class="box-input-money">
-                                            <input class="input-disabled form-control min-value-money" type="text"
-                                                name="min-value-money" disabled="disabled" value="">
-                                            <input class="form-control min-value" type="hidden" name="min_salary">
-                                        </div>
-                                    </div>
-                                    <div class="box-number-money">
-                                        <div class="row mt-30">
-                                            <div class="col-sm-6 col-6"><span
-                                                    class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}0</span>
-                                            </div>
-                                            <div class="col-sm-6 col-6 text-end"><span
-                                                    class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}100000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-block mb-20">
-                                <h5 class="medium-heading mb-15">Job Types</h5>
-                                <div class="form-group">
-                                    <ul class="list-checkbox">
-                                        @foreach ($jobTypes as $jobType)
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox" name="type[]" value="{{ $jobType->slug }}"  @if (request('type'))
-                                                @checked(in_array($jobType->slug, request('type')))
-                                                @endif><span
-                                                    class="text-small">{{ $jobType->name }}</span><span class="checkmark"></span>
-                                            </label><span class="number-item">{{ $jobType->jobs_count }}</span>
-                                        </li>
+                            <form action="{{ route('jobs.index') }}" method="GET">
+                                <div class="filter-block mb-20">
+                                    <h5 class="medium-heading mb-15">Category</h5>
+                                    <div class="list-checkbox">
+                                        @foreach ($categories as $jobCategory)
+                                            <li>
+                                                <label class="cb-container">
+                                                    <input name="category[]" value="{{ $jobCategory->slug }}"
+                                                        type="checkbox"
+                                                        @if (request('category')) @checked(in_array($jobCategory->slug, request('category'))) @endif><span
+                                                        class="text-small">{{ $jobCategory->name }}</span><span
+                                                        class="checkmark"></span>
+                                                </label><span class="number-item">{{ $jobCategory->jobs_count }}</span>
+                                            </li>
                                         @endforeach
-                                    </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="submit btn btn-default mt-10 rounded-1 w-100"
-                                            type="submit">Search</button>
-                           </form>
+                                <div class="filter-block mb-20">
+                                    <h5 class="medium-heading mb-25">Salary Range</h5>
+                                    <div class="list-checkbox pb-20">
+                                        <div class="row position-relative mt-10 mb-20">
+                                            <div class="col-sm-12 box-slider-range">
+                                                <div id="slider-range"></div>
+                                            </div>
+                                            <div class="box-input-money">
+                                                <input class="input-disabled form-control min-value-money" type="text"
+                                                    name="min-value-money" disabled="disabled" value="">
+                                                <input class="form-control min-value" type="hidden" name="min_salary">
+                                            </div>
+                                        </div>
+                                        <div class="box-number-money">
+                                            <div class="row mt-30">
+                                                <div class="col-sm-6 col-6"><span
+                                                        class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}0</span>
+                                                </div>
+                                                <div class="col-sm-6 col-6 text-end"><span
+                                                        class="font-sm color-brand-1">{{ config('settings.site_currency_icon') }}100000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-block mb-20">
+                                    <h5 class="medium-heading mb-15">Job Types</h5>
+                                    <div class="form-group">
+                                        <ul class="list-checkbox">
+                                            @foreach ($jobTypes as $jobType)
+                                                <li>
+                                                    <label class="cb-container">
+                                                        <input type="checkbox" name="type[]"
+                                                            value="{{ $jobType->slug }}"
+                                                            @if (request('type')) @checked(in_array($jobType->slug, request('type'))) @endif><span
+                                                            class="text-small">{{ $jobType->name }}</span><span
+                                                            class="checkmark"></span>
+                                                    </label><span class="number-item">{{ $jobType->jobs_count }}</span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                    type="submit">Search</button>
+                            </form>
 
 
                         </div>
