@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Industry_type;
+use App\Models\Job;
 use App\Models\Organization_type;
 use App\Models\Province;
 use App\Traits\Searchable;
@@ -66,8 +67,10 @@ class FrontendCompanyPageController extends Controller
     function show(string $slug) : View
     {
         $company = Company::where(['profile_completion' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
+        $openJobs = Job::where('company_id', $company->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->paginate(5);
         return view('frontend.pages.company-detail', compact(
-            'company'
+            'company',
+            'openJobs'
         ));
     }
 }

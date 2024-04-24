@@ -56,9 +56,12 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-
                             </table>
-                            {{ $orders->withQueryString()->links() }}
+                            <div class="paginations">
+                                    @if ($orders->hasPages())
+                                    {{ $orders->withQueryString()->links() }}
+                                @endif
+                            </div>
                         </div>
 
                     </div>
