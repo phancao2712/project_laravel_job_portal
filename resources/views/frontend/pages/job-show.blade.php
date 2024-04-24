@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 text-lg-end">
-                    @if ($alreadyApplied)
+                    @if (!isset($alreadyApplied))
                     <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job" style="background-color: #8f8f8f">Applied</div>
                     @else
                     <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job">Apply now</div>

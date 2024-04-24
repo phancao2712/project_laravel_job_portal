@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
+use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
@@ -144,4 +145,7 @@ Route::group([
 
     Route::post('/account-info', [CandidateProfileController::class, 'updateAccountInfo'])
         ->name('profile.account-info');
+
+    // my job
+    Route::get('/applied-job', [CandidateMyJobController::class, 'index'])->name('applied-job.index');
 });

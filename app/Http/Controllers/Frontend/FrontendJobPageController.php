@@ -87,6 +87,10 @@ class FrontendJobPageController extends Controller
         if(!auth()->check()){
             throw ValidationException::withMessages(['Please login for apply to the job']);
         }
+
+        if(auth()->user()->role !== 'candidate'){
+            throw ValidationException::withMessages(["You can't apply job"]);
+        }
         $alreadyApplied = AppliedJob::where(['job_id' => $id, 'candidate_id' => auth()->user()->id])->exists();
         if($alreadyApplied){
             throw ValidationException::withMessages(['You already applied to this job']);
