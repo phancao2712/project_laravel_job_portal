@@ -71,6 +71,7 @@ Route::get('pricing', PricingPageController::class)
 // Find a job page
 Route::get('jobs', [FrontendJobPageController::class, 'index'])->name('jobs.index');
 Route::get('jobs/{slug}', [FrontendJobPageController::class, 'show'])->name('job.show');
+Route::post('apply/{id}', [FrontendJobPageController::class, 'applyJob'])->name('apply-job.store');
 
 
 /* COMPANY */

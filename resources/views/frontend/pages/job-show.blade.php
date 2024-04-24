@@ -31,8 +31,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 text-lg-end">
-                    <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal"
-                        data-bs-target="#ModalApplyJobForm">Apply now</div>
+                    <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job">Apply now</div>
                 </div>
             </div>
             <div class="border-bottom pt-10 pb-10"></div>
@@ -214,3 +213,34 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+            $('.apply-job').on('click', function(){
+                let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('apply-job.store', $job->id) }}",
+                    data: {
+                        _token: csrfToken
+                    },
+                    beforeSend: function() {
+
+                    },
+                    success: function (response) {
+
+                    },
+                    error: function (xhr, status, error) {
+                        let errors = xhr.responseJSON.errors;
+                        console.log(errors);
+
+                        $.each(errors, function (index, value) {
+                            notyf.error(value[index]);
+                        });
+                    }
+                });
+            })
+        });
+    </script>
+@endpush

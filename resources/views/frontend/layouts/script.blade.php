@@ -1,6 +1,6 @@
 <script>
     // create notify
-    var notyf = new Notyf();
+    var notyf = new Notyf();    
 
     // create datepicker
     $(".datepicker").datepicker({

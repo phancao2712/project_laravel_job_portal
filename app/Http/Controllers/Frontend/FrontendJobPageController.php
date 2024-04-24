@@ -11,6 +11,8 @@ use App\Models\JobType;
 use App\Models\Province;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class FrontendJobPageController extends Controller
@@ -77,5 +79,12 @@ class FrontendJobPageController extends Controller
             'job',
             'openJob'
         ));
+    }
+
+    public function applyJob(string $id) : Response{
+        if(!auth()->check()){
+            throw ValidationException::withMessages(['Please login for apply to the job']);
+        }
+        return response($id);
     }
 }
