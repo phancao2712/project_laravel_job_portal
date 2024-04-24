@@ -31,7 +31,11 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 text-lg-end">
+                    @if ($alreadyApplied)
+                    <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job" style="background-color: #8f8f8f">Applied</div>
+                    @else
                     <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job">Apply now</div>
+                    @endif
                 </div>
             </div>
             <div class="border-bottom pt-10 pb-10"></div>
@@ -229,7 +233,7 @@
 
                     },
                     success: function (response) {
-
+                        notyf.success(response.message);
                     },
                     error: function (xhr, status, error) {
                         let errors = xhr.responseJSON.errors;
