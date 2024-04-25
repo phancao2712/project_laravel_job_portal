@@ -7,6 +7,7 @@ use App\Models\AppliedJob;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Job;
+use App\Models\JobBookmark;
 use App\Models\JobCategory;
 use App\Models\JobType;
 use App\Models\Province;
@@ -61,6 +62,7 @@ class FrontendJobPageController extends Controller
         $jobTypes = JobType::withCount(['jobs' => function($query){
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->get();
+        
         return view('frontend.pages.job-index', compact(
             'jobs',
             'countries',

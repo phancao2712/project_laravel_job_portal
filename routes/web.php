@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
+use App\Http\Controllers\Frontend\CandidateJobBookmarkController;
 use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
@@ -63,6 +64,8 @@ Route::get('candidates', [FrontendCandidatePageController::class, 'index'])
 
 Route::get('candidates/{slug}', [FrontendCandidatePageController::class, 'show'])
     ->name('candidates.show');
+
+Route::get('job-bookmark/{id}', [CandidateJobBookmarkController::class, 'save'])->name('job.bookmark');
 
 
 // Pricing page
