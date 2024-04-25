@@ -38,4 +38,14 @@ class CandidateJobBookmarkController extends Controller
         $applyJob->save();
         return response(['message' => 'Bookmark successful', 'id' => $id]);
     }
+
+    public function destroy(string $id) {
+        try {
+            $Bookmark = JobBookmark::findOrFail($id)->delete();
+            return response(['message' => 'Success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'error'], 500);
+        }
+    }
 }

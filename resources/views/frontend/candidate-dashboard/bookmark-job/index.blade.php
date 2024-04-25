@@ -25,7 +25,7 @@
                             <h3>Bookmark Job</h3>
                         </div>
                         <br>
-                        <table class="table table-striped" id="experienceTable">
+                        <table class="table table-striped" id="bookmarkTable">
                             <thead>
                                 <tr>
                                     <th scope="col">Company</th>
@@ -64,6 +64,7 @@
                                         @endif</td>
                                         <td>
                                             <a href="{{ route('job.show', $bookmarkJob->job->slug) }}" class="btn btn-sm btn-primary"><i class="fa-regular fa-eye"></i></a>
+                                            <a href="{{ route('candidate.bookmarked-job.destroy', $bookmarkJob->id) }}" class="btn btn-sm btn-danger delete-item"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @empty
@@ -86,7 +87,52 @@
     </section>
 
 @endsection
-@include('frontend.layouts.get_location')
+@push('script')
+    <script>
+        $("body").on("click", '.delete-item', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = $(this).attr("href");
+                    console.log(url);
+                    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        method: "DELETE",
+                        url: url,
+                        data: {
+                            _token: csrfToken
+                        },
+                        beforeSend: function() {
+                            showLoader()
+                        },
+                        success: function(response) {
+                            window.location.reload()
+                            hideLoader();
+                            notyf.success(response.message);
+                        },
+                        error: function(status, error, xhr) {
+                            console.log(error);
+                            hideLoader();
+                        },
+                    });
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        });
+    </script>
+@endpush
 
 
 

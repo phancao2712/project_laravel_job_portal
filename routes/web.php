@@ -152,4 +152,5 @@ Route::group([
     // my job
     Route::get('/applied-job', [CandidateMyJobController::class, 'index'])->name('applied-job.index');
     Route::get('/bookmarked-job', [CandidateJobBookmarkController::class, 'index'])->name('bookmarked-job.index');
+    Route::delete('/bookmarked-job/{id}', [CandidateJobBookmarkController::class, 'destroy'])->name('bookmarked-job.destroy');
 });
