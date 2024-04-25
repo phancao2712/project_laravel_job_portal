@@ -22,7 +22,7 @@
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Job</h4>
+                            <h4>{{ $jobTitle }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

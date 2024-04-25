@@ -7,9 +7,16 @@ use App\Models\JobBookmark;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class CandidateJobBookmarkController extends Controller
 {
+    public function index() : View {
+        $bookmarkJobs = JobBookmark::with('job')->where(['candidate_id' => auth()->user()->id])->paginate(10);
+        return view('frontend.candidate-dashboard.bookmark-job.index', compact(
+            'bookmarkJobs'
+        ));
+    }
     public function save(string $id) : Response {
         if(!auth()->check()){
             throw ValidationException::withMessages(['Please login for bookmark the job']);

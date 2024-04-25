@@ -5,10 +5,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
-                        <h2 class="mb-20">Applied Job</h2>
+                        <h2 class="mb-20">Bookmark Job</h2>
                         <ul class="breadcrumbs">
                             <li><a class="home-icon" href="{{ route('home') }}">Home</a></li>
-                            <li>Applied Job</li>
+                            <li>Bookmark Job</li>
                         </ul>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <div class="">
                         <div class="d-flex justify-content-between">
-                            <h3>Applied Job ({{ count($appliedJobs) }})</h3>
+                            <h3>Bookmark Job</h3>
                         </div>
                         <br>
                         <table class="table table-striped" id="experienceTable">
@@ -36,48 +36,46 @@
                                 </tr>
                             </thead>
                             <tbody class="experience-tbody">
-                                @forelse ($appliedJobs as $appliedJob)
+                                @forelse ($bookmarkJobs as $bookmarkJob)
                                     <tr>
                                         <td>
                                             <div class="d-flex">
-                                                <img style="object-fit: cover" width="50px" height="50px"
-                                                    src="{{ $appliedJob->job->company->logo }}" alt="">
-                                                <div class="ps-3">
-                                                    <h6><a href="{{ route('companies.show', $appliedJob->job->company->slug) }}">{{ $appliedJob->job->company->name }}</a></h6>
-                                                    <span>{{ $appliedJob->job?->company?->companyCountry?->name }}</span>
-                                                </div>
+                                                <img style="object-fit: cover" width="50px" height="50px" src="{{ $bookmarkJob->job->company->logo }}" alt="">
+                                            <div class="ps-3">
+                                                <h6><a href="{{ route('companies.show', $bookmarkJob->job->company->slug) }}">{{ $bookmarkJob->job->company->name }}</a></h6>
+                                                <span>{{ $bookmarkJob->job?->company?->companyCountry?->name }}</span>
+                                            </div>
                                             </div>
                                         </td>
                                         <td>
-                                            @if ($appliedJob->job->salary_mode == 'range')
-                                                {{ $appliedJob->job->min_salary }} - {{ $appliedJob->job->max_salary }}
+                                            @if ($bookmarkJob->job->salary_mode == 'range')
+                                                {{ $bookmarkJob->job->min_salary }} - {{ $bookmarkJob->job->max_salary }}
                                                 {{ config('settings.site_default_currency') }}
                                             @else
-                                                {{ $appliedJob->job?->custom_salary !== null ? $appliedJob->job?->custom_salary : 'compativities' }}<br>
+                                                {{ $bookmarkJob->job?->custom_salary !== null ? $bookmarkJob->job?->custom_salary : 'compativities' }}<br>
                                             @endif
                                         </td>
-                                        <td>{{ formatDate($appliedJob->created_at) }}</td>
+                                        <td>{{ formatDate($bookmarkJob->created_at) }}</td>
+                                        <td> @if($bookmarkJob->job->deadline < date('Y-m-d'))
+                                            <span class="badge bg-error">Expired</span>
+                                        @else
+                                        <span class="badge bg-success">Active</span>
+
+                                        @endif</td>
                                         <td>
-                                            @if ($appliedJob->job->deadline < date('Y-m-d'))
-                                                <span class="badge bg-error">Expired</span>
-                                            @else
-                                                <span class="badge bg-success">Active</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('job.show', $appliedJob->job->slug) }}"
-                                                class="btn btn-sm btn-primary"><i class="fa-regular fa-eye"></i></a>
+                                            <a href="{{ route('job.show', $bookmarkJob->job->slug) }}" class="btn btn-sm btn-primary"><i class="fa-regular fa-eye"></i></a>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center">Not Found Data!</td>
-                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Not Found Data!</td>
+                                        </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        @if ($appliedJobs->hasPages())
-                            {{ $appliedJobs->withQueryString()->links() }}
+
+                        @if ($bookmarkJobs->hasPages())
+                            {{ $bookmarkJobs->withQueryString()->links() }}
                         @endif
                     </div>
                 </div>
@@ -86,5 +84,9 @@
 
         </div>
     </section>
+
 @endsection
 @include('frontend.layouts.get_location')
+
+
+

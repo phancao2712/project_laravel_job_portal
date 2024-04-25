@@ -4,6 +4,7 @@
           <li><a class="btn btn-border mb-20 active" href="{{ route('candidate.dashboard') }}">Dashboard</a></li>
         <li><a class="btn btn-border mb-20" href="{{ route('candidate.profile') }}">My Profile</a></li>
         <li><a class="btn btn-border mb-20" href="{{ route('candidate.applied-job.index') }}">Applied Job</a></li>
+        <li><a class="btn btn-border mb-20" href="{{ route('candidate.bookmarked-job.index') }}">Bookmark Job</a></li>
         <li><a class="btn btn-border mb-20" href="candidate-profile-save-jobs.html">Saved Jobs</a></li>
         <form method="POST" action="{{ route('logout') }}" style="width:100%">
           @csrf

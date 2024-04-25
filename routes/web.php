@@ -151,4 +151,5 @@ Route::group([
 
     // my job
     Route::get('/applied-job', [CandidateMyJobController::class, 'index'])->name('applied-job.index');
+    Route::get('/bookmarked-job', [CandidateJobBookmarkController::class, 'index'])->name('bookmarked-job.index');
 });
