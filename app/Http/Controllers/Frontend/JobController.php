@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\JobPortStoreRequest;
+use App\Models\AppliedJob;
 use App\Models\Benefits;
 use App\Models\Company;
 use App\Models\Country;
@@ -36,7 +37,8 @@ class JobController extends Controller
     {
         $query = Job::query();
         $this->search($query, ['title']);
-        $jobs = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(10);
+        $jobs = $query->withCount('appliedJobs')->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(10);
+
         return view('frontend.company-dashboard.job.index', compact(
             'jobs'
         ));
@@ -291,6 +293,15 @@ class JobController extends Controller
             logger($e);
             return response(['message' => 'error'], 500);
         }
+    }
+
+    public function applications(string $id) : View {
+        $applications = AppliedJob::where(['job_id' => $id])->paginate(10);
+        $jobTitle = Job::select('title')->first();
+        return view('frontend.company-dashboard.applications.index', compact(
+            'applications',
+            'jobTitle'
+        ));
     }
 
 }

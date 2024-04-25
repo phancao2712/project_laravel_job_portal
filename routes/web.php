@@ -92,7 +92,7 @@ Route::group(
 
         // job router
         Route::resource('jobs', JobController::class);
-
+        Route::get('applications/{id}', [JobController::class, 'applications'])->name('job.applications');
 
         Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');
         Route::post('/profile/company-info', [CompanyProfileController::class, 'companyInfoUpdate'])->name('profile.company-info');

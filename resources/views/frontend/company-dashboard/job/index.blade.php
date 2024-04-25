@@ -52,7 +52,7 @@
                                         <tr>
                                             <th>Job</th>
                                             <th>Category/Role</th>
-                                            <th>Salary</th>
+                                            <th>Applications</th>
                                             <th>Deadline</th>
                                             <th>Status</th>
                                             <th style="width:10%;">Action</th>
@@ -74,12 +74,7 @@
                                                     {{ $job->role?->name }}
                                                 </td>
                                                 <td>
-                                                    @if ($job->salary_mode == 'range')
-                                                        {{ $job->min_salary }} - {{ $job->max_salary }}
-                                                        {{ config('settings.site_default_currency') }}
-                                                    @else
-                                                        {{ $job?->custom_salary !== null ? $job?->custom_salary : 'compativities' }}<br>
-                                                    @endif
+                                                    {{ $job->applied_jobs_count }} applications
                                                 </td>
                                                 <td>{{ formatDate($job->deadline) }}</td>
                                                 <td>
@@ -92,12 +87,17 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('company.jobs.edit', $job->id) }}"
-                                                        class="btn btn-sm btn-primary mb-2"><i
-                                                            class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a href="{{ route('company.jobs.destroy', $job->id) }}"
-                                                        class="btn btn-sm btn-danger delete-btn"><i
-                                                            class="fa-solid fa-trash"></i></a>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fa-solid fa-gear"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                          <li><a class="dropdown-item" href="{{ route('company.job.applications', $job->id) }}">Application</a></li>
+                                                          <li><a class="dropdown-item" href="{{ route('company.jobs.edit', $job->id) }}">Edit</a></li>
+                                                          <li><a class="dropdown-item delete-btn" href="{{ route('company.jobs.destroy', $job->id) }}">Delete</a></li>
+                                                        </ul>
+                                                      </div>
+
                                                 </td>
                                             </tr>
                                         @empty

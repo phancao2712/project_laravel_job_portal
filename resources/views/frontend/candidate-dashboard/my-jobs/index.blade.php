@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex">
-                                                <img style="object-fit: cover" width="50px" height="50px" src="{{ $job->job->company->logo }}" alt="">
+                                                <img style="object-fit: cover" width="50px" height="50px" src="{{ $appliedJob->job->company->logo }}" alt="">
                                             <div class="ps-3">
                                                 <h6>{{ $appliedJob->job->company->name }}</h6>
                                                 <span>{{ $appliedJob->job?->company?->companyCountry?->name }}</span>

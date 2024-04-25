@@ -73,4 +73,7 @@ class Job extends Model
     {
         return $this->belongsTo(Experience::class,'job_experience_id', 'id');
     }
+    function appliedJobs() : HasMany {
+        return $this->hasMany(AppliedJob::class,'job_id','id');
+    }
 }
