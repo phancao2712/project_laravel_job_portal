@@ -66,88 +66,31 @@
                         <div class="widget_search mb-40">
                             <div class="search-form">
                                 <form action="#">
-                                    <input type="text" placeholder="Search…">
+                                    <input type="text" placeholder="Search…" name="search" value="{{ request('search') }}">
                                     <button type="submit"><i class="fi-rr-search"></i></button>
                                 </form>
                             </div>
                         </div>
-                        <div class="sidebar-shadow sidebar-news-small">
+                        {{-- <div class="sidebar-shadow sidebar-news-small">
                             <h5 class="sidebar-title">Trending Now</h5>
                             <div class="post-list-small">
+                                @foreach ($blogs as $blog)
                                 <div class="post-list-small-item d-flex align-items-center">
-                                    <figure class="thumb mr-15"><img src="assets/imgs/page/blog/img-trending.png"
+                                    <figure class="thumb mr-15"><img src="{{ asset($blog->image) }}"
                                             alt="joblist">
                                     </figure>
                                     <div class="content">
-                                        <h5>How to get better agents in New York, USA</h5>
+                                        <h5>{{ $blog->title }}</h5>
                                         <div class="post-meta text-muted d-flex align-items-center mb-15">
-                                            <div class="author d-flex align-items-center mr-20"><span>Sugar Rosie</span>
+                                            <div class="author d-flex align-items-center mr-20"><span>{{ $blog->author->name }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="post-list-small-item d-flex align-items-center">
-                                    <figure class="thumb mr-15"><img src="assets/imgs/page/blog/gallery1.png"
-                                            alt=""></figure>
-                                    <div class="content">
-                                        <h5>How To Create a Resume for a Job in Social</h5>
-                                        <div class="post-meta text-muted d-flex align-items-center mb-15">
-                                            <div class="author d-flex align-items-center mr-20"><span>Harding</span></div>
-                                            <div class="date"><span>17 Sep</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-list-small-item d-flex align-items-center">
-                                    <figure class="thumb mr-15"><img src="assets/imgs/page/blog/gallery2.png"
-                                            alt=""></figure>
-                                    <div class="content">
-                                        <h5>10 Ways to Avoid a Referee Disaster Zone</h5>
-                                        <div class="post-meta text-muted d-flex align-items-center mb-15">
-                                            <div class="author d-flex align-items-center mr-20"><span>Steven</span></div>
-                                            <div class="date"><span>23 Sep</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-list-small-item d-flex align-items-center">
-                                    <figure class="thumb mr-15"><img src="assets/imgs/page/blog/gallery4.png"
-                                            alt=""></figure>
-                                    <div class="content">
-                                        <h5>How To Set Work-Life Boundaries From Any Location</h5>
-                                        <div class="post-meta text-muted d-flex align-items-center mb-15">
-                                            <div class="author d-flex align-items-center mr-20"><span>Merias</span></div>
-                                            <div class="date"><span>14 Sep</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-list-small-item d-flex align-items-center">
-                                    <figure class="thumb mr-15"><img src="assets/imgs/page/blog/gallery5.png"
-                                            alt=""></figure>
-                                    <div class="content">
-                                        <h5>How to Land Your Dream Marketing Job</h5>
-                                        <div class="post-meta text-muted d-flex align-items-center mb-15">
-                                            <div class="author d-flex align-items-center mr-20"><span>Rosie</span></div>
-                                            <div class="date"><span>12 Sep</span></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
-                        </div>
-                        <div class="sidebar-shadow sidebar-news-small">
-                            <h5 class="sidebar-title">Gallery</h5>
-                            <div class="post-list-small">
-                                <ul class="gallery-3">
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery1.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery2.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery3.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery4.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery5.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery6.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery7.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery8.png"></a></li>
-                                    <li><a href="#"><img src="assets/imgs/page/blog/gallery9.png"></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

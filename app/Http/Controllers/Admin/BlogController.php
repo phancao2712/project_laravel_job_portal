@@ -24,7 +24,6 @@ class BlogController extends Controller
         $query = Blog::query();
         $this->search($query, ['title', 'slug']);
 
-
         $blogs = $query->latest()->paginate(20);
         return view('admin.blog.index', compact(
             'blogs'

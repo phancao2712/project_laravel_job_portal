@@ -12,7 +12,9 @@ class FrontendBlogPageController extends Controller
 {
     use Searchable;
     public function index() : View {
-        $blogs = Blog::where('status', 1)->latest()->paginate(10);
+        $query = Blog::query();
+        $this->search($query, ['title','slug']);
+        $blogs = $query->where('status', 1)->latest()->paginate(10);
         return view('frontend.pages.blogs-index', compact(
             'blogs'
         ));
