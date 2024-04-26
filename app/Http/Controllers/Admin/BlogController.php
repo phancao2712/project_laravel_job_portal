@@ -85,16 +85,19 @@ class BlogController extends Controller
      */
     public function update(UpdateBlogRequest $request, string $id)
     {
-
+        $data = [];
         $imagePath = $this->uploadFile($request, 'image');
 
         $blog = Blog::findOrFail($id);
-        if ($imagePath) $blog->image = $request->image;
-        $blog->image = $imagePath;
-        $blog->title = $request->title;
-        $blog->description = $request->description;
-        $blog->author_id = auth()->user()->id;
-        $blog->save();
+        if ($imagePath) $data['image'] = $imagePath;
+        $data['image'] = $imagePath;
+        $data['title'] = $request->title;
+        $data['description'] = $request->description;
+
+        $blog->updateOrCreate(
+            ['author_id' => auth()->user()->id],
+            $data
+        );
 
         Notify::UpdateNotify();
         return to_route('admin.blogs.index');

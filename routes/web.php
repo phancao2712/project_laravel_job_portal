@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\FrontendBlogPageController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
 use App\Http\Controllers\ProfileController;
@@ -76,6 +77,10 @@ Route::get('pricing', PricingPageController::class)
 Route::get('jobs', [FrontendJobPageController::class, 'index'])->name('jobs.index');
 Route::get('jobs/{slug}', [FrontendJobPageController::class, 'show'])->name('job.show');
 Route::post('apply/{id}', [FrontendJobPageController::class, 'applyJob'])->name('apply-job.store');
+
+// Blog page
+Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
+Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('blogs.show');
 
 
 /* COMPANY */

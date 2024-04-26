@@ -62,7 +62,7 @@ class FrontendJobPageController extends Controller
         $jobTypes = JobType::withCount(['jobs' => function($query){
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->get();
-        
+
         return view('frontend.pages.job-index', compact(
             'jobs',
             'countries',
@@ -77,7 +77,8 @@ class FrontendJobPageController extends Controller
     {
         $job = Job::where(['slug' => $slug])->first();
         $openJob = Job::where('company_id', $job->company->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->count();
-        $alreadyApplied = AppliedJob::where(['job_id' => auth()->user()->id, 'candidate_id' => auth()->user()->id])->get();
+        $alreadyApplied = AppliedJob::where(['job_id' => $job->id, 'candidate_id' => auth()?->user()?->id])->exists();
+
         return view('frontend.pages.job-show', compact(
             'job',
             'openJob',

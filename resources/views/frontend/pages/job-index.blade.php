@@ -85,7 +85,7 @@
                                                     <div class="col-lg-5 col-5 text-end">
                                                         <div class="bookmark" data-id="{{ $job->id }}">
                                                             @php
-                                                                $bookmarkJob = \App\Models\JobBookmark::where(['candidate_id' => auth()->user()->id, 'job_id' => $job->id])->pluck('job_id')->toArray();
+                                                                $bookmarkJob = \App\Models\JobBookmark::where(['candidate_id' => auth()?->user()?->id, 'job_id' => $job->id])->pluck('job_id')->toArray();
                                                             @endphp
 
                                                             <i style="color: #efef33" class="{{ (in_array($job->id, $bookmarkJob) ? 'fas fa-bookmark' : 'fa-regular fa-bookmark') }}"></i>

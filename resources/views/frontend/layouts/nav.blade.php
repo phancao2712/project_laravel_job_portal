@@ -12,9 +12,8 @@
           <li><a href="page-register.html">Register</a></li>
           <li><a href="{{ route('login') }}">Signin</a></li>
           <li><a href="page-reset-password.html">Reset Password</a></li>
-          <li><a href="blog-details.html">Blog Single</a></li>
         </ul>
       </li>
-      <li class="has-children"><a href="blog-grid.html">Blog</a></li>
+      <li class="has-children"><a href="{{ route('blogs.index') }}">Blog</a></li>
     </ul>
   </nav>

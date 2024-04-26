@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 text-lg-end">
-                    @if (!isset($alreadyApplied))
+                    @if (isset($alreadyApplied) && !empty($alreadyApplied))
                     <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job" style="background-color: #8f8f8f">Applied</div>
                     @else
                     <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up apply-job">Apply now</div>
@@ -223,6 +223,8 @@
         $(document).ready(function () {
             $('.apply-job').on('click', function(){
                 let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                $(this).css('background-color','#8f8f8f');
+                $(this).html('Applied');
                 $.ajax({
                     type: "POST",
                     url: "{{ route('apply-job.store', $job->id) }}",
