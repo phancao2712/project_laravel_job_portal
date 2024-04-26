@@ -67,8 +67,12 @@
                         Categories</span></a>
             </li>
             <li class="{{ setSideBarActive(['admin.jobs.*']) }}"><a class="nav-link"
-                href="{{ route('admin.jobs.index') }}"><i class="far fa-square"></i> <span>
-                    Job Post</span></a>
+                    href="{{ route('admin.jobs.index') }}"><i class="far fa-square"></i> <span>
+                        Job Post</span></a>
+            </li>
+            <li class="{{ setSideBarActive(['admin.blogs.*']) }}"><a class="nav-link"
+                href="{{ route('admin.blogs.index') }}"><i class="far fa-square"></i> <span>
+                    Blogs</span></a>
         </li>
 
             {{-- LOCATION --}}

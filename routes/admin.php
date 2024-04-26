@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
@@ -122,7 +123,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  JOB EXPERIENCE ROUTE */
     Route::resource('job-experiences', JobExperienceController::class);
 
-     /*  JOB ROUTE */
-     Route::resource('jobs', JobController::class);
-     Route::post('/updateStatus/{id}', [JobController::class, 'changeStatus'])->name('jobStatus.update');
+    /*  JOB ROUTE */
+    Route::resource('jobs', JobController::class);
+    Route::post('/updateStatus/{id}', [JobController::class, 'changeStatus'])->name('jobStatus.update');
+
+    /*  JOB ROUTE */
+    Route::resource('blogs', BlogController::class);
+    Route::post('/updateStatusBlog/{id}', [BlogController::class, 'changeStatus'])->name('blogStatus.update');
 });
