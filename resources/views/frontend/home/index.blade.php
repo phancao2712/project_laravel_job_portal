@@ -2,7 +2,6 @@
 
 @section('contents')
 
-<div class="bg-homepage1"></div>
 
 {{-- hero-section start --}}
 @include('frontend.home.hero_section')

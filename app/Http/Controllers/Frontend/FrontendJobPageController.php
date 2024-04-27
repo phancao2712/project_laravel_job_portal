@@ -20,9 +20,8 @@ use Illuminate\View\View;
 class FrontendJobPageController extends Controller
 {
     use Searchable;
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
-
         $selectedDistrict = null;
         $selectedProvince = null;
         $query = Job::query();
@@ -30,25 +29,27 @@ class FrontendJobPageController extends Controller
         $query->where(['status' => 'active'])
             ->where('deadline', '>=', date('Y-m-d'));
 
-            $this->search($query, ['title']);
-            $this->searchItem($query, 'country');
-            $this->searchItem($query, 'province');
-            $this->searchItem($query, 'district');
-            if($request->has('country') && $request->filled('country')){
-                $selectedProvince = Province::where('country_id',$request->country)->get();
-            }
-            $this->searchItem($query, 'province');
-            if($request->has('province') && $request->filled('province')){
-                $selectedDistrict = District::where('province_id',$request->province)->get();
-            }
-        if($request->has('category') && $request->filled('category')){
-            $categoryIds = JobCategory::whereIn('slug', request('category'))->pluck('id')->toArray();
+        $this->search($query, ['title']);
+        $this->searchItem($query, 'country');
+        $this->searchItem($query, 'province');
+        $this->searchItem($query, 'district');
+        if ($request->has('country') && $request->filled('country')) {
+            $selectedProvince = Province::where('country_id', $request->country)->get();
+        }
+        $this->searchItem($query, 'province');
+        if ($request->has('province') && $request->filled('province')) {
+            $selectedDistrict = District::where('province_id', $request->province)->get();
+        }
+        if ($request->has('category') && $request->filled('category')) {
+            if(!in_array('all', $request->category)){
+                $categoryIds = JobCategory::whereIn('slug', request('category'))->pluck('id')->toArray();
             $query->whereIn('job_category_id', $categoryIds);
+            }
         }
-        if($request->has('min_salary') && $request->filled('min_salary') && $request->min_salary > 0){
-            $query->where('min_salary', '<=', $request->min_salary)->where('max_salary','>=',$request->min_salary);
+        if ($request->has('min_salary') && $request->filled('min_salary') && $request->min_salary > 0) {
+            $query->where('min_salary', '<=', $request->min_salary)->where('max_salary', '>=', $request->min_salary);
         }
-        if($request->has('type') && $request->filled('type')){
+        if ($request->has('type') && $request->filled('type')) {
             $typeIds = JobType::whereIn('slug', request('type'))->pluck('id')->toArray();
             $query->whereIn('job_type_id', $typeIds);
         }
@@ -56,10 +57,10 @@ class FrontendJobPageController extends Controller
         $jobs = $query->paginate(20);
 
         $countries = Country::all();
-        $categories = JobCategory::withCount(['jobs' => function($query){
+        $categories = JobCategory::withCount(['jobs' => function ($query) {
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->get();
-        $jobTypes = JobType::withCount(['jobs' => function($query){
+        $jobTypes = JobType::withCount(['jobs' => function ($query) {
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->get();
 
@@ -73,7 +74,7 @@ class FrontendJobPageController extends Controller
         ));
     }
 
-    public function show(string $slug) : View
+    public function show(string $slug): View
     {
         $job = Job::where(['slug' => $slug])->first();
         $openJob = Job::where('company_id', $job->company->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->count();
@@ -86,16 +87,17 @@ class FrontendJobPageController extends Controller
         ));
     }
 
-    public function applyJob(string $id) : Response{
-        if(!auth()->check()){
+    public function applyJob(string $id): Response
+    {
+        if (!auth()->check()) {
             throw ValidationException::withMessages(['Please login for apply to the job']);
         }
 
-        if(auth()->user()->role !== 'candidate'){
+        if (auth()->user()->role !== 'candidate') {
             throw ValidationException::withMessages(["You can't apply job"]);
         }
         $alreadyApplied = AppliedJob::where(['job_id' => $id, 'candidate_id' => auth()->user()->id])->exists();
-        if($alreadyApplied){
+        if ($alreadyApplied) {
             throw ValidationException::withMessages(['You already applied to this job']);
         }
 

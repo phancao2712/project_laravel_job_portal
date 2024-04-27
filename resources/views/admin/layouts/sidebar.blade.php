@@ -89,6 +89,16 @@
                             href="{{ route('admin.district.index') }}">Districts</a></li>
                 </ul>
             </li>
+            <li class="menu-header">Section</li>
+            <li class="dropdown {{ setSideBarActive(['admin.heros.*']) }}">
+                <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
+                        class="fas fa-map-marker-alt"></i><span>Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSideBarActive(['admin.heros.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.heros.index') }}">Hero Section</a></li>
+
+                </ul>
+            </li>
 
             {{-- PLAN --}}
             <li class="{{ setSideBarActive(['admin.plans.*']) }}"><a class="nav-link"

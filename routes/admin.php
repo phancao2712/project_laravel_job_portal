@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\JobExperienceController;
@@ -130,4 +131,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  JOB ROUTE */
     Route::resource('blogs', BlogController::class);
     Route::post('/updateStatusBlog/{id}', [BlogController::class, 'changeStatus'])->name('blogStatus.update');
+
+     /*  Hero Section ROUTE */
+     Route::resource('heros', HeroSectionController::class);
 });
