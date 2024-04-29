@@ -7,6 +7,7 @@ use App\Models\JobCategory;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class JobCategoryController extends Controller
@@ -21,7 +22,9 @@ class JobCategoryController extends Controller
 
         $this->search($query, ['name']);
 
-        $jobCategories = $query->paginate(10);
+        $jobCategories = $query->withCount(['jobs' => function($query){
+            $query->where('status','active')->where('deadline', '>=', date('Y-m-d'));
+        }])->paginate(10);
         return view('admin.job.job-category.index', compact(
             'jobCategories'
         ));
@@ -100,5 +103,13 @@ class JobCategoryController extends Controller
             logger($e);
             return response(['message' => 'error'], 500);
         }
+    }
+
+    public function changeStatus(string $id) : Response {
+        $jobCategory = JobCategory::FindOrFail($id);
+        $jobCategory->featured = $jobCategory->featured == 0 ? 1 : 0;
+        $jobCategory->save();
+        Notify::UpdateNotify();
+        return response(['message' => 'success', 200]);
     }
 }

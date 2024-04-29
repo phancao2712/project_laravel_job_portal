@@ -14,7 +14,7 @@
 {{-- category-section end --}}
 
 {{-- futured-section start --}}
-{{-- @include('frontend.home.futured_section') --}}
+@include('frontend.home.featured_section')
 {{-- futured-section end --}}
 
 {{-- why-section start --}}

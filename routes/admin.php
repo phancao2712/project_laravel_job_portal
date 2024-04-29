@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /* JOB CATEGORY ROUTE */
     Route::resource('job-categories', JobCategoryController::class);
+    Route::post('jobCategory/changeStatus/{id}', [JobCategoryController::class, 'changeStatus'])->name('categoryStatus.update');
 
     /* EDUCATION ROUTE */
     Route::resource('education', EducationController::class);

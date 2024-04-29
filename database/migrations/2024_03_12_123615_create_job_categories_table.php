@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('icon');
             $table->string('name');
             $table->string('slug');
+            $table->boolean('featured')->default(0);
             $table->timestamps();
         });
     }

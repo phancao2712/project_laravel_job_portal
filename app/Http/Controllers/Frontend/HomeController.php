@@ -23,12 +23,14 @@ class HomeController extends Controller
         ])->get();
         $jobCount = Job::count();
         $countries = Country::all();
+        $featuredCategory = JobCategory::where(['featured'=> 1])->take(5)->get();
         return view('frontend.home.index', compact(
             'plans',
             'hero',
             'categories',
             'countries',
-            'jobCount'
+            'jobCount',
+            'featuredCategory'
         ));
     }
 }

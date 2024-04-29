@@ -14,7 +14,8 @@ class JobCategory extends Model
     protected $fillable = [
         'icon',
         'name',
-        'slug'
+        'slug',
+        'featured'
     ];
 
     public function sluggable(): array
