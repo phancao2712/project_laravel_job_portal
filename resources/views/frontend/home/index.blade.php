@@ -7,11 +7,10 @@
 @include('frontend.home.hero_section')
 {{-- hero-section end --}}
 
-
 <div class="mt-100"></div>
 
 {{-- category-section start --}}
-{{-- @include('frontend.home.category_section') --}}
+@include('frontend.home.category_section')
 {{-- category-section end --}}
 
 {{-- futured-section start --}}

@@ -496,7 +496,7 @@
         var swiper_1_items = new Swiper(this, {
             spaceBetween: 30,
             slidesPerView: 1,
-            loop: true,
+            loop: false,
             navigation: {
                 nextEl: ".swiper-button-next-1",
                 prevEl: ".swiper-button-prev-1"
