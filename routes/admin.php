@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\WhyChooseUsSectionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -133,6 +134,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('blogs', BlogController::class);
     Route::post('/updateStatusBlog/{id}', [BlogController::class, 'changeStatus'])->name('blogStatus.update');
 
-     /*  Hero Section ROUTE */
-     Route::resource('heros', HeroSectionController::class);
+    /*  Hero Section ROUTE */
+    Route::resource('heros', HeroSectionController::class);
+
+    /*  Hero Section ROUTE */
+    Route::resource('whyChooseUs', WhyChooseUsSectionController::class);
 });

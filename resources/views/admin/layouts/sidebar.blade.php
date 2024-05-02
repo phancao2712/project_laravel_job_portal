@@ -71,9 +71,9 @@
                         Job Post</span></a>
             </li>
             <li class="{{ setSideBarActive(['admin.blogs.*']) }}"><a class="nav-link"
-                href="{{ route('admin.blogs.index') }}"><i class="far fa-square"></i> <span>
-                    Blogs</span></a>
-        </li>
+                    href="{{ route('admin.blogs.index') }}"><i class="far fa-square"></i> <span>
+                        Blogs</span></a>
+            </li>
 
             {{-- LOCATION --}}
             <li class="menu-header">Location</li>
@@ -90,12 +90,14 @@
                 </ul>
             </li>
             <li class="menu-header">Section</li>
-            <li class="dropdown {{ setSideBarActive(['admin.heros.*']) }}">
+            <li class="dropdown {{ setSideBarActive(['admin.heros.*','admin.whyChooseUs.*']) }}">
                 <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                         class="fas fa-map-marker-alt"></i><span>Section</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSideBarActive(['admin.heros.*']) }}"><a class="nav-link "
                             href="{{ route('admin.heros.index') }}">Hero Section</a></li>
+                    <li class="{{ setSideBarActive(['admin.whyChooseUs.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.whyChooseUs.index') }}">Why Choose Us Section</a></li>
 
                 </ul>
             </li>

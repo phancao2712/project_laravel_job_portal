@@ -18,7 +18,7 @@
 {{-- futured-section end --}}
 
 {{-- why-section start --}}
-{{-- @include('frontend.home.why_choose_section') --}}
+@include('frontend.home.why_choose_section')
 {{-- why-section end --}}
 
 {{-- learn_more-section start --}}
