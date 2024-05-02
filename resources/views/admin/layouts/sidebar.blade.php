@@ -90,7 +90,7 @@
                 </ul>
             </li>
             <li class="menu-header">Section</li>
-            <li class="dropdown {{ setSideBarActive(['admin.heros.*','admin.whyChooseUs.*']) }}">
+            <li class="dropdown {{ setSideBarActive(['admin.heros.*', 'admin.whyChooseUs.*', 'admin.v.*']) }}">
                 <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                         class="fas fa-map-marker-alt"></i><span>Section</span></a>
                 <ul class="dropdown-menu">
@@ -98,6 +98,8 @@
                             href="{{ route('admin.heros.index') }}">Hero Section</a></li>
                     <li class="{{ setSideBarActive(['admin.whyChooseUs.*']) }}"><a class="nav-link "
                             href="{{ route('admin.whyChooseUs.index') }}">Why Choose Us Section</a></li>
+                    <li class="{{ setSideBarActive(['admin.learnMores.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.learnMores.index') }}">Learn More Section</a></li>
 
                 </ul>
             </li>

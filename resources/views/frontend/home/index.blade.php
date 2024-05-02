@@ -22,7 +22,7 @@
 {{-- why-section end --}}
 
 {{-- learn_more-section start --}}
-{{-- @include('frontend.home.learn_more_section') --}}
+@include('frontend.home.learn_more_section')
 {{-- learn_more-section end --}}
 
 {{-- counter_section start --}}

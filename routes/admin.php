@@ -28,6 +28,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\WhyChooseUsSectionController;
+use App\Http\Controllers\Admin\LearnMoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -137,6 +138,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  Hero Section ROUTE */
     Route::resource('heros', HeroSectionController::class);
 
-    /*  Hero Section ROUTE */
+    /*  Why choose us Section ROUTE */
     Route::resource('whyChooseUs', WhyChooseUsSectionController::class);
+
+    /*  Learn More Section ROUTE */
+    Route::resource('learnMores', LearnMoreController::class);
 });
