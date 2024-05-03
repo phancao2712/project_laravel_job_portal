@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
@@ -147,4 +148,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /*  Learn More Section ROUTE */
     Route::resource('job-location', JobLocationController::class);
+
+    /*  About page ROUTE */
+    Route::resource('about-us', AboutPageController::class);
 });

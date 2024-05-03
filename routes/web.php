@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AboutUsPageController;
 use App\Http\Controllers\Frontend\FrontendJobPageController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
@@ -82,6 +83,7 @@ Route::post('apply/{id}', [FrontendJobPageController::class, 'applyJob'])->name(
 Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('blogs.show');
 
+Route::get('about-page',[AboutUsPageController::class, 'index'])->name('about-page.index');
 
 /* COMPANY */
 Route::group(

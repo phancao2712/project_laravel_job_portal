@@ -89,6 +89,8 @@
                             href="{{ route('admin.district.index') }}">Districts</a></li>
                 </ul>
             </li>
+
+            {{-- Section --}}
             <li class="menu-header">Section</li>
             <li
                 class="dropdown {{ setSideBarActive(['admin.heros.*', 'admin.whyChooseUs.*', 'admin.learnMores.*', 'admin.job-location.*']) }}">
@@ -103,6 +105,18 @@
                             href="{{ route('admin.learnMores.index') }}">Learn More Section</a></li>
                     <li class="{{ setSideBarActive(['admin.job-location.*']) }}"><a class="nav-link "
                             href="{{ route('admin.job-location.index') }}">Job Location Section</a></li>
+
+                </ul>
+            </li>
+
+            {{-- Page --}}
+            <li class="menu-header">Page</li>
+            <li class="dropdown {{ setSideBarActive(['admin.about-us.*']) }}">
+                <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
+                        class="fas fa-map-marker-alt"></i><span>Page</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSideBarActive(['admin.about-us.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.about-us.index') }}">About us page</a></li>
 
                 </ul>
             </li>
