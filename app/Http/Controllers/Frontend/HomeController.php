@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Country;
 use App\Models\Hero;
 use App\Models\Job;
@@ -28,6 +29,11 @@ class HomeController extends Controller
         $featuredCategory = JobCategory::where(['featured'=> 1])->take(5)->get();
         $whyChooseUs = WhyChooseUsSection::first();
         $learnMore = LearnMore::first();
+
+        $companies = Company::select('name','logo','slug','country')->withCount(['jobs' => function($query){
+            $query->where('status', 'active')->where('deadline','>=',date('Y-m-d'));
+        }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(45)->get();
+
         return view('frontend.home.index', compact(
             'plans',
             'hero',
@@ -36,7 +42,8 @@ class HomeController extends Controller
             'jobCount',
             'featuredCategory',
             'whyChooseUs',
-            'learnMore'
+            'learnMore',
+            'companies'
         ));
     }
 }

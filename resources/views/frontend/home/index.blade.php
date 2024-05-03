@@ -25,12 +25,8 @@
 @include('frontend.home.learn_more_section')
 {{-- learn_more-section end --}}
 
-{{-- counter_section start --}}
-{{-- @include('frontend.home.counter_section') --}}
-{{-- counter_section end --}}
-
 {{-- recruiters_section start --}}
-{{-- @include('frontend.home.recruiters_section') --}}
+@include('frontend.home.recruiters_section')
 {{-- recruiters_section end --}}
 
 {{-- price_section start --}}
