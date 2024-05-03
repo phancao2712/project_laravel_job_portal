@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Hero;
@@ -36,7 +37,7 @@ class HomeController extends Controller
         }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(20)->get();
 
         $jobLocations = JobLocation::take(8)->get();
-
+        $blogs = Blog::take(6)->get();
         return view('frontend.home.index', compact(
             'plans',
             'hero',
@@ -47,7 +48,8 @@ class HomeController extends Controller
             'whyChooseUs',
             'learnMore',
             'companies',
-            'jobLocations'
+            'jobLocations',
+            'blogs'
         ));
     }
 }

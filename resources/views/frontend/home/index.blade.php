@@ -37,11 +37,7 @@
 @include('frontend.home.job_by_location_section')
 {{-- job_by_location_section end --}}
 
-{{-- review_section start --}}
-{{-- @include('frontend.home.review_section') --}}
-{{-- review_section end --}}
-
 {{-- blog_section start --}}
-{{-- @include('frontend.home.blog_section') --}}
+@include('frontend.home.blog_section')
 {{-- blog_section end --}}
 @endsection
