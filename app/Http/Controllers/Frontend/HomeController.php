@@ -30,9 +30,9 @@ class HomeController extends Controller
         $whyChooseUs = WhyChooseUsSection::first();
         $learnMore = LearnMore::first();
 
-        $companies = Company::select('name','logo','slug','country')->withCount(['jobs' => function($query){
+        $companies = Company::select('name','logo','slug','province')->withCount(['jobs' => function($query){
             $query->where('status', 'active')->where('deadline','>=',date('Y-m-d'));
-        }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(45)->get();
+        }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(20)->get();
 
         return view('frontend.home.index', compact(
             'plans',

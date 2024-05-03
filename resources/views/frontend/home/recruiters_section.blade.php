@@ -20,7 +20,7 @@
                                             <h4>{{ $company->name }}</h4>
                                         </div>
                                         <div class="text-info-bottom mt-5"><span
-                                                class="font-xs color-text-mutted icon-location">{{ $company->companyCountry?->name }}</span>
+                                                class="font-xs color-text-mutted icon-location">{{ $company->companyProvince?->name }}</span>
                                             <span
                                                 class="font-xs color-text-mutted float-end mt-5">{{ $company->jobs_count }}<span>
                                                     Open
@@ -30,6 +30,8 @@
                                 </a>
                             </div>
                         @endforeach
+                        
+
                     </div>
                 </div>
             </div>
