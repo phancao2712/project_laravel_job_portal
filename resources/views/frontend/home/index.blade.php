@@ -34,7 +34,7 @@
 {{-- price_section end --}}
 
 {{-- job_by_location_section start --}}
-{{-- @include('frontend.home.job_by_location_section') --}}
+@include('frontend.home.job_by_location_section')
 {{-- job_by_location_section end --}}
 
 {{-- review_section start --}}

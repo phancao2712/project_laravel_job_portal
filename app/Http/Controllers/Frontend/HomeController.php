@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Hero;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\JobLocation;
 use App\Models\LearnMore;
 use App\Models\Plan;
 use App\Models\WhyChooseUsSection;
@@ -34,6 +35,8 @@ class HomeController extends Controller
             $query->where('status', 'active')->where('deadline','>=',date('Y-m-d'));
         }])->where(['profile_completion' => 1, 'visibility' => 1])->latest()->take(20)->get();
 
+        $jobLocations = JobLocation::take(8)->get();
+
         return view('frontend.home.index', compact(
             'plans',
             'hero',
@@ -43,7 +46,8 @@ class HomeController extends Controller
             'featuredCategory',
             'whyChooseUs',
             'learnMore',
-            'companies'
+            'companies',
+            'jobLocations'
         ));
     }
 }

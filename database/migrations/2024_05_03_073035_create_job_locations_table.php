@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('job_locations', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->foreignId('country_id');
             $table->foreignId('province_id');
             $table->enum('status', ['featured','hot','trending'])->nullable();
             $table->timestamps();
