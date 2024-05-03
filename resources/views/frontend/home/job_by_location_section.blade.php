@@ -11,11 +11,11 @@
         <div class="row mt-50">
             @foreach ($jobLocations as $jobLocation)
                 <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
-                    <div class="card-image-top hover-up"><a href="jobs-grid.html">
+                    <div class="card-image-top hover-up"><a href="{{ route('companies.index', ['country' => $jobLocation->country_id, 'province' => $jobLocation->province_id ]) }}">
                             <div class="image" style="background-image: url({{ $jobLocation->image }});"><span
                                     class="lbl-hot">{{ $jobLocation->status }}</span></div>
                         </a>
-                        <div class="informations"><a href="jobs-grid.html">
+                        <div class="informations"><a href="{{ route('companies.index', ['country' => $jobLocation->country_id, 'province' => $jobLocation->province_id ]) }}">
                                 <h5>{{ Str::limit(formatLocation($jobLocation->country->name, $jobLocation->province->name), 30, '...') }}
                                 </h5>
                             </a>
