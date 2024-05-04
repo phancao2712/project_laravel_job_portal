@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\CandidateMyJobController;
 use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\ContactPageController;
 use App\Http\Controllers\Frontend\FrontendBlogPageController;
 use App\Http\Controllers\Frontend\FrontendCandidatePageController;
 use App\Http\Controllers\Frontend\FrontendCompanyPageController;
@@ -83,7 +84,12 @@ Route::post('apply/{id}', [FrontendJobPageController::class, 'applyJob'])->name(
 Route::get('blogs', [FrontendBlogPageController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{slug}', [FrontendBlogPageController::class, 'show'])->name('blogs.show');
 
+// about page
 Route::get('about-page',[AboutUsPageController::class, 'index'])->name('about-page.index');
+
+// contact page
+Route::get('contact',[ContactPageController::class, 'index'])->name('contact.index');
+Route::post('contact',[ContactPageController::class, 'sendMail'])->name('send-mail');
 
 /* COMPANY */
 Route::group(
