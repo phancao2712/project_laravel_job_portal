@@ -76,7 +76,6 @@
             </li>
 
             {{-- LOCATION --}}
-            <li class="menu-header">Location</li>
             <li class="dropdown {{ setSideBarActive(['admin.country.*', 'admin.province.*', 'admin.district.*']) }}">
                 <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                         class="fas fa-map-marker-alt"></i><span>Location</span></a>
@@ -91,7 +90,6 @@
             </li>
 
             {{-- Section --}}
-            <li class="menu-header">Section</li>
             <li
                 class="dropdown {{ setSideBarActive(['admin.heros.*', 'admin.whyChooseUs.*', 'admin.learnMores.*', 'admin.job-location.*']) }}">
                 <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
@@ -110,7 +108,6 @@
             </li>
 
             {{-- Page --}}
-            <li class="menu-header">Page</li>
             <li class="dropdown {{ setSideBarActive(['admin.about-us.*']) }}">
                 <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
                         class="fas fa-map-marker-alt"></i><span>Page</span></a>
@@ -125,6 +122,10 @@
             <li class="{{ setSideBarActive(['admin.plans.*']) }}"><a class="nav-link"
                     href="{{ route('admin.plans.index') }}"><i class="far fa-square"></i> <span>Price Plan</span></a>
             </li>
+            {{-- PLAN --}}
+            <li class="{{ setSideBarActive(['admin.menu-builder.*']) }}"><a class="nav-link"
+                    href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu Builder</span></a>
+            </li>
 
             {{-- Payment setting --}}
             <li class="{{ setSideBarActive(['admin.orders.index']) }}"><a class="nav-link"
@@ -138,8 +139,9 @@
             </li>
 
             <li class="{{ setSideBarActive(['admin.news-letter.index']) }}"><a class="nav-link"
-                href="{{ route('admin.news-letter.index') }}"><i class="far fa-square"></i> Subscribe<span></span></a>
-        </li>
+                    href="{{ route('admin.news-letter.index') }}"><i class="far fa-square"></i>
+                    Subscribe<span></span></a>
+            </li>
 
         </ul>
     </aside>
