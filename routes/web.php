@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\LocationController;
@@ -90,6 +91,9 @@ Route::get('about-page',[AboutUsPageController::class, 'index'])->name('about-pa
 // contact page
 Route::get('contact',[ContactPageController::class, 'index'])->name('contact.index');
 Route::post('contact',[ContactPageController::class, 'sendMail'])->name('send-mail');
+
+// newsletter
+Route::post('new-letter', [NewsletterController::class, 'store'])->name('new-letter.store');
 
 /* COMPANY */
 Route::group(

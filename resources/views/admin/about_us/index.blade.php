@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" id="editor" cols="30" rows="10">{{ $aboutUs->description }}</textarea>
+                            <textarea name="description" id="editor" cols="30" rows="10">{{ $aboutUs?->description }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
                         <div class="form-group">

@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\WhyChooseUsSectionController;
 use App\Http\Controllers\Admin\LearnMoreController;
 use App\Http\Controllers\Admin\JobLocationController;
+use App\Http\Controllers\Admin\NewsletterController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -151,4 +152,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /*  About page ROUTE */
     Route::resource('about-us', AboutPageController::class);
+
+    /*  new letter ROUTE */
+    Route::get('news-letter', [NewsletterController::class, 'index'])->name('news-letter.index');
+    Route::delete('news-letter/{id}', [NewsletterController::class, 'destroy'])->name('news-letter.destroy');
+
 });

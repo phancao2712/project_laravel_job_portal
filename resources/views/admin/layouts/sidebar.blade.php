@@ -137,6 +137,10 @@
                         Setting</span></a>
             </li>
 
+            <li class="{{ setSideBarActive(['admin.news-letter.index']) }}"><a class="nav-link"
+                href="{{ route('admin.news-letter.index') }}"><i class="far fa-square"></i> Subscribe<span></span></a>
+        </li>
+
         </ul>
     </aside>
 </div>
