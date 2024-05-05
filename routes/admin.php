@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobController;
@@ -158,6 +159,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::get('news-letter', [NewsletterController::class, 'index'])->name('news-letter.index');
     Route::delete('news-letter/{id}', [NewsletterController::class, 'destroy'])->name('news-letter.destroy');
 
-    /*  About page ROUTE */
+    /*  Menu Builder ROUTE */
     Route::resource('menu-builder', MenuBuilderController::class);
+
+     /*  Footer ROUTE */
+     Route::resource('footer', FooterController::class);
 });

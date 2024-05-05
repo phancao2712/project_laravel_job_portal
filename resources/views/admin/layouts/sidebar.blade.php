@@ -118,13 +118,27 @@
                 </ul>
             </li>
 
+            {{-- Footer --}}
+            <li class="dropdown {{ setSideBarActive(['admin.footer.*']) }}">
+                <a href="#" class="nav-link has-dropdown " data-toggle="dropdown"><i
+                        class="fas fa-map-marker-alt"></i><span>Footer</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSideBarActive(['admin.footer.*']) }}"><a class="nav-link "
+                            href="{{ route('admin.footer.index') }}">
+                            <Footer>Footer Detail</Footer>
+                        </a></li>
+                </ul>
+            </li>
+
             {{-- PLAN --}}
             <li class="{{ setSideBarActive(['admin.plans.*']) }}"><a class="nav-link"
                     href="{{ route('admin.plans.index') }}"><i class="far fa-square"></i> <span>Price Plan</span></a>
             </li>
-            {{-- PLAN --}}
+
+            {{-- Menu builder --}}
             <li class="{{ setSideBarActive(['admin.menu-builder.*']) }}"><a class="nav-link"
-                    href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu Builder</span></a>
+                    href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu
+                        Builder</span></a>
             </li>
 
             {{-- Payment setting --}}

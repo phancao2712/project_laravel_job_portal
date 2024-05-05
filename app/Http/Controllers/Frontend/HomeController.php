@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\Footer;
 use App\Models\Hero;
 use App\Models\Job;
 use App\Models\JobCategory;
@@ -38,6 +39,7 @@ class HomeController extends Controller
 
         $jobLocations = JobLocation::take(8)->get();
         $blogs = Blog::take(6)->get();
+        $footer = Footer::first();
         return view('frontend.home.index', compact(
             'plans',
             'hero',
@@ -49,7 +51,8 @@ class HomeController extends Controller
             'learnMore',
             'companies',
             'jobLocations',
-            'blogs'
+            'blogs',
+            'footer'
         ));
     }
 }

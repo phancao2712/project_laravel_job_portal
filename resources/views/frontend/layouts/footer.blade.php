@@ -3,10 +3,9 @@
       <div class="row justify-content-between">
         <div class="footer-col-1 col-md-3 col-sm-12">
           <a class="footer_logo" href="index.html">
-            <img alt="joblist" src="{{ asset('frontend/assets/imgs/template/logo_2.png') }}">
+            <img alt="joblist" src="{{ asset($footer?->logo) }}">
           </a>
-          <div class="mt-20 mb-20 font-xs color-text-paragraph-2">joblist is the heart of the design community and the
-            best resource to discover and connect with designers and jobs worldwide.</div>
+          <div class="mt-20 mb-20 font-xs color-text-paragraph-2">{!! $footer?->description !!}</div>
           <div class="footer-social">
             <a class="icon-socials icon-facebook" href="#"><i class="fab fa-facebook-f"></i></a>
             <a class="icon-socials icon-twitter" href="#"><i class="fab fa-twitter"></i></a>
@@ -14,39 +13,41 @@
           </div>
         </div>
         <div class="footer-col-2 col-md-2 col-xs-6">
+            @php
+                $footerMenu1 = \Menu::getByName('Footer Menu One');
+                $footerMenu2 = \Menu::getByName('Footer Menu Two');
+                $footerMenu3 = \Menu::getByName('Footer Menu Three');
+                $footerMenu4 = \Menu::getByName('Footer Menu Four');
+            @endphp
           <h6 class="mb-20">Resources</h6>
           <ul class="menu-footer">
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Our Team</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Contact</a></li>
+            @foreach ($footerMenu1 as $menu)
+            <li><a href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+            @endforeach
           </ul>
         </div>
         <div class="footer-col-3 col-md-2 col-xs-6">
           <h6 class="mb-20">Community</h6>
           <ul class="menu-footer">
-            <li><a href="#">Feature</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Credit</a></li>
-            <li><a href="#">FAQ</a></li>
+            @foreach ($footerMenu2 as $menu)
+            <li><a href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+            @endforeach
           </ul>
         </div>
         <div class="footer-col-4 col-md-2 col-xs-6">
           <h6 class="mb-20">Quick links</h6>
           <ul class="menu-footer">
-            <li><a href="#">iOS</a></li>
-            <li><a href="#">Android</a></li>
-            <li><a href="#">Microsoft</a></li>
-            <li><a href="#">Desktop</a></li>
+            @foreach ($footerMenu3 as $menu)
+            <li><a href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+            @endforeach
           </ul>
         </div>
         <div class="footer-col-5 col-md-2 col-xs-6">
           <h6 class="mb-20">More</h6>
           <ul class="menu-footer">
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">FAQ</a></li>
+            @foreach ($footerMenu4 as $menu)
+            <li><a href="{{ $menu['link'] }}">{{ $menu['label'] }}</a></li>
+            @endforeach
           </ul>
         </div>
       </div>
