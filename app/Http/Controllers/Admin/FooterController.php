@@ -30,7 +30,8 @@ class FooterController extends Controller
     {
         $request->validate([
             'description' => ['required','max:255'],
-            'image' => ['required','max:2000']
+            'image' => ['nullable','max:2000'],
+            'copyright' => ['required', 'max:50']
         ]);
 
         $formData = [];
@@ -38,6 +39,7 @@ class FooterController extends Controller
 
         if($imagePath) $formData['logo'] = $imagePath;
         $formData['description'] = $request->description;
+        $formData['copyright'] = $request->copyright;
 
         Footer::updateOrCreate(
             ['id' => 1],

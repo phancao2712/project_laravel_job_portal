@@ -28,6 +28,13 @@
                             <textarea name="description" id="editor" cols="30" rows="10">{{ $footer->description }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
+                        <div class="form-group">
+                            <x-image-preview :height="50" :width="100" :source="$footer->logo" />
+                            <label>Copyright</label>
+                            <input type="text" name="copyright" class="form-control {{ hasError($errors, 'copyright') }}"
+                                value="{{ old('copyright', $footer->copyright) }}">
+                            <x-input-error :messages="$errors->get('copyright')" class="mt-2" />
+                        </div>
                         <button class="btn btn-primary">Update</button>
                     </form>
                 </div>

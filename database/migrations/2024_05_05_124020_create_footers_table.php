@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('logo');
             $table->text('description');
+            $table->string('copyright');
             $table->timestamps();
         });
     }

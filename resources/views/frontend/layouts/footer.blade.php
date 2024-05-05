@@ -55,9 +55,7 @@
         </div>
         <div class="footer-bottom mt-50">
             <div class="row">
-                <div class="col-md-6"><span class="font-xs color-text-paragraph">Copyright &copy; 2023. JOBLIST all
-                        right
-                        reserved</span></div>
+                <div class="col-md-6"><span class="font-xs color-text-paragraph">{{ $footer?->copyright }}</span></div>
                 <div class="col-md-6 text-md-end text-start">
                     <div class="footer-social"><a class="font-xs color-text-paragraph" href="#">Privacy
                             Policy</a><a class="font-xs color-text-paragraph mr-30 ml-30" href="#">Terms &amp;
