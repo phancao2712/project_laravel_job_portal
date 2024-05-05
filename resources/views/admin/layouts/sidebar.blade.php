@@ -125,8 +125,14 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setSideBarActive(['admin.footer.*']) }}"><a class="nav-link "
                             href="{{ route('admin.footer.index') }}">
-                            <Footer>Footer Detail</Footer>
-                        </a></li>
+                            <span>Footer Detail</span>
+                        </a>
+                    </li>
+                    <li class="{{ setSideBarActive(['admin.social-icons.*']) }}"><a class="nav-link "
+                        href="{{ route('admin.social-icons.index') }}">
+                        <span>Social Icons</span>
+                    </a>
+                </li>
                 </ul>
             </li>
 

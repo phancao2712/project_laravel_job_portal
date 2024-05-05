@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\LearnMoreController;
 use App\Http\Controllers\Admin\JobLocationController;
 use App\Http\Controllers\Admin\MenuBuilderController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\SocialIconController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -162,6 +163,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  Menu Builder ROUTE */
     Route::resource('menu-builder', MenuBuilderController::class);
 
-     /*  Footer ROUTE */
-     Route::resource('footer', FooterController::class);
+    /*  Footer ROUTE */
+    Route::resource('footer', FooterController::class);
+
+    /*  Footer ROUTE */
+    Route::resource('social-icons', SocialIconController::class);
 });

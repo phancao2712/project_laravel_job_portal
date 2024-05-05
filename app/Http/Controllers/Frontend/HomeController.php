@@ -39,7 +39,6 @@ class HomeController extends Controller
 
         $jobLocations = JobLocation::take(8)->get();
         $blogs = Blog::take(6)->get();
-        $footer = Footer::first();
         return view('frontend.home.index', compact(
             'plans',
             'hero',
@@ -51,8 +50,7 @@ class HomeController extends Controller
             'learnMore',
             'companies',
             'jobLocations',
-            'blogs',
-            'footer'
+            'blogs'
         ));
     }
 }
