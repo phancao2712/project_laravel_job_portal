@@ -3955,3 +3955,7 @@ body:not(.sidebar-mini)
 .ck-editor__editable {
     min-height: 200px;
 }
+
+.icon-dashboard {
+    line-height: 76px !important;
+}

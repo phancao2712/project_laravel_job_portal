@@ -95,23 +95,37 @@ if (!function_exists('storeUserPlanInfo')) {
 
 /** format location  **/
 if (!function_exists('formatLocation')) {
-    function formatLocation($country = null, $province = null, $district = null, $address = null) : string
+    function formatLocation($country = null, $province = null, $district = null, $address = null): string
     {
         $location = '';
 
-    if($address){
-        $location .= $address;
-    }
-    if($district){
-        $location .= $address ? ', ' .$district : $district;
-    }
-    if($province){
-        $location .= $district ? ', ' .$province : $province;
-    }
-    if($country){
-        $location .= $province ? ', ' .$country : $country;
+        if ($address) {
+            $location .= $address;
+        }
+        if ($district) {
+            $location .= $address ? ', ' . $district : $district;
+        }
+        if ($province) {
+            $location .= $district ? ', ' . $province : $province;
+        }
+        if ($country) {
+            $location .= $province ? ', ' . $country : $country;
+        }
+
+        return $location;
     }
 
-    return $location;
-}
+    /** format location  **/
+    if (!function_exists('calculateEarning')) {
+        function calculateEarning($amount): string
+        {
+            $total = 0;
+            foreach ($amount as $key => $value) {
+                $amount = intval(preg_replace('/[^0-9]/', '',$value));
+                $total += $amount;
+            }
+
+            return $total;
+        }
+    }
 }
