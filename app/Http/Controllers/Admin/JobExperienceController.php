@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Candidate;
 use App\Models\Job;
 use App\Models\JobExperience;
 use App\Services\Notify;
@@ -88,7 +89,8 @@ class JobExperienceController extends Controller
     public function destroy(string $id)
     {
         $jobExist = Job::where('job_experience_id', $id)->exists();
-        if ($jobExist) {
+        $candidateExists = Candidate::where('experience_id', $id)->exists();
+        if ($jobExist || $candidateExists) {
             return response(['message' => 'error'], 500);
         }
         try {
