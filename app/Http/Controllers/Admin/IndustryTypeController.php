@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Industry_type;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -59,6 +60,10 @@ class IndustryTypeController extends Controller
      */
     public function edit(string $id): View
     {
+        $companyExists = Company::where('industry_type_id', $id)->exists();
+        if ($companyExists) {
+            return response(['message' => 'error'], 500);
+        }
         $industry = Industry_type::findOrFail($id);
         return view('admin.industry-type.edit', compact(
             'industry'

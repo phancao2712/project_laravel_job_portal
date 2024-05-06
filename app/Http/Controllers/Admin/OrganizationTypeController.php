@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Organization_type;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
@@ -87,6 +88,10 @@ class OrganizationTypeController extends Controller
      */
     public function destroy(string $id)
     {
+        $companyExists = Company::where('organization_type_id', $id)->exists();
+        if ($companyExists) {
+            return response(['message' => 'error'], 500);
+        }
         try {
             Organization_type::findOrFail($id)->delete();
             Notify::DeleteNotify();

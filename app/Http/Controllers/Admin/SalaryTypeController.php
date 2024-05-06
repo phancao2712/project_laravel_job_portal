@@ -88,10 +88,7 @@ class SalaryTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        $jobExist = JobTag::where('tag_id', $id)->exists();
-        if ($jobExist) {
-            return response(['message' => 'error'], 500);
-        }
+
         $jobExist = Job::where('salary_type_id', $id)->exists();
         if ($jobExist) {
             return response(['message' => 'error'], 500);
