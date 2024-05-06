@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CandidateSkill;
 use App\Models\JobSkill;
 use App\Models\Skill;
 use App\Services\Notify;
@@ -88,7 +89,8 @@ class SkillController extends Controller
     public function destroy(string $id)
     {
         $jobExist = JobSkill::where('skill_id', $id)->exists();
-        if ($jobExist) {
+        $candidateExist = CandidateSkill::where('skill_id', $id)->exists();
+        if ($jobExist || $candidateExist) {
             return response(['message' => 'error'], 500);
         }
         try {
