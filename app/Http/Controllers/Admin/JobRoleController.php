@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Models\JobRole;
 use App\Services\Notify;
 use App\Traits\Searchable;
@@ -86,6 +87,10 @@ class JobRoleController extends Controller
      */
     public function destroy(string $id)
     {
+        $jobExist = Job::where('job_role_id', $id)->exists();
+        if ($jobExist) {
+            return response(['message' => 'error'], 500);
+        }
         try {
             JobRole::findOrFail($id)->delete();
             Notify::DeleteNotify();

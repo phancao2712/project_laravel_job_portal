@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Education;
+use App\Models\Job;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\Request;
@@ -86,6 +87,10 @@ class EducationController extends Controller
      */
     public function destroy(string $id)
     {
+        $jobExist = Job::where('education_id', $id)->exists();
+        if ($jobExist) {
+            return response(['message' => 'error'], 500);
+        }
         try {
             Education::findOrFail($id)->delete();
             Notify::DeleteNotify();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
+use App\Models\JobTag;
 use App\Models\SalaryType;
 use App\Services\Notify;
 use App\Traits\Searchable;
@@ -86,6 +88,14 @@ class SalaryTypeController extends Controller
      */
     public function destroy(string $id)
     {
+        $jobExist = JobTag::where('tag_id', $id)->exists();
+        if ($jobExist) {
+            return response(['message' => 'error'], 500);
+        }
+        $jobExist = Job::where('salary_type_id', $id)->exists();
+        if ($jobExist) {
+            return response(['message' => 'error'], 500);
+        }
         try {
             SalaryType::findOrFail($id)->delete();
             Notify::DeleteNotify();

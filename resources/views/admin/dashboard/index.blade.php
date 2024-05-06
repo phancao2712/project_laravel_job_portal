@@ -168,7 +168,8 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex g-2">
-                                            <img width="30px" height="30px" style="object-fit: cover;" src="{{ asset($job->company?->logo) }}" alt="">
+                                            <img width="30px" height="30px" style="object-fit: cover;"
+                                                src="{{ asset($job->company?->logo) }}" alt="">
                                             <div>
                                                 <b>{{ $job->title }}</b>
                                                 <br>
@@ -183,26 +184,29 @@
                                     </td>
                                     <td>
                                         @if ($job->salary_mode == 'range')
-                                            {{ $job?->min_salary }} - {{ $job?->max_salary }} {{ config('settings.site_default_currency') }}
+                                            {{ $job?->min_salary }} - {{ $job?->max_salary }}
+                                            {{ config('settings.site_default_currency') }}
                                         @else
-                                            {{ ($job?->custom_salary !== null) ? $job?->custom_salary : "compativities" }}
+                                            {{ $job?->custom_salary !== null ? $job?->custom_salary : 'compativities' }}
                                         @endif
                                     </td>
                                     <td>{{ formatDate($job->deadline) }}</td>
                                     <td class="column-status">
                                         @if ($job->status === 'pending')
-                                        <span class="badge bg-warning text-white">Pending</span>
+                                            <span class="badge bg-warning text-white">Pending</span>
                                         @elseif ($job->deadline >= date('Y-m-d'))
                                             <span class="badge bg-success text-white">Active</span>
                                         @else
-                                        <span class="badge bg-danger text-light">Expired</span>
+                                            <span class="badge bg-danger text-light">Expired</span>
                                         @endif
                                     </td>
                                     <td>
                                         <label class="custom-switch mt-2">
-                                            <input type="checkbox" @checked($job->status == 'active') name="custom-switch-checkbox" class="custom-switch-input btn-change" data-id="{{ $job->id }}">
+                                            <input type="checkbox" @checked($job->status == 'active')
+                                                name="custom-switch-checkbox" class="custom-switch-input btn-change"
+                                                data-id="{{ $job->id }}">
                                             <span class="custom-switch-indicator"></span>
-                                          </label>
+                                        </label>
                                     </td>
                                 </tr>
                             @empty

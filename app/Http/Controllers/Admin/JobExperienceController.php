@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Models\JobExperience;
 use App\Services\Notify;
 use App\Traits\Searchable;
@@ -86,6 +87,10 @@ class JobExperienceController extends Controller
      */
     public function destroy(string $id)
     {
+        $jobExist = Job::where('job_experience_id', $id)->exists();
+        if ($jobExist) {
+            return response(['message' => 'error'], 500);
+        }
         try {
             JobExperience::findOrFail($id)->delete();
             Notify::DeleteNotify();
