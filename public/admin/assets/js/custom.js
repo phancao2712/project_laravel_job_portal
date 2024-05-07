@@ -33,12 +33,11 @@ $(document).ready(function (){
                     success: function (response) {
                         window.location.reload();
                     },
-                    error: function (status, error, xhr) {
-                        console.log(error);
+                    error: function (xhr,status ,error) {
+                        swal(xhr.responseJSON.message, {
+                            icon: "error",
+                        });
                     },
-                });
-                swal("Poof! Your data has been deleted!", {
-                    icon: "success",
                 });
             } else {
                 swal("Your imaginary file is safe!");

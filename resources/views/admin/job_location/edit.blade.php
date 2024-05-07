@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.job-location.update', $jobLocation->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.job-location.update', $jobLocation?->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
 
@@ -35,7 +35,7 @@
                                 <select name="country_id" id="" class="form-control select2 country">
                                     <option value="">Select country</option>
                                     @foreach ($countries as $country)
-                                        <option @selected($jobLocation->country_id == $country->id) value="{{ $country->id }}">
+                                        <option @selected($jobLocation?->country_id == $country->id) value="{{ $country->id }}">
                                             {{ $country->name }}</option>
                                     @endforeach
                                 </select>
@@ -46,7 +46,7 @@
                                 <select name="province_id" id="" class="form-control select2 province">
                                     <option value="">Select Province</option>
                                     @foreach ($provinces as $province)
-                                    <option @selected($jobLocation->province_id == $province->id) value="{{ $province->id }}">{{ $province->name }}</option>
+                                    <option @selected($jobLocation?->province_id == $province->id) value="{{ $province->id }}">{{ $province->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('province_id')" class="mt-2" />
@@ -65,7 +65,7 @@
                                     name="status" id="">
                                     <option value="">Select Status</option>
                                     @foreach ($lists as $list)
-                                        <option @selected($jobLocation->status == $list) value="{{ $list }}">{{ $list }}</option>
+                                        <option @selected($jobLocation?->status == $list) value="{{ $list }}">{{ $list }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('status')" class="mt-2" />

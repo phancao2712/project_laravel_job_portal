@@ -23,12 +23,12 @@
                                 </tr>
                                 @forelse ($jobLocations as $jobLocation)
                                 <tr>
-                                    <td><x-image-preview :height="50" :width="100" :source="$jobLocation->image" /></td>
-                                    <td>{{ formatLocation($jobLocation->country->name, $jobLocation->province->name) }}</td>
+                                    <td><x-image-preview :height="50" :width="100" :source="$jobLocation?->image" /></td>
+                                    <td>{{ formatLocation($jobLocation?->country->name, $jobLocation?->province->name) }}</td>
                                     <td><span class="badge text-white bg-primary">{{ $jobLocation?->status }}</span></td>
                                     <td>
-                                        <a href="{{ route('admin.job-location.edit', $jobLocation->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{ route('admin.job-location.destroy', $jobLocation->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ route('admin.job-location.edit', $jobLocation?->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('admin.job-location.destroy', $jobLocation?->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @empty
@@ -39,7 +39,9 @@
                             </tbody>
 
                         </table>
-                        {{ $jobLocation->withQueryString()->links() }}
+                       @if ($jobLocations->hasPages())
+                       {{ $jobLocations->withQueryString()->links() }}
+                       @endif
                     </div>
 
                 </div>

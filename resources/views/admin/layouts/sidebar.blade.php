@@ -129,10 +129,10 @@
                         </a>
                     </li>
                     <li class="{{ setSideBarActive(['admin.social-icons.*']) }}"><a class="nav-link "
-                        href="{{ route('admin.social-icons.index') }}">
-                        <span>Social Icons</span>
-                    </a>
-                </li>
+                            href="{{ route('admin.social-icons.index') }}">
+                            <span>Social Icons</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -143,25 +143,33 @@
 
             {{-- Menu builder --}}
             <li class="{{ setSideBarActive(['admin.menu-builder.*']) }}"><a class="nav-link"
-                    href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i> <span>Menu
+                    href="{{ route('admin.menu-builder.index') }}"><i class="far fa-square"></i><span>Menu
                         Builder</span></a>
             </li>
 
             {{-- Payment setting --}}
-            <li class="{{ setSideBarActive(['admin.orders.index']) }}"><a class="nav-link"
+            <li class="{{ setSideBarActive(['admin.orders.*']) }}"><a class="nav-link"
                     href="{{ route('admin.orders.index') }}"><i class="far fa-square"></i><span>Orders</span></a>
             </li>
 
+            {{-- Payment setting --}}
+            <li class="{{ setSideBarActive(['admin.clear-database.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.clear-database.index') }}"><i class="far fa-square"></i><span>Clear
+                        Database</span></a>
+            </li>
+
             {{-- Site setting --}}
-            <li class="{{ setSideBarActive(['admin.site-settings.index']) }}"><a class="nav-link"
+            <li class="{{ setSideBarActive(['admin.site-settings.*']) }}"><a class="nav-link"
                     href="{{ route('admin.site-settings.index') }}"><i class="far fa-square"></i> <span>Site
                         Setting</span></a>
             </li>
 
-            <li class="{{ setSideBarActive(['admin.news-letter.index']) }}"><a class="nav-link"
+            <li class="{{ setSideBarActive(['admin.news-letter.*']) }}"><a class="nav-link"
                     href="{{ route('admin.news-letter.index') }}"><i class="far fa-square"></i>
                     Subscribe<span></span></a>
             </li>
+
+
 
         </ul>
     </aside>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVietnamMapTable extends Migration
+class CreateVietnamMapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -24,8 +24,8 @@ class CreateVietnamMapTable extends Migration
         Schema::create($tableNames['provinces'], function (Blueprint $table) use ($columnNames) {
             $table->bigIncrements('id');
             $table->string($columnNames['name']);
-            $table->unsignedBigInteger($columnNames['countries_id']);
             $table->string($columnNames['gso_id']);
+            $table->foreignId('country_id')->default(240);
             $table->timestamps();
         });
 
@@ -35,22 +35,10 @@ class CreateVietnamMapTable extends Migration
             $table->string($columnNames['gso_id']);
             $table->unsignedBigInteger($columnNames['province_id']);
             $table->timestamps();
+
             $table->foreign($columnNames['province_id'])
                 ->references('id')
                 ->on($tableNames['provinces'])
-                ->cascadeOnDelete();
-        });
-
-        Schema::create($tableNames['wards'], function (Blueprint $table) use ($tableNames, $columnNames) {
-            $table->bigIncrements('id');
-            $table->string($columnNames['name']);
-            $table->string($columnNames['gso_id']);
-            $table->unsignedBigInteger($columnNames['district_id']);
-            $table->timestamps();
-
-            $table->foreign($columnNames['district_id'])
-                ->references('id')
-                ->on($tableNames['districts'])
                 ->cascadeOnDelete();
         });
     }
@@ -71,16 +59,11 @@ class CreateVietnamMapTable extends Migration
              Please publish the package configuration before proceeding, or drop the tables manually.');
         }
 
-        Schema::table($tableNames['wards'], function (Blueprint $table) use ($tableNames, $columnNames) {
-            $table->dropForeign( $tableNames['wards'] . '_' . $columnNames['district_id'] . '_foreign');
-        });
-
         Schema::table($tableNames['districts'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->dropForeign( $tableNames['districts'] . '_' . $columnNames['province_id'] . '_foreign');
         });
 
         Schema::dropIfExists($tableNames['provinces']);
         Schema::dropIfExists($tableNames['districts']);
-        Schema::dropIfExists($tableNames['wards']);
     }
 }

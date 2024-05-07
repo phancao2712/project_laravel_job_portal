@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <x-image-preview :height="200" :width="300" :source="$hero->image" />
+                                    <x-image-preview :height="200" :width="300" :source="$hero?->image" />
                                     <label>Image</label>
                                     <input type="file" name="image"
                                     class="form-control {{ hasError($errors, 'image') }}"
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <x-image-preview :height="200" :width="300"  :source="$hero->background_image"/>
+                                    <x-image-preview :height="200" :width="300"  :source="$hero?->background_image"/>
                                     <label>Background Image</label>
                                     <input type="file" name="backgroundImage"
                                     class="form-control {{ hasError($errors, 'backgroundImage') }}"
@@ -44,7 +44,7 @@
                             <label>Title</label>
                             <input type="text" name="title"
                             class="form-control {{ hasError($errors, 'title') }}"
-                            value="{{ old('title', $hero->title) }}"
+                            value="{{ old('title', $hero?->title) }}"
                             >
                           <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
@@ -52,7 +52,7 @@
                             <label>Sub title</label>
                             <input type="text" name="sub_title"
                             class="form-control {{ hasError($errors, 'sub_title') }}"
-                            value="{{ old('sub_title', $hero->sub_title) }}"
+                            value="{{ old('sub_title', $hero?->sub_title) }}"
                             >
                           <x-input-error :messages="$errors->get('sub_title')" class="mt-2" />
                         </div>
