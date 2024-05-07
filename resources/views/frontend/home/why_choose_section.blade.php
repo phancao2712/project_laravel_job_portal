@@ -10,28 +10,28 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="box-step step-1">
                         <h1 class="number-element">
-                            <i class="{{ $whyChooseUs->icon_1 }}"></i>
+                            <i class="{{ $whyChooseUs?->icon_1 }}"></i>
                         </h1>
-                        <h4 class="mb-20">{{ $whyChooseUs->title_1 }}</h4>
-                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs->subtitle_1 }}</p>
+                        <h4 class="mb-20">{{ $whyChooseUs?->title_1 }}</h4>
+                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs?->subtitle_1 }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="box-step step-2">
                         <h1 class="number-element">
-                            <i class="{{ $whyChooseUs->icon_2 }}"></i>
+                            <i class="{{ $whyChooseUs?->icon_2 }}"></i>
                         </h1>
-                        <h4 class="mb-20">{{ $whyChooseUs->title_2 }}</h4>
-                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs->subtitle_2 }}</p>
+                        <h4 class="mb-20">{{ $whyChooseUs?->title_2 }}</h4>
+                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs?->subtitle_2 }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="box-step border-0">
                         <h1 class="number-element">
-                            <i class="{{ $whyChooseUs->icon_3 }}"></i>
+                            <i class="{{ $whyChooseUs?->icon_3 }}"></i>
                         </h1>
-                        <h4 class="mb-20">{{ $whyChooseUs->title_3 }}</h4>
-                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs->subtitle_3 }}</p>
+                        <h4 class="mb-20">{{ $whyChooseUs?->title_3 }}</h4>
+                        <p class="font-lg color-text-paragraph-2">{{ $whyChooseUs?->subtitle_3 }}</p>
                     </div>
                 </div>
             </div>
