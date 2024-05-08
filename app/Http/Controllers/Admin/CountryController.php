@@ -12,6 +12,9 @@ class CountryController extends Controller
 {
 
     use Searchable;
+    function __construct(){
+        $this->middleware(['permission: job location']);
+    }
     /**
      * Display a listing of the resource.
      */

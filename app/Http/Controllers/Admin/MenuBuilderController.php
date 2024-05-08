@@ -13,6 +13,9 @@ class MenuBuilderController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct(){
+        $this->middleware(['permission: menu builder']);
+    }
     public function index() : View
     {
         return view('admin.menu-builder.index');

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Artisan;
 use File;
 use Illuminate\Http\Request;
@@ -9,11 +10,17 @@ use Illuminate\View\View;
 
 class ClearDatabaseController extends Controller
 {
-    public function index() : View {
+    function __construct()
+    {
+        $this->middleware(['permission: database clear']);
+    }
+    public function index(): View
+    {
         return view('admin.clear-db.index');
     }
 
-    public function clearDatabase() {
+    public function clearDatabase()
+    {
         try {
             Artisan::call('migrate:fresh');
 
@@ -25,9 +32,9 @@ class ClearDatabaseController extends Controller
             ];
 
             foreach ($seeders as $seeder) {
-                Artisan::class('db:seed',['--class' => $seeder]);
+                Artisan::class('db:seed', ['--class' => $seeder]);
             }
-            
+
             $this->deleteFile();
 
             return response(['message' => 'Delete database successfully']);
@@ -36,7 +43,8 @@ class ClearDatabaseController extends Controller
         }
     }
 
-    function deleteFile() {
+    function deleteFile()
+    {
         $path = public_path('upload');
 
         $all_file = File::allFiles($path);

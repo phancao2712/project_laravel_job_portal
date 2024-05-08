@@ -15,8 +15,10 @@ class AdminSeeder extends Seeder
     {
         $admin = new Admin();
         $admin->name = 'Super Admin';
-        $admin->email = 'admin@gmail.com';
+        $admin->email = 'superadmin@gmail.com';
         $admin->password = bcrypt('password');
         $admin->save();
+
+        $admin->assignRole('Super Admin');
     }
 }

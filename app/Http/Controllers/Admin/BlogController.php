@@ -19,6 +19,9 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct(){
+        $this->middleware(['permission: blogs']);
+    }
     public function index(): View
     {
         $query = Blog::query();

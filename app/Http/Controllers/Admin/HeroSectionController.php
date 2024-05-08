@@ -15,6 +15,9 @@ class HeroSectionController extends Controller
      * Display a listing of the resource.
      */
     use FileUploadTrait;
+    function __construct(){
+        $this->middleware(['permission: sections']);
+    }
     public function index() : View
     {
         $hero = Hero::first();

@@ -16,6 +16,7 @@
         "laraveldaily/laravel-invoices": "3.3.1",
         "php-flasher/flasher-laravel": "^1.15",
         "razorpay/razorpay": "2.*",
+        "spatie/laravel-permission": "^6.7",
         "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^13.13"
     },

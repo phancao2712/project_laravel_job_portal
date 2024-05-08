@@ -13,6 +13,9 @@ class SocialIconController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct(){
+        $this->middleware(['permission: site footer']);
+    }
     public function index() : View
     {
         $socialIcons = SocialIcon::paginate(20);

@@ -14,6 +14,9 @@ class WhyChooseUsSectionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct(){
+        $this->middleware(['permission: sections']);
+    }
     public function index() : View
     {
         $sections = WhyChooseUsSection::first();

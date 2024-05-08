@@ -12,6 +12,9 @@ use Illuminate\View\View;
 class NewsletterController extends Controller
 {
     use Searchable;
+    function __construct(){
+        $this->middleware(['permission: new letter']);
+    }
 
     public function index(Request $request) : View {
         $query = Subscribes::query();

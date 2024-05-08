@@ -11,6 +11,9 @@ use Illuminate\View\View;
 
 class AboutPageController extends Controller
 {
+    function __construct(){
+        $this->middleware(['permission: site pages']);
+    }
     use FileUploadTrait;
     /**
      * Display a listing of the resource.

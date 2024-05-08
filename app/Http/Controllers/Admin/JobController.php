@@ -31,6 +31,13 @@ class JobController extends Controller
     /**
      * Display a listing of the resource.
      */
+    function __construct(){
+        $this->middleware(['permission: job create|job update|job delete'])->only('index');
+        $this->middleware(['permission: job create'])->only('create','store');
+        $this->middleware(['permission: job update'])->only('update','edit');
+        $this->middleware(['permission: job delete'])->only('destroy');
+    }
+
     public function index() : View
     {
         $query = Job::query();

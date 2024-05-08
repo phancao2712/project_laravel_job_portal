@@ -17,6 +17,12 @@ class JobCategoryController extends Controller
      * Display a listing of the resource.
      */
     use Searchable;
+    function __construct(){
+        $this->middleware(['permission: job category create|job category update|job category delete'])->only('index');
+        $this->middleware(['permission: job category create'])->only('create','store');
+        $this->middleware(['permission: job category update'])->only('update','edit');
+        $this->middleware(['permission: job category delete'])->only('destroy');
+    }
     public function index(): View
     {
         $query = JobCategory::query();
