@@ -9,14 +9,24 @@ use Illuminate\Support\Facades\Session;
 
 class OrderService
 {
-    static function OrderService(string $transactionId, string $paymentProvider,
-    string $amount, string $painInCurrency, string $paymentStatus)
-    {
+    static function OrderService(
+        string $transactionId,
+        string $paymentProvider,
+        string $amount,
+        string $painInCurrency,
+        string $paymentStatus
+    ) {
+        dd(
+            $transactionId,
+            $paymentProvider,
+            $amount,
+            $painInCurrency,
+            $paymentStatus
+        );
         $model = new Order();
-
         $model->company_id = Auth::user()->company->id;
         $model->plan_id = Session::get('selected_plan')['id'];
-        $model->package_name = Session::get('selected_plan')['lable'];
+        $model->package_name = Session::get('selected_plan')['label'];
         $model->transaction_id = $transactionId;
         $model->order_id = uniqid();
         $model->payment_provider = $paymentProvider;
@@ -29,28 +39,28 @@ class OrderService
     }
 
 
-    static function setUserPlan() {
+    static function setUserPlan()
+    {
         $userPlan = UserPlan::where('company_id', Auth::user()->company->id)->first();
         UserPlan::updateOrCreate(
-            ['company_id' => Auth::user()->company->id],    
+            ['company_id' => Auth::user()->company->id],
             [
                 'plan_id' =>  Session::get('selected_plan')['id'],
 
                 'job_limit' => $userPlan?->job_limit ?
-                $userPlan?->job_limit + Session::get('selected_plan')['job_limit'] :
-                Session::get('selected_plan')['job_limit'],
+                    $userPlan?->job_limit + Session::get('selected_plan')['job_limit'] :
+                    Session::get('selected_plan')['job_limit'],
 
                 'featured_job_limit' => $userPlan?->featured_job_limit ?
-                $userPlan?->featured_job_limit + Session::get('selected_plan')['featured_job_limit'] :
-                Session::get('selected_plan')['featured_job_limit'],
+                    $userPlan?->featured_job_limit + Session::get('selected_plan')['featured_job_limit'] :
+                    Session::get('selected_plan')['featured_job_limit'],
 
                 'highlight_job_limit' => $userPlan?->highlight_job_limit ?
-                $userPlan?->highlight_job_limit + Session::get('selected_plan')['highlight_job_limit'] :
-                Session::get('selected_plan')['highlight_job_limit'],
+                    $userPlan?->highlight_job_limit + Session::get('selected_plan')['highlight_job_limit'] :
+                    Session::get('selected_plan')['highlight_job_limit'],
 
                 'profile_verified' => Session::get('selected_plan')['profile_verified']
             ]
         );
     }
-
 }

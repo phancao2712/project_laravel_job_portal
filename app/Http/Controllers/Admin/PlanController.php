@@ -40,7 +40,7 @@ class PlanController extends Controller
     public function store(PlanStoreRequest $request) : RedirectResponse
     {
         $model = new Plan();
-        $model->lable = $request->lable;
+        $model->label = $request->label;
         $model->price = $request->price;
         $model->job_limit = $request->job_limit;
         $model->highlight_job_limit = $request->highlight_job_limit;
@@ -72,7 +72,7 @@ class PlanController extends Controller
     {
         $model = Plan::findOrFail($id);
 
-        $model->lable = $request->lable;
+        $model->label = $request->label;
         $model->price = $request->price;
         $model->job_limit = $request->job_limit;
         $model->highlight_job_limit = $request->highlight_job_limit;

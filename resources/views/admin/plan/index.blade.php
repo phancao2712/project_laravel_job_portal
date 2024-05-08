@@ -29,7 +29,7 @@
                         </div>
                         <div class="pricing-padding">
                             <div>
-                                <h4>{{ $plan->lable }}</h4>
+                                <h4>{{ $plan->label }}</h4>
                             </div>
                             <div class="pricing-price">
                                 <div>${{ $plan->price }}</div>

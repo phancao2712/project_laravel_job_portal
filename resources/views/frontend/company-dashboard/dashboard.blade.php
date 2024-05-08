@@ -59,14 +59,14 @@
                   </div>
                 </div>
               </div>
-              @else
+              @endif
               <div class="border mt-30">
                 <table class="table">
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
                         <td>Current Package</td>
-                        <td>{{ $userPlan?->plan?->lable }}</td>
+                        <td>{{ $userPlan?->plan?->label }}</td>
                       </tr>
                       <tr>
                         <th scope="row">2</th>
@@ -86,7 +86,6 @@
                     </tbody>
                   </table>
              </div>
-              @endif
             </div>
           </div>
         </div>

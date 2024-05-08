@@ -36,13 +36,10 @@ class JobRoleSeeder extends Seeder
             "Police Officer"
         );
 
-        $salary_types = array(
-            "Monthly",
-            "Hourly",
-            "Yearly",
-            "Project Basis",
-        );
-
-
+        foreach ($job_roles as $role) {
+            $model = new JobRole();
+            $model->name = $role;
+            $model->save();
+        }
     }
 }

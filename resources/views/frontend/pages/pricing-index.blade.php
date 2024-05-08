@@ -27,7 +27,7 @@
                         @foreach ($plans as $plan)
                             <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
                                 <div class="box-pricing-item">
-                                    <h3>{{ $plan->lable }}</h3>
+                                    <h3>{{ $plan->label }}</h3>
                                     <div class="box-info-price"><span
                                             class="text-price for-month display-month">${{ $plan->price }}</span><span
                                             class="text-month">/month</span></div>

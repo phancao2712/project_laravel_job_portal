@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('lable');
+            $table->string('label');
             $table->double('price');
             $table->integer('job_limit');
             $table->integer('highlight_job_limit');

@@ -55,7 +55,7 @@
 
                         <div class="col-md-4 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                             <div class="box-pricing-item">
-                                <h3>{{ $plan->lable }}</h3>
+                                <h3>{{ $plan->label }}</h3>
                                 <div class="box-info-price"><span
                                         class="text-price for-month display-month">${{ $plan->price }}</span><span
                                         class="text-month">/month</span></div>

@@ -114,7 +114,7 @@ class PaymentController extends Controller
                     'price_data' => [
                         'currency' => config('gatewaySettings.stripe_currency_name'),
                         'product_data' => [
-                            'name' => Session::get('selected_plan')['lable'] . 'Package',
+                            'name' => Session::get('selected_plan')['label'] . 'Package',
                         ],
                         'unit_amount' => $paypalAmount
                     ],
@@ -148,7 +148,7 @@ class PaymentController extends Controller
 
                 return redirect()->route('company.payment.success');
             } catch (\Exception $e) {
-                logger('Payment ERROR' >> $e);
+                logger($e);
             }
         }
     }
