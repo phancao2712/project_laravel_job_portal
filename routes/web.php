@@ -134,10 +134,8 @@ Route::group(
         Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
         Route::get('payment/error', [PaymentController::class, 'error'])->name('payment.error');
 
-
         Route::get('razorpay/redirect', [PaymentController::class, 'razorpayRedirect'])->name('razorpay-redirect');
         Route::post('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
-
     }
 );
 
