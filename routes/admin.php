@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SocialIconController;
 use App\Http\Controllers\Admin\ClearDatabaseController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -182,4 +183,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /*  Clear database ROUTE */
     Route::get('clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');
     Route::delete('clear-database', [ClearDatabaseController::class, 'clearDatabase'])->name('clear-database.clearDatabase');
+
+    // profile controller
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/updatePassword/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile.updatePassword');
 });

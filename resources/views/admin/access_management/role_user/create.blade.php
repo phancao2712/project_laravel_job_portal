@@ -29,13 +29,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Password</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'password') }}" name="password"
+                                <input type="password" class="form-control {{ hasError($errors, 'password') }}" name="password"
                                     value="{{ old('password') }}">
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                             <div class="form-group">
                                 <label for="">Confirm Password</label>
-                                <input type="text" class="form-control {{ hasError($errors, 'password_confirmation') }}" name="password_confirmation"
+                                <input type="password" class="form-control {{ hasError($errors, 'password_confirmation') }}" name="password_confirmation"
                                     value="{{ old('password_confirmation') }}">
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
