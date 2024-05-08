@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link href="{{ asset('frontend/assets/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
-    <title>joblist - Job Portal HTML Template </title>
+    <title>Joblist - Job portal</title>
 </head>
 
 <body>
