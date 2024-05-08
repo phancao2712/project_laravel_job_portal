@@ -32,7 +32,7 @@
                                         <th>Payment Status</th>
                                         <th>Action</th>
                                     </tr>
-                                    @foreach ($orders as $order)
+                                    @forelse ($orders as $order)
                                         <tr>
                                             <td>
                                                <strong> #{{ $order->order_id }}</strong>
@@ -54,7 +54,12 @@
                                                     class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach
+
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">No reusult found😢!</td>
+                                            </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <div class="paginations">

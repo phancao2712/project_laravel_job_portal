@@ -102,7 +102,8 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="3" class="text-center">No reusult found!</td>
+                                                <td colspan="5" class="text-center">No reusult found😢!</td>
+
                                             </tr>
                                         @endforelse
                                     </tbody>

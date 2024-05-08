@@ -49,6 +49,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        Notify::SuccessNotify('Registered successfully');
         if(auth()->user()->role === 'company'){
             return redirect(RouteServiceProvider::COMPANY_DASHBOARD);
         } else
@@ -56,8 +57,6 @@ class RegisteredUserController extends Controller
             return redirect(RouteServiceProvider::CANDIDATE_DASHBOARD);
         }
 
-        Notify::SuccessNotify('Registered successfully');
-
-        return redirect('/login');
+        return redirect('/');
     }
 }
