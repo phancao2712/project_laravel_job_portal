@@ -37,4 +37,10 @@ class Notify {
         ->error($error)
         ->flash();
     }
+
+    static function SuccessNotify($message){
+        return flash()
+        ->success($message)
+        ->flash();
+    }
 }

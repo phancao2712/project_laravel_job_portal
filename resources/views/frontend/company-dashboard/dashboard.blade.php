@@ -59,34 +59,34 @@
                   </div>
                 </div>
               </div>
-              @endif
-
-             <div class="border mt-30">
+              @else
+              <div class="border mt-30">
                 <table class="table">
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
                         <td>Current Package</td>
-                        <td>{{ $userPlan->plan->lable }}</td>
+                        <td>{{ $userPlan?->plan?->lable }}</td>
                       </tr>
                       <tr>
                         <th scope="row">2</th>
                         <td>Job Post Available </td>
-                        <td>{{ $userPlan->job_limit }}</td>
+                        <td>{{ $userPlan?->job_limit }}</td>
                       </tr>
                       <tr>
                         <th scope="row">3</th>
                         <td>Featured Post Available</td>
-                        <td>{{ $userPlan->featured_job_limit }}</td>
+                        <td>{{ $userPlan?->featured_job_limit }}</td>
                       </tr>
                       <tr>
                         <th scope="row">4</th>
                         <td>Highlight Post Available</td>
-                        <td>{{ $userPlan->highlight_job_limit }}</td>
+                        <td>{{ $userPlan?->highlight_job_limit }}</td>
                       </tr>
                     </tbody>
                   </table>
              </div>
+              @endif
             </div>
           </div>
         </div>

@@ -31,8 +31,8 @@ class CompanyProfileController extends Controller
         $organizationTypes = Organization_type::all();
         $teamSizes = TeamSize::all();
         $countries = Country::all();
-        $provinces = Province::select(['id', 'name', 'country_id'])->where('country_id', $companyInfo->country)->get();
-        $districts = District::select(['id', 'name', 'country_id', 'province_id'])->where('province_id', $companyInfo->province)->get();
+        $provinces = Province::select(['id', 'name', 'country_id'])->where('country_id', $companyInfo?->country)->get();
+        $districts = District::select(['id', 'name', 'country_id', 'province_id'])->where('province_id', $companyInfo?->province)->get();
 
         return view('frontend.company-dashboard.profile.index', compact(
             'companyInfo',

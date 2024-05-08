@@ -14,7 +14,7 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
 class OrderController extends Controller
 {
     public function index() : View {
-        $orders = Order::where('company_id', auth()->user()->company->id)->paginate(10);
+        $orders = Order::where('company_id', auth()->user()->company?->id)->paginate(10);
         return view('frontend.company-dashboard.order.index', compact(
             'orders'
         ));
