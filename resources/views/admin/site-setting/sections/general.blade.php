@@ -1,3 +1,4 @@
+<div class="tab-pane fade show active" id="home4" role="tabpanel" aria-labelledby="home-tab4">
 <form action="{{ route('admin.site-settings.update') }}" method="POST">
     @csrf
     <div class="row">
@@ -52,3 +53,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
 </form>
+</div>

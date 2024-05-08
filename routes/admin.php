@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /* SITE SETTING ROUTE */
     Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::post('site-update', [SiteSettingController::class, 'updateGeneralSetting'])->name('site-settings.update');
+    Route::post('logo-update', [SiteSettingController::class, 'updateLogoSetting'])->name('site-settings.updateLogo');
 
     /* ORDERS SETTING ROUTE */
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
