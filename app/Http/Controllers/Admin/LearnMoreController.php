@@ -38,7 +38,8 @@ class LearnMoreController extends Controller
         ]);
 
         $formData = [];
-        $imagePath = $this->uploadFile($request,'image');
+        $oldPath = LearnMore::where('id',$id)->select('image')->first();
+        $imagePath = $this->uploadFile($request,'image',$oldPath?->image);
         if($imagePath) $formData['image'] = $imagePath;
         $formData['title'] = $request->title;
         $formData['subtitle'] = $request->subtitle;

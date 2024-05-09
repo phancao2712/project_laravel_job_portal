@@ -47,15 +47,14 @@ class SiteSettingController extends Controller
         ]);
 
         $logoData = [];
-        $logoPath = $this->uploadFile($request,'logo');
+        $logoPath = $this->uploadFile($request,'logo', config('settings.site_logo'));
         if($logoPath) $logoData['value'] = $logoPath;
         SiteSetting::updateOrCreate(
             ['key' => 'site_logo'],
             $logoData
         );
-
         $faviconData = [];
-        $faviconPath = $this->uploadFile($request,'favicon');
+        $faviconPath = $this->uploadFile($request,'favicon', config('settings.site_favicon'));
         if($logoPath) $faviconData['value'] = $faviconPath;
         SiteSetting::updateOrCreate(
             ['key' => 'site_favicon'],

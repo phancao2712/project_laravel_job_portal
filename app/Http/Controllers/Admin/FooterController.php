@@ -38,7 +38,9 @@ class FooterController extends Controller
         ]);
 
         $formData = [];
-        $imagePath = $this->uploadFile($request, 'image');
+
+        $oldPath = Footer::where('id',$id)->select('logo')->first();
+        $imagePath = $this->uploadFile($request,'image',$oldPath?->logo);
 
         if($imagePath) $formData['logo'] = $imagePath;
         $formData['description'] = $request->description;

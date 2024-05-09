@@ -36,9 +36,9 @@ class HeroSectionController extends Controller
         ]);
 
         $formData = [];
-        $imagePath = $this->uploadFile($request, 'image');
-        $backgroundImagePath = $this->uploadFile($request, 'backgroundImage');
-
+        $oldPath = Hero::where('id',$id)->select('image', 'background_image')->first();
+        $imagePath = $this->uploadFile($request, 'image', $oldPath?->image);
+        $backgroundImagePath = $this->uploadFile($request, 'backgroundImage', $oldPath?->backgroundImage);
         if($imagePath) $formData['image'] = $imagePath;
         if($backgroundImagePath) $formData['background_image'] = $backgroundImagePath;
         $formData['title'] = $request->title;

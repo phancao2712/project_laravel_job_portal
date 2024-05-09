@@ -52,7 +52,7 @@ class BlogController extends Controller
         $blog->image = $imagePath;
         $blog->title = $request->title;
         $blog->description = $request->description;
-        $blog->author_id = auth()->user()->id;
+        $blog->author_id = auth()->guard('admin')->user()->id;
         $blog->save();
 
         Notify::CreateNotify();
@@ -88,9 +88,9 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, string $id)
     {
         $data = [];
-        $imagePath = $this->uploadFile($request, 'image');
-
         $blog = Blog::findOrFail($id);
+
+        $imagePath = $this->uploadFile($request, 'image', $blog?->image);
         if ($imagePath) $data['image'] = $imagePath;
         $data['image'] = $imagePath;
         $data['title'] = $request->title;

@@ -38,8 +38,9 @@ class AboutPageController extends Controller
             'url' => ['nullable']
         ]);
 
+        $oldPath = AboutUs::where('id',$id)->select('image')->first();
+        $imagePath = $this->uploadFile($request,'image', $oldPath->image);
         $formData = [];
-        $imagePath = $this->uploadFile($request,'image');
         if($imagePath) $formData['image'] = $imagePath;
         $formData['title'] = $request->title;
         $formData['description'] = $request->description;

@@ -49,7 +49,6 @@ class JobLocationController extends Controller
             'country_id' => ['required'],
             'image' => ['required','max:2500']
         ]);
-
         $data = [];
         $imagePath = $this->uploadFile($request,'image');
         if($imagePath) $data['image'] = $imagePath;
@@ -92,7 +91,8 @@ class JobLocationController extends Controller
         ]);
 
         $data = [];
-        $imagePath = $this->uploadFile($request,'image');
+        $oldPath = JobLocation::where('id',$id)->select('image')->first();
+        $imagePath = $this->uploadFile($request,'image',$oldPath?->image);
         if($imagePath) $data['image'] = $imagePath;
         $data['province_id'] = $request->province_id;
         $data['country_id'] = $request->country_id;

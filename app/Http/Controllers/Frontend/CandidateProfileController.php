@@ -56,8 +56,8 @@ class CandidateProfileController extends Controller
 
     public function updateBasicInfo(UpdateBasicInfoRequest $request): RedirectResponse
     {
-        $picturePath = $this->uploadFile($request, 'picture');
-        $cvPath = $this->uploadFile($request, 'cv');
+        $picturePath = $this->uploadFile($request, 'picture', auth()->user()->profileCandidate?->image);
+        $cvPath = $this->uploadFile($request, 'cv',auth()->user()->profileCandidate?->cv);
 
         $data = [];
 
