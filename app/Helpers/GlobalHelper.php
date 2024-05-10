@@ -59,7 +59,6 @@ if (!function_exists('checkCompleteCandidateProfile')) {
             'birth_date',
             'bio',
             'country'
-
         ];
         $completeProfile = Candidate::where('user_id', Auth::user()->id)->first();
 

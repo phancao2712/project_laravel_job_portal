@@ -26,13 +26,13 @@
                                 <div class="col-lg-6 mb-30">
                                     <div class="card-grid-3 hover-up">
                                         <div class="text-center card-grid-3-image"><a
-                                                href="{{ route('blogs.show', $blog->id) }}">
+                                                href="{{ route('blogs.show', $blog->slug) }}">
                                                 <figure><img height="270px" style="object-fit: cover;" alt="joblist"
                                                         src="{{ asset($blog->image) }}"></figure>
                                             </a></div>
                                         <div class="card-block-info">
                                             <h5><a
-                                                    href="{{ route('blogs.show', $blog->id) }}">{{ Str::limit($blog->title, $limit = 70, '...') }}</a>
+                                                    href="{{ route('blogs.show', $blog->slug) }}">{{ Str::limit($blog->title, $limit = 70, '...') }}</a>
                                             </h5>
                                             <p class="mt-10 color-text-paragraph font-sm">
                                                 {{ Str::limit(strip_tags($blog->description), $limit = 150, '...') }}

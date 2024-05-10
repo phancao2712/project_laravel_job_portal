@@ -21,7 +21,7 @@ class FrontendBlogPageController extends Controller
     }
 
     public function show(string $id) : View {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('slug',$id)->first();
         return view('frontend.pages.blog-detail', compact(
             'blog'
         ));

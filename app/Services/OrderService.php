@@ -16,13 +16,6 @@ class OrderService
         string $painInCurrency,
         string $paymentStatus
     ) {
-        dd(
-            $transactionId,
-            $paymentProvider,
-            $amount,
-            $painInCurrency,
-            $paymentStatus
-        );
         $model = new Order();
         $model->company_id = Auth::user()->company->id;
         $model->plan_id = Session::get('selected_plan')['id'];
