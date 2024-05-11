@@ -48,6 +48,11 @@ class Candidate extends Model
         ];
     }
 
+    function experiences() : HasMany
+    {
+        return $this->hasMany(CandidateExperience::class, 'candidate_id', 'id')->orderBy('id', 'DESC');
+    }
+
     function skills(): HasMany
     {
         return $this->hasMany(CandidateSkill::class, 'candidate_id', 'id');
@@ -58,10 +63,6 @@ class Candidate extends Model
         return $this->hasMany(CandidateLanguage::class, 'candidate_id', 'id');
     }
 
-    function experiences() : HasMany
-    {
-        return $this->hasMany(CandidateExperience::class, 'candidate_id', 'id')->orderBy('id', 'DESC');
-    }
 
     function educations() : HasMany
     {
