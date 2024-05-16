@@ -67,12 +67,13 @@ class FrontendJobPageController extends Controller
             $query->where('status', 'active')->where('deadline', '>=', date('Y-m-d'));
         }])->get();
 
+        $jobScores = [];
         if (isset(auth()->user()->profileCandidate->id)) {
             $allJob = Job::where(['status' => 'active'])
             ->where('deadline', '>=', date('Y-m-d'))->get();
             $candidate = Candidate::with(['experience', 'skills', 'candidateCountry'])->where('user_id', auth()->user()?->id)->first();
             $countSkill = Skill::count();
-            $jobScores = [];
+
             foreach ($allJob as $job) {
                 $math = (new CalculateMatchingPercentageService)->calculate($candidate, $job, $countSkill);
 

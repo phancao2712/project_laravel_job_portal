@@ -47,10 +47,11 @@ class CountryController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'unique:countries,name']
         ]);
-
-        $type = new Country();
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Country::create(
+            $data
+        );
 
         Notify::CreateNotify();
         return to_route('admin.country.index');
@@ -75,10 +76,12 @@ class CountryController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'unique:countries,name']
         ]);
-
-        $type = Country::findOrFail($id);
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Country::updateOrCreate(
+            ['id' => $id],
+            $data
+        );
 
         Notify::UpdateNotify();
         return to_route('admin.country.index');

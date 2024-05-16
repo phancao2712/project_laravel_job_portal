@@ -21,6 +21,8 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
                                 <div class="row mt-10 display-list">
+
+
                                     @forelse ($jobs as $job)
                                         <div class="col-xl-12 col-12">
                                             <div class="card-grid-2 hover-up"><span class="flash"></span>
@@ -68,7 +70,8 @@
                                                                 <a class=" mr-5 job-skill"
                                                                     href="javascript:;">{{ $skill->skill->name }}</a>
                                                             @elseif($loop->index >= 7)
-                                                                <a class=" mr-5 job-skill" href="javascript:;">More ...</a>
+                                                                <a class=" mr-5 job-skill" href="javascript:;">More
+                                                                    ...</a>
                                                             @endif
                                                         @endforeach
                                                     </div>
@@ -76,7 +79,8 @@
                                                         <div class="row">
                                                             <div class="col-lg-7 col-7"><span class="card-text-price">
                                                                     @if ($job->salary_mode == 'range')
-                                                                        {{ $job?->min_salary }} - {{ $job?->max_salary }}
+                                                                        {{ $job?->min_salary }} -
+                                                                        {{ $job?->max_salary }}
                                                                         {{ config('settings.site_default_currency') }}
                                                                         <span class="text-muted"> /
                                                                             {{ $job->salaryType->name }}</span>
@@ -107,6 +111,9 @@
                                     @empty
                                         <h5 class="text-center">Sorry! No data Found😢.</h5>
                                     @endforelse
+
+
+
                                 </div>
 
                                 <div class="paginations">
@@ -116,14 +123,16 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                @forelse ($jobScores as $jobScore)
+                                @if (Auth::check())
+                                    @forelse ($jobScores as $jobScore)
                                         <div class="col-xl-12 col-12">
                                             <div class="card-grid-2 hover-up"><span class="flash"></span>
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                                         <div class="card-grid-2-image-left">
                                                             <div class="image-box"><img
-                                                                    src="{{ asset($jobScore['job']->company?->logo) }}" alt="joblist">
+                                                                    src="{{ asset($jobScore['job']->company?->logo) }}"
+                                                                    alt="joblist">
                                                             </div>
                                                             <div class="right-info"><a class="name-job"
                                                                     href="{{ route('companies.show', $jobScore['job']->company->slug) }}">{{ $jobScore['job']->company->name }}</a><span
@@ -133,8 +142,8 @@
                                                     </div>
                                                     <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
                                                         <div class="pl-15 mb-15 mt-30">
-                                                            <a class="btn btn-grey-small mr-5"
-                                                                    href="javascript:;">Match Percentage: {{ round($jobScore['score'],2) }}%</a>
+                                                            <a class="btn btn-grey-small mr-5" href="javascript:;">Match
+                                                                Percentage: {{ round($jobScore['score'], 2) }}%</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,8 +152,10 @@
                                                             href="{{ route('job.show', $jobScore['job']->slug) }}">{{ $jobScore['job']?->title }}</a>
                                                     </h4>
                                                     <div class="mt-5">
-                                                        <span class="card-briefcase">{{ $jobScore['job']->jobType->name }}</span>
-                                                        <span class="card-briefcase">{{ $jobScore['job']->jobExperience?->name }}</span>
+                                                        <span
+                                                            class="card-briefcase">{{ $jobScore['job']->jobType->name }}</span>
+                                                        <span
+                                                            class="card-briefcase">{{ $jobScore['job']->jobExperience?->name }}</span>
                                                         <span
                                                             class="card-time">{{ $jobScore['job']->created_at->diffForHumans() }}</span>
                                                     </div>
@@ -154,7 +165,8 @@
                                                                 <a class=" mr-5 job-skill"
                                                                     href="javascript:;">{{ $skill->skill->name }}</a>
                                                             @elseif($loop->index >= 7)
-                                                                <a class=" mr-5 job-skill" href="javascript:;">More ...</a>
+                                                                <a class=" mr-5 job-skill" href="javascript:;">More
+                                                                    ...</a>
                                                             @endif
                                                         @endforeach
                                                     </div>
@@ -162,7 +174,8 @@
                                                         <div class="row">
                                                             <div class="col-lg-7 col-7"><span class="card-text-price">
                                                                     @if ($jobScore['job']->salary_mode == 'range')
-                                                                        {{ $jobScore['job']?->min_salary }} - {{ $jobScore['job']?->max_salary }}
+                                                                        {{ $jobScore['job']?->min_salary }} -
+                                                                        {{ $jobScore['job']?->max_salary }}
                                                                         {{ config('settings.site_default_currency') }}
                                                                         <span class="text-muted"> /
                                                                             {{ $jobScore['job']->salaryType->name }}</span>
@@ -171,7 +184,8 @@
                                                                     @endif
                                                                 </span></div>
                                                             <div class="col-lg-5 col-5 text-end">
-                                                                <div class="bookmark" data-id="{{ $jobScore['job']->id }}">
+                                                                <div class="bookmark"
+                                                                    data-id="{{ $jobScore['job']->id }}">
                                                                     @php
                                                                         $bookmarkJob = \App\Models\JobBookmark::where([
                                                                             'candidate_id' => auth()?->user()?->id,
@@ -193,6 +207,9 @@
                                     @empty
                                         <h5 class="text-center">Sorry! No data Found😢.</h5>
                                     @endforelse
+                                @else
+                                    <h5 class="text-center">Sorry! No data Found😢.</h5>
+                                @endif
                             </div>
                         </div>
 

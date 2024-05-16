@@ -55,11 +55,14 @@ class DistrictController extends Controller
             'province_id' => ['required', 'integer']
         ]);
 
-        $type = new District();
-        $type->name = $request->name;
-        $type->country_id = $request->country_id;
-        $type->province_id = $request->province_id;
-        $type->save();
+
+        $data = [];
+        $data['name'] = $request->name;
+        $data['country_id'] = $request->country_id;
+        $data['province_id'] = $request->province_id;
+        District::create(
+            $data
+        );
 
         Notify::CreateNotify();
         return to_route('admin.district.index');
@@ -92,11 +95,14 @@ class DistrictController extends Controller
             'province_id' => ['required', 'integer'],
         ]);
 
-        $type = District::findOrFail($id);
-        $type->name = $request->name;
-        $type->country_id = $request->country_id;
-        $type->province_id = $request->province_id;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        $data['country_id'] = $request->country_id;
+        $data['province_id'] = $request->province_id;
+        District::updateOrCreate(
+            ['id' => $id],
+            $data
+        );
 
         Notify::UpdateNotify();
         return to_route('admin.district.index');

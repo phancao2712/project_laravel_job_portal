@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\Company;
 use App\Models\Experience;
 use App\Models\Skill;
 use App\Traits\Searchable;

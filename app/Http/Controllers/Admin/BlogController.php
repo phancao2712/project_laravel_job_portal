@@ -48,12 +48,15 @@ class BlogController extends Controller
     {
         $imagePath = $this->uploadFile($request, 'image');
 
-        $blog = new Blog();
-        $blog->image = $imagePath;
-        $blog->title = $request->title;
-        $blog->description = $request->description;
-        $blog->author_id = auth()->guard('admin')->user()->id;
-        $blog->save();
+        $blog = [];
+        $blog['image'] = $imagePath;
+        $blog['title'] = $request->title;
+        $blog['description'] = $request->description;
+        $blog['author_id'] = auth()->guard('admin')->user()->id;
+
+        Blog::create(
+            $blog
+        );
 
         Notify::CreateNotify();
         return to_route('admin.blogs.index');
@@ -97,7 +100,7 @@ class BlogController extends Controller
         $data['description'] = $request->description;
 
         $blog->updateOrCreate(
-            ['author_id' => auth()->user()->id],
+            ['author_id' => auth()->guard('admin')->user()->id],
             $data
         );
 
@@ -111,7 +114,9 @@ class BlogController extends Controller
     public function destroy(string $id)
     {
         try {
-            Blog::findOrFail($id)->delete();
+            $blog = Blog::findOrFail($id);
+            // deleteFile($blog->image);
+            $blog->delete();
             Notify::DeleteNotify();
             return response(['message' => 'success'], 200);
         } catch (\Exception $e) {

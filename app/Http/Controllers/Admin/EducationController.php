@@ -49,9 +49,11 @@ class EducationController extends Controller
             'name' => ['required', 'max:255', 'unique:education,name']
         ]);
 
-        $type = new Education();
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Education::create(
+            $data
+        );
 
         Notify::CreateNotify();
         return to_route('admin.education.index');
@@ -77,9 +79,12 @@ class EducationController extends Controller
             'name' => ['required', 'max:255']
         ]);
 
-        $type = Education::findOrFail($id);
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Education::updateOrCreate(
+            ['id' => $id],
+            $data
+        );
 
         Notify::CreateNotify();
         return to_route('admin.education.index');

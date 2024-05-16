@@ -50,9 +50,11 @@ class IndustryTypeController extends Controller
             'name' => ['required', 'max:255', 'unique:industry_types,name']
         ]);
 
-        $type = new Industry_type();
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Industry_type::create(
+            $data
+        );
 
         Notify::CreateNotify();
         return to_route('admin.industry-types.index');
@@ -82,9 +84,12 @@ class IndustryTypeController extends Controller
             'name' => ['required', 'max:255', 'unique:industry_types,name']
         ]);
 
-        $type = Industry_type::findOrFail($id);
-        $type->name = $request->name;
-        $type->save();
+        $data = [];
+        $data['name'] = $request->name;
+        Industry_type::create(
+            ['id' => $id],
+            $data
+        );
 
         Notify::UpdateNotify();
         return to_route('admin.industry-types.index');

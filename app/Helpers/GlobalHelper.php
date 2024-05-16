@@ -135,11 +135,24 @@ if (!function_exists('formatLocation')) {
             $permission = auth()->guard('admin')->user()->hasAnyPermission($permissions);
             $superAdmin = auth()->guard('admin')->user()->hasRole('Super Admin');
 
-            if($permission || $superAdmin){
+            if ($permission || $superAdmin) {
                 return true;
             }
 
             return false;
+        }
+    }
+
+    if (!function_exists('deleteFile')) {
+        function deleteFile($path)
+        {
+            if (isset($path)) {
+                $oldFilePath = public_path($path);
+                dd($oldFilePath);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
         }
     }
 }

@@ -4,14 +4,12 @@ namespace App\Services;
 
 class CalculateMatchingPercentageService
 {
-    function calculate($candidate, $job, $countSkill)
+    function calculate($candidate, $job)
     {
         $skillsMatch = $this->checkSkillsMatch($candidate, $job);
         $experienceMatch = $this->checkExperienceMatch($candidate, $job);
         $addressMatch = $this->checkAddress($candidate, $job);
-
         $totalPoints = $skillsMatch + $experienceMatch + $addressMatch;
-
         $maxPossiblePoints = 100;
         $matchingPercentage = ($totalPoints / $maxPossiblePoints) * 100;
 

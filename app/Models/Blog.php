@@ -17,6 +17,7 @@ class Blog extends Model
         'image',
         'title',
         'description',
+        'author_id'
     ];
 
     public function sluggable(): array

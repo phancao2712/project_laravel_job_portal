@@ -55,10 +55,12 @@ class JobCategoryController extends Controller
             'name' => ['required', 'max:255']
         ]);
 
-        $jobCategory = new JobCategory();
-        $jobCategory->icon = $request->icon;
-        $jobCategory->name = $request->name;
-        $jobCategory->save();
+        $data = [];
+        $data['name'] = $request->name;
+        $data['icon'] = $request->icon;
+        JobCategory::create(
+            $data
+        );
 
         Notify::CreateNotify();
 
@@ -88,8 +90,14 @@ class JobCategoryController extends Controller
 
         $jobCategory = JobCategory::findOrFail($id);
         if ($request->filled('icon')) $jobCategory->icon = $request->icon;
-        $jobCategory->name = $request->name;
-        $jobCategory->save();
+
+        $data = [];
+        $data['name'] = $request->name;
+        $data['icon'] = $request->icon;
+        JobCategory::updateOrCreate(
+            ['id' => $id],
+            $data
+        );
 
         Notify::CreateNotify();
 
