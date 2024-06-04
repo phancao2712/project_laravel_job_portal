@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController;
+use App\Http\Controllers\Frontend\LangController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\PricingPageController;
@@ -94,6 +95,8 @@ Route::post('contact',[ContactPageController::class, 'sendMail'])->name('send-ma
 
 // newsletter
 Route::post('new-letter', [NewsletterController::class, 'store'])->name('new-letter.store');
+
+Route::get('lang/{lang}', [LangController::class, 'changeLang'])->name('lang.change');
 
 /* COMPANY */
 Route::group(

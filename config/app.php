@@ -170,7 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\PaymentGatewaySettingServiceProvider::class,
         App\Providers\SiteSettingControllerServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
     ])->toArray(),
 
     /*
@@ -187,6 +187,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'GoogleTranslate' => Stichoza\GoogleTranslate\GoogleTranslate::class
     ])->toArray(),
 
 ];
